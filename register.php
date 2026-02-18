@@ -1,9 +1,4 @@
 <?php
-<<<<<<< HEAD
-// Root index - redirect ke login
-header("Location: login/index.php");
-exit();
-=======
 require_once 'config.php';
 
 // Jika sudah login, redirect ke dashboard
@@ -13,35 +8,54 @@ if (isset($_SESSION['user_id'])) {
 }
 
 $error = '';
+$success = '';
 
-// Proses login
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+// Data kabupaten
+$kabupaten_list = [
+    'Cikarang', 'Tambun', 'Babelan', 'Bojongmangu', 'Cibarusah', 
+    'Cibitung', 'Karangbahagia', 'Kedungwaringin', 'Muaragembong', 
+    'Pebayuran', 'Serang Baru', 'Setu', 'Sukaraya', 'Sukatani', 
+    'Sukawangi', 'Tambelang', 'Tarumajaya', 'Cabangbungin'
+];
+
+// Proses registrasi
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nisn = clean_input($_POST['nisn']);
+    $nama = clean_input($_POST['nama']);
     $email = clean_input($_POST['email']);
+    $kelas = clean_input($_POST['kelas']);
+    $kabupaten = clean_input($_POST['kabupaten']);
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     
-    $query = "SELECT * FROM users WHERE email = '$email'";
-    $result = $conn->query($query);
-    
-    if ($result && $result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['nama'] = $user['nama'];
-            $_SESSION['kelas'] = $user['kelas'];
-            $_SESSION['kabupaten'] = $user['kabupaten'];
-            
-            // Log login history
-            $user_id = $user['id'];
-            $conn->query("INSERT INTO login_history (user_id) VALUES ($user_id)");
-            
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            $error = 'Password salah!';
-        }
+    // Validasi
+    if (strlen($nisn) != 10) {
+        $error = 'NISN harus 10 digit!';
+    } elseif ($password != $confirm_password) {
+        $error = 'Password tidak cocok!';
+    } elseif (strlen($password) < 6) {
+        $error = 'Password minimal 6 karakter!';
     } else {
-        $error = 'Email tidak ditemukan!';
+        // Cek apakah NISN atau email sudah ada
+        $check_query = "SELECT * FROM users WHERE nisn = '$nisn' OR email = '$email'";
+        $check_result = $conn->query($check_query);
+        
+        if ($check_result && $check_result->num_rows > 0) {
+            $error = 'NISN atau Email sudah terdaftar!';
+        } else {
+            // Hash password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            // Insert user baru
+            $insert_query = "INSERT INTO users (nisn, nama, email, password, kelas, kabupaten) 
+                           VALUES ('$nisn', '$nama', '$email', '$hashed_password', '$kelas', '$kabupaten')";
+            
+            if ($conn->query($insert_query)) {
+                $success = 'Registrasi berhasil! Silakan login.';
+            } else {
+                $error = 'Terjadi kesalahan. Silakan coba lagi.';
+            }
+        }
     }
 }
 ?>
@@ -50,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathLearn - Platform Belajar Matematika</title>
+    <title>Daftar - MathLearn</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Crimson+Pro:wght@300;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -104,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             align-items: center;
             justify-content: center;
             color: var(--text);
+            padding: 40px 20px;
             position: relative;
             overflow-x: hidden;
             transition: all 0.3s ease;
@@ -120,17 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             animation: float 20s infinite ease-in-out;
         }
 
-        body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--float-color) 0%, transparent 70%);
-            bottom: -150px;
-            left: -150px;
-            animation: float 15s infinite ease-in-out reverse;
-        }
-
         @keyframes float {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
             25% { transform: translate(30px, -30px) rotate(90deg); }
@@ -138,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             75% { transform: translate(20px, 30px) rotate(270deg); }
         }
 
-        /* Theme Toggle Button - Positioned Top Right */
+        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -173,9 +177,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 60px 50px;
+            padding: 50px 40px;
             width: 90%;
-            max-width: 450px;
+            max-width: 500px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border);
             position: relative;
@@ -196,12 +200,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
         .logo {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .logo h1 {
             font-family: 'Space Mono', monospace;
-            font-size: 2.5em;
+            font-size: 2.2em;
             font-weight: 700;
             color: var(--light);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -210,13 +214,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
         .logo p {
             color: var(--accent);
-            margin-top: 10px;
-            font-size: 1.1em;
-            letter-spacing: 3px;
+            margin-top: 8px;
+            font-size: 1em;
+            letter-spacing: 2px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
@@ -224,40 +228,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             margin-bottom: 8px;
             color: var(--light);
             font-weight: 600;
-            font-size: 0.95em;
+            font-size: 0.9em;
             letter-spacing: 1px;
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
-            padding: 15px 20px;
+            padding: 14px 18px;
             border: 2px solid var(--border);
-            border-radius: 15px;
+            border-radius: 12px;
             background: var(--input-bg);
             color: var(--text);
-            font-size: 1em;
+            font-size: 0.95em;
             font-family: 'Crimson Pro', serif;
             transition: all 0.3s ease;
         }
 
-        .form-group input:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--light);
             box-shadow: 0 0 0 4px rgba(246, 177, 122, 0.1);
         }
 
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
         .btn {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             border: none;
-            border-radius: 15px;
-            font-size: 1.1em;
+            border-radius: 12px;
+            font-size: 1em;
             font-weight: 700;
             font-family: 'Space Mono', monospace;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-top: 10px;
         }
 
         .btn-primary {
@@ -269,10 +286,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 30px rgba(246, 177, 122, 0.4);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
         }
 
         .btn-secondary {
@@ -292,37 +305,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             background: rgba(255, 82, 82, 0.2);
             border: 1px solid rgba(255, 82, 82, 0.5);
             color: #ef4444;
-            padding: 12px 20px;
+            padding: 12px 18px;
             border-radius: 10px;
             margin-bottom: 20px;
-            font-size: 0.95em;
-            text-align: center;
-        }
-
-        .divider {
-            text-align: center;
-            margin: 30px 0;
-            position: relative;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 40%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--accent), transparent);
-        }
-
-        .divider::before { left: 0; }
-        .divider::after { right: 0; }
-
-        .divider span {
-            padding: 0 15px;
-            color: var(--accent);
             font-size: 0.9em;
-            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .success {
+            background: rgba(82, 255, 168, 0.2);
+            border: 1px solid rgba(82, 255, 168, 0.5);
+            color: #10b981;
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+
+        .back-link a:hover {
+            color: var(--light);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -335,34 +355,71 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <div class="container">
         <div class="logo">
             <h1>MathLearn</h1>
-            <p>BELAJAR MATEMATIKA</p>
+            <p>DAFTAR AKUN BARU</p>
         </div>
 
         <?php if ($error): ?>
             <div class="error"><?php echo $error; ?></div>
         <?php endif; ?>
 
+        <?php if ($success): ?>
+            <div class="success"><?php echo $success; ?></div>
+        <?php endif; ?>
+
         <form method="POST">
+            <div class="form-group">
+                <label for="nisn">NISN (10 digit)</label>
+                <input type="text" id="nisn" name="nisn" required placeholder="1234567890" maxlength="10" pattern="[0-9]{10}">
+            </div>
+
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" required placeholder="Nama Anda">
+            </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required placeholder="email@example.com">
             </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="••••••••">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="kelas">Kelas</label>
+                    <select id="kelas" name="kelas" required>
+                        <option value="">Pilih Kelas</option>
+                        <option value="X">X</option>
+                        <option value="XI">XI</option>
+                        <option value="XII">XII</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="kabupaten">Kabupaten</label>
+                    <select id="kabupaten" name="kabupaten" required>
+                        <option value="">Pilih Kabupaten</option>
+                        <?php foreach ($kabupaten_list as $kab): ?>
+                            <option value="<?php echo $kab; ?>"><?php echo $kab; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
 
-            <button type="submit" name="login" class="btn btn-primary">Masuk</button>
+            <div class="form-group">
+                <label for="password">Password Baru</label>
+                <input type="password" id="password" name="password" required placeholder="Minimal 6 karakter" minlength="6">
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Konfirmasi Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required placeholder="Ulangi password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Daftar</button>
         </form>
 
-        <div class="divider">
-            <span>atau</span>
+        <div class="back-link">
+            <a href="index.php">← Sudah punya akun? Login di sini</a>
         </div>
-
-        <a href="register.php" style="text-decoration: none;">
-            <button class="btn btn-secondary">Buat Akun Baru</button>
-        </a>
     </div>
 
     <script>
@@ -406,4 +463,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     </script>
 </body>
 </html>
->>>>>>> adb8f22 (Add files via upload)

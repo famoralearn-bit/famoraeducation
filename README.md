@@ -86,11 +86,34 @@ Website platform belajar matematika dengan sistem login/register untuk siswa kel
 4. Klik tombol "Go" untuk menjalankan
 
 ### Langkah 3: File Website
+<<<<<<< HEAD
 Copy semua file PHP ke folder XAMPP:
    - Windows: `C:\xampp\htdocs\math-website\`
    - Linux: `/opt/lampp/htdocs/math-website/`
    - Mac: `/Applications/XAMPP/htdocs/math-website/`
   ### Langkah 4: Akses Website
+=======
+1. Copy semua file PHP ke folder XAMPP:
+   - Windows: `C:\xampp\htdocs\math-website\`
+   - Linux: `/opt/lampp/htdocs/math-website/`
+   - Mac: `/Applications/XAMPP/htdocs/math-website/`
+
+2. Struktur folder:
+```
+htdocs/
+└── math-website/
+    ├── config.php
+    ├── index.php
+    ├── register.php
+    ├── dashboard.php
+    ├── profile.php
+    ├── cari-teman.php
+    ├── logout.php
+    └── database.sql
+```
+
+### Langkah 4: Akses Website
+>>>>>>> adb8f22 (Add files via upload)
 1. Buka browser
 2. Ketik: `http://localhost/math-website/`
 3. Halaman login akan muncul
@@ -210,6 +233,7 @@ Website mendukung 18 kabupaten di Bekasi:
 
 Untuk keperluan edukasi dan pembelajaran.
 
+<<<<<<< HEAD
 Dibuat dengan ❤️ untuk pembelajaran Matematika
 
 ## Fitur
@@ -233,3 +257,8 @@ Dibuat dengan ❤️ untuk pembelajaran Matematika
 
 ## Kedepannya 
 Kita menambahkan fitur dan materi lebih banyak lagi 🥰🥰
+=======
+---
+
+Dibuat dengan ❤️ untuk pembelajaran Matematika
+>>>>>>> adb8f22 (Add files via upload)
