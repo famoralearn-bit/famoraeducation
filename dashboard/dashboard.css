@@ -1,0 +1,238 @@
+/* =============================================
+   MathLearn - Dashboard Styles
+   ============================================= */
+
+body {
+    background: linear-gradient(135deg, var(--bg) 0%, var(--primary) 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px;
+}
+
+/* ---- Welcome Banner ---- */
+.welcome {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px 45px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    animation: slideIn 0.5s ease-out;
+    box-shadow: 0 4px 20px var(--hover-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.welcome-text h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 2.2em;
+    color: var(--light);
+    margin-bottom: 8px;
+}
+
+.welcome-text p {
+    font-size: 1.1em;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.welcome-badge {
+    background: linear-gradient(135deg, var(--light), #e89f6a);
+    color: #2d3748;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ---- Menu Grid ---- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.menu-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    padding: 28px;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    box-shadow: 0 4px 15px var(--hover-shadow);
+}
+
+.menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(246,177,122,0.08), transparent);
+    transition: left 0.5s;
+}
+
+.menu-card:hover::before { left: 100%; }
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--light);
+    box-shadow: 0 10px 30px var(--hover-shadow);
+}
+
+.menu-card .icon { font-size: 2.4em; margin-bottom: 14px; display: block; }
+.menu-card h3 { font-family: 'Space Mono', monospace; font-size: 1.2em; color: var(--light); margin-bottom: 10px; }
+.menu-card p { color: var(--accent); font-size: 0.93em; line-height: 1.6; }
+
+.discord-time-box {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: var(--input-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+/* ---- Class Selector Tabs ---- */
+.class-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.class-tab-btn {
+    padding: 14px;
+    background: var(--input-bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 1em;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.class-tab-btn:hover { border-color: var(--light); transform: translateY(-2px); }
+
+.class-tab-btn.active {
+    background: linear-gradient(135deg, var(--light) 0%, #e89f6a 100%);
+    color: #2d3748;
+    border-color: var(--light);
+}
+
+/* ---- Tab Panel ---- */
+.tab-panel { display: none; animation: fadeIn 0.4s ease-out; }
+.tab-panel.active { display: block; }
+
+/* ---- Materi Grid ---- */
+.materi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.materi-card {
+    background: var(--input-bg);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 18px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+}
+
+.materi-card:hover {
+    border-color: var(--light);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--hover-shadow);
+}
+
+.materi-card .materi-icon { font-size: 1.9em; margin-bottom: 10px; display: block; }
+.materi-card h4 { font-family: 'Space Mono', monospace; color: var(--light); font-size: 0.97em; margin-bottom: 7px; }
+.materi-card p  { color: var(--accent); font-size: 0.85em; line-height: 1.5; }
+
+.badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.76em;
+    border: 1px solid;
+}
+
+.badge-materi  { color: var(--accent);  border-color: var(--border);          background: rgba(112,119,161,0.12); }
+.badge-popular { color: var(--light);   border-color: rgba(246,177,122,0.4);   background: rgba(246,177,122,0.12); }
+
+/* ---- Latihan Grid ---- */
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.topic-card {
+    background: var(--input-bg);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 18px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+}
+
+.topic-card:hover {
+    border-color: var(--light);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--hover-shadow);
+}
+
+.topic-card .topic-icon { font-size: 1.8em; margin-bottom: 9px; display: block; }
+.topic-card h4 { font-family: 'Space Mono', monospace; color: var(--light); font-size: 0.95em; margin-bottom: 6px; }
+.topic-card p  { color: var(--accent); font-size: 0.85em; }
+
+.topic-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    background: rgba(246,177,122,0.12);
+    border-radius: 20px;
+    font-size: 0.76em;
+    color: var(--light);
+    border: 1px solid rgba(246,177,122,0.3);
+}
+
+/* ---- Panel Wrapper ---- */
+.panel-box {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 38px;
+    border: 2px solid var(--border);
+    box-shadow: 0 4px 20px var(--hover-shadow);
+}
+
+@media (max-width: 768px) {
+    .container { padding: 20px 18px; }
+    .welcome { flex-direction: column; align-items: flex-start; }
+    .welcome-text h1 { font-size: 1.6em; }
+    .class-tabs { grid-template-columns: 1fr; }
+    .materi-grid, .topic-grid { grid-template-columns: 1fr; }
+}
