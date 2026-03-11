@@ -42,7 +42,7 @@ mathlearn/
 
 Website platform belajar matematika dengan sistem login/register untuk siswa kelas X, XI, dan XII.
 
-## Fitur
+# Fitur
 
 ### 1. Sistem Autentikasi
 - **Login**: Email dan password
