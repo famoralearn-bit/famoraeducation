@@ -48,7 +48,7 @@ Website platform belajar matematika dengan sistem login/register untuk siswa kel
 
 ### 1. Sistem Autentikasi
 - **Login**: Email dan password
-- **Register**: NISN (10 digit), nama, email, kelas, kabupaten, password
+- **Register**:Nama, email, kelas, kabupaten, password
 
 ### 2. Dashboard
 - Profil pengguna
