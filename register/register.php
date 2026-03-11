@@ -78,19 +78,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="alert alert-success"><?php echo $success; ?></div>
         <?php endif; ?>
 
-        <form method="POST" novalidate>
+        <form method="POST" novalidate autocomplete="off">
             <div class="form-group">
                 <label for="nama">Nama Lengkap</label>
                 <input type="text" id="nama" name="nama"
                        value="<?php echo isset($_POST['nama']) ? htmlspecialchars($_POST['nama']) : ''; ?>"
-                       placeholder="Masukkan nama lengkap" required>
+                       placeholder="Masukkan nama lengkap" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
-                       placeholder="contoh@email.com" required>
+                       placeholder="contoh@email.com" required autocomplete="off">
             </div>
 
             <div class="form-group">
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password"
-                       placeholder="Minimal 6 karakter" minlength="6" required>
+                       placeholder="Minimal 6 karakter" minlength="6" required autocomplete="new-password">
                 <!-- Strength indicator -->
                 <div style="margin-top:8px; height:4px; border-radius:4px; background:var(--border); overflow:hidden;">
                     <div id="strength-bar" style="height:100%; width:0; transition:all 0.3s;"></div>
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="confirm_password">Konfirmasi Password</label>
                 <input type="password" id="confirm_password" name="confirm_password"
-                       placeholder="Ulangi password" required>
+                       placeholder="Ulangi password" required autocomplete="new-password">
             </div>
 
             <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px;">
