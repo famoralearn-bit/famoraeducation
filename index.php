@@ -2,7 +2,6 @@
 // Root index - redirect ke login
 header("Location: login/index.php");
 exit();
-=======
 require_once 'config.php';
 
 // Jika sudah login, redirect ke dashboard
