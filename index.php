@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // Root index - redirect ke login
 header("Location: login/index.php");
 exit();
@@ -406,4 +405,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     </script>
 </body>
 </html>
->>>>>>> adb8f22 (Add files via upload)
+>>>>>>> 9d115378423cb2d24e11d8792ca3a83d4ec18d83
