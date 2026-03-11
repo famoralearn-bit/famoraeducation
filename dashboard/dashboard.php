@@ -190,21 +190,21 @@ update_last_seen($_SESSION['user_id']);
             <div id="latihan-X" class="tab-panel latihan-panel">
                 <div class="topic-grid">
 
-                    <a href="https://forms.gle/eksponen-kelas10" target="_blank" class="topic-card">
+                    <a href="https://quizzory.in/id/69b015973bce17d35ef0ae3e" target="_blank" class="topic-card">
                         <span class="topic-icon">⚡</span>
                         <h4>Eksponen</h4>
                         <p>Latihan soal eksponen dan perpangkatan</p>
                         <span class="topic-badge">Kerjakan →</span>
                     </a>
 
-                    <a href="https://forms.gle/logaritma-kelas10" target="_blank" class="topic-card">
+                    <a href="https://quizzory.in/id/69b0221ae151768d0424a152" target="_blank" class="topic-card">
                         <span class="topic-icon">📈</span>
                         <h4>Logaritma</h4>
                         <p>Latihan soal logaritma</p>
                         <span class="topic-badge">Kerjakan →</span>
                     </a>
 
-                    <a href="https://forms.gle/barisderet-kelas10" target="_blank" class="topic-card">
+                    <a href="https://quizzory.in/id/69b033d43bce17d35ef268cd" target="_blank" class="topic-card">
                         <span class="topic-icon">🔗</span>
                         <h4>Baris &amp; Deret</h4>
                         <p>Latihan soal baris dan deret</p>
