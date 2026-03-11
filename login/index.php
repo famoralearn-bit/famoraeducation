@@ -62,15 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             <div class="alert alert-error"><?php echo $error; ?></div>
         <?php endif; ?>
 
-        <form method="POST" novalidate>
+        <form method="POST" novalidate autocomplete="off">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+                <input type="email" id="email" name="email" placeholder="contoh@email.com" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="new-password">
             </div>
 
             <button type="submit" name="login" class="btn btn-primary btn-full" style="margin-top:8px;">
