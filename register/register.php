@@ -18,7 +18,7 @@ $kecamatan_list = [
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama             = clean_input($_POST['nama']);
-    $email            = clean_input($_POST['gmail']);
+    $email            = clean_input($_POST['email']);
     $kelas            = clean_input($_POST['kelas']);
     $kecamatan        = clean_input($_POST['kecamatan']);
     $password         = $_POST['password'];
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Logo & Brand -->
             <div class="text-center mb-4">
-                <img src="../assets/images/logo.jpeg" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
+                <img src="../assets/images/famora.png" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
                 <h1 class="logo-title">FamoraLearn</h1>
                 <p class="logo-sub">DAFTAR AKUN BARU</p>
             </div>
@@ -104,11 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="mb-3">
                     <label for="email" class="form-label custom-label">
-                        <i class="bi bi-envelope me-1"></i> Gmail
+                        <i class="bi bi-envelope me-1"></i> Email
                     </label>
                     <input type="email" id="email" name="email"
                            class="form-control custom-input"
-                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['gmail']) : ''; ?>"
+                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
                            placeholder="contoh@gmail.com" required autocomplete="off">
                 </div>
 
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <p class="text-center mt-4 footer-note">
-                © 2026<strong>Famora Education</strong> · FamoraLearn
+                © 2026 <strong>Famora Education</strong> · FamoraLearn
             </p>
         </div>
     </div>

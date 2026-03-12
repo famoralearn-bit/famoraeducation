@@ -9,9 +9,9 @@ if (isset($_SESSION['user_id'])) {
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email    = isset($_POST['email']) ? clean_input($_POST['email']) : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-    
+    $email    = clean_input($_POST['email']);
+    $password = $_POST['password'];
+
     $result = $conn->query("SELECT * FROM users WHERE email = '$email'");
 
     if ($result && $result->num_rows > 0) {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
             <!-- Logo & Brand -->
             <div class="text-center mb-4">
-                <img src="../assets/images/logo.jpeg" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
+                <img src="../assets/images/famora.png" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
                 <h1 class="logo-title">FamoraLearn</h1>
                 <p class="logo-sub">PLATFORM BELAJAR MATEMATIKA</p>
             </div>
@@ -70,10 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
             <form method="POST" novalidate autocomplete="off">
                 <div class="mb-4">
-                    <label for="gmail" class="form-label custom-label">
-                        <i class="bi bi-envelope me-1"></i> Gmail
+                    <label for="email" class="form-label custom-label">
+                        <i class="bi bi-envelope me-1"></i> Email
                     </label>
-                    <input type="gmail" id="gmail" name="gmail"
+                    <input type="email" id="email" name="email"
                            class="form-control custom-input"
                            placeholder="contoh@gmail.com"
                            required autocomplete="off">
