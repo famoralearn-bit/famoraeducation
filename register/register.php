@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Logo & Brand -->
             <div class="text-center mb-4">
-                <img src="../assets/images/logo.jpeg" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
+                <img src="../assets/images/famora.png" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
                 <h1 class="logo-title">FamoraLearn</h1>
                 <p class="logo-sub">DAFTAR AKUN BARU</p>
             </div>
