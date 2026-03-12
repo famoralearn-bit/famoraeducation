@@ -1,6 +1,8 @@
-# MathLearn - Platform Belajar Matematika
+# FamoraLearn - Platform Belajar Matematika
 
 ## Struktur Folder
+
+```
 mathlearn/
 ├── index.php                   ← Root redirect
 ├── config/
@@ -38,7 +40,7 @@ mathlearn/
     └── logout.php              ← Logout & session destroy
 ```
 
-# Website Matematika - MathLearn
+# Website Matematika - FamoraLearn
 
 Website platform belajar matematika dengan sistem login/register untuk siswa kelas X, XI, dan XII.
 
