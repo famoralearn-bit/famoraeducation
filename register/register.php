@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </label>
                     <input type="gmail" id="gmail" name="gmail"
                            class="form-control custom-input"
-                           value="<?php echo isset($_POST['gmail']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                           value="<?php echo isset($_POST['gmail']) ? htmlspecialchars($_POST['gmail']) : ''; ?>"
                            placeholder="contoh@gmail.com" required autocomplete="off">
                 </div>
 
