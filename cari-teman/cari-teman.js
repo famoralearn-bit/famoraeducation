@@ -1,87 +1,43 @@
-/* =============================================
-   MathLearn - Cari Teman JS
-   ============================================= */
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Filter online by default on page load
-    const defaultTab = document.querySelector('.filter-tab.active');
-    if (defaultTab) filterUsers('online', defaultTab);
-
-    // Start polling for real-time online status
-    startOnlinePolling();
-});
-
-// ---- Filter Tabs ----
-function filterUsers(type, btn) {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+function filterUsers(status, btn) {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    document.querySelectorAll('.user-card[data-status]').forEach(card => {
-        if (type === 'all') {
-            card.classList.remove('hidden');
+    document.querySelectorAll('.user-card-wrap').forEach(card => {
+        if (status === 'all') {
+            card.style.display = '';
         } else {
-            card.dataset.status === type
-                ? card.classList.remove('hidden')
-                : card.classList.add('hidden');
+            card.style.display = card.dataset.status === status ? '' : 'none';
         }
     });
 }
 
-// ---- Real-time polling ----
-function startOnlinePolling() {
-    setInterval(fetchOnlineStatus, 30000);
-}
-
-function fetchOnlineStatus() {
-    fetch('../cari-teman/online-status.php')
-        .then(res => res.json())
+// AJAX poll online status every 30s
+setInterval(function () {
+    fetch('online-status.php')
+        .then(r => r.json())
         .then(data => {
-            if (!data || !data.users) return;
+            let online = 0, total = 0;
+            document.querySelectorAll('.user-card-wrap').forEach(wrap => {
+                const uid = wrap.dataset.userId;
+                const isOnline = data[uid] || false;
+                total++;
+                if (isOnline) online++;
+                wrap.dataset.status = isOnline ? 'online' : 'offline';
 
-            let onlineCount = 0;
-            let offlineCount = 0;
-
-            data.users.forEach(u => {
-                const card = document.querySelector(`.user-card[data-user-id="${u.id}"]`);
-                if (!card) return;
-
-                const dotEl   = card.querySelector('.online-dot');
-                const labelEl = card.querySelector('.status-label');
-                const isOn    = u.is_online;
-
-                if (isOn) {
-                    onlineCount++;
-                    card.classList.add('is-online');
-                    card.classList.remove('is-offline');
-                    card.dataset.status = 'online';
-                    if (dotEl)   dotEl.className   = 'online-dot online';
-                    if (labelEl) { labelEl.className = 'status-label online'; labelEl.innerHTML = '<span class="dot"></span> Online'; }
-
-                    if (!card.querySelector('.btn-discord')) {
-                        const a = document.createElement('a');
-                        a.className   = 'btn-discord';
-                        a.href        = data.discord_link || '#';
-                        a.target      = '_blank';
-                        a.innerHTML   = '💬 Ajak Belajar';
-                        card.appendChild(a);
-                    }
-                } else {
-                    offlineCount++;
-                    card.classList.remove('is-online');
-                    card.classList.add('is-offline');
-                    card.dataset.status = 'offline';
-                    if (dotEl)   dotEl.className   = 'online-dot offline';
-                    if (labelEl) { labelEl.className = 'status-label offline'; labelEl.innerHTML = '<span class="dot"></span> Offline'; }
-                    const existing = card.querySelector('.btn-discord');
-                    if (existing) existing.remove();
+                const dot = wrap.querySelector('.online-dot');
+                const lbl = wrap.querySelector('.status-label');
+                if (dot) { dot.className = 'online-dot ' + (isOnline ? 'online' : 'offline'); }
+                if (lbl) {
+                    lbl.className = 'status-label ' + (isOnline ? 'online' : 'offline') + ' mb-2';
+                    lbl.textContent = isOnline ? '🟢 Online' : '⚫ Offline';
                 }
             });
-
-            const el = id => document.getElementById(id);
-            if (el('online-count'))  el('online-count').textContent  = onlineCount;
-            if (el('offline-count')) el('offline-count').textContent = offlineCount;
-            if (el('total-count'))   el('total-count').textContent   = onlineCount + offlineCount;
+            const onlineEl  = document.getElementById('online-count');
+            const offlineEl = document.getElementById('offline-count');
+            const totalEl   = document.getElementById('total-count');
+            if (onlineEl)  onlineEl.textContent  = online;
+            if (offlineEl) offlineEl.textContent = total - online;
+            if (totalEl)   totalEl.textContent   = total;
         })
-        .catch(() => { /* silently fail */ });
-}
+        .catch(() => {});
+}, 30000);

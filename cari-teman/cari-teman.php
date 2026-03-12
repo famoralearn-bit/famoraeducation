@@ -43,7 +43,7 @@ $kecamatan_list = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cari Teman - MathLearn</title>
+    <title>Cari Teman - FamoraLearn</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
@@ -53,7 +53,10 @@ $kecamatan_list = [
 
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
-            <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">MathLearn</a>
+            <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">
+                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
+                FamoraLearn
+            </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <i class="bi bi-list"></i>
             </button>
