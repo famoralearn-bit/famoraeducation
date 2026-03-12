@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil - MathLearn</title>
+    <title>Profil - FamoraLearn</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
@@ -71,7 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
-            <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">MathLearn</a>
+            <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">
+                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img me-2">FamoraLearn
+            </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <i class="bi bi-list"></i>
             </button>
@@ -130,7 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
             <div class="col-lg-6">
                 <div class="form-card">
                     <h2 class="form-card-title">✏️ Edit Profil</h2>
-                    <p class="form-card-note">Kamu bisa mengubah nama, kelas, dan kecamatan.</p>
                     <form method="POST" novalidate>
                         <div class="mb-3">
                             <label class="form-label custom-label">Nama Lengkap</label>
