@@ -20,12 +20,10 @@ $kecamatan_list = [
     'Sukawangi','Tambelang','Tarumajaya','Cabangbungin'
 ];
 
-// ---- Update profil (nama + kelas + kecamatan) ----
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $nama      = clean_input($_POST['nama']);
     $kelas     = clean_input($_POST['kelas']);
     $kecamatan = clean_input($_POST['kecamatan']);
-
     if (empty($nama)) {
         $error = 'Nama tidak boleh kosong!';
     } else {
@@ -41,12 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     }
 }
 
-// ---- Ganti password ----
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
     $old = $_POST['old_password'];
     $new = $_POST['new_password'];
     $cnf = $_POST['confirm_password'];
-
     if (!password_verify($old, $user['password'])) {
         $error = 'Password lama salah!';
     } elseif ($new !== $cnf) {
@@ -66,117 +62,140 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil - MathLearn</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="profile.css">
 </head>
 <body data-theme="dark">
 
-    <nav class="navbar">
-        <a href="../dashboard/dashboard.php" class="brand">MathLearn</a>
-        <div class="nav-links">
-            <a href="../dashboard/dashboard.php">Dashboard</a>
-            <a href="profile.php" class="active">Profil</a>
-            <a href="../cari-teman/cari-teman.php">Cari Teman</a>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <span id="theme-icon">🌙</span>
-                <span id="theme-text">Dark</span>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">MathLearn</a>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list"></i>
             </button>
-            <a href="../logout/logout.php" class="logout">Logout</a>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="../dashboard/dashboard.php"><i class="bi bi-house me-1"></i>Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="profile.php"><i class="bi bi-person me-1"></i>Profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../cari-teman/cari-teman.php"><i class="bi bi-people me-1"></i>Cari Teman</a></li>
+                    <li class="nav-item">
+                        <button class="btn nav-theme-btn" onclick="toggleTheme()">
+                            <span id="theme-icon">🌙</span><span id="theme-text">Dark</span>
+                        </button>
+                    </li>
+                    <li class="nav-item"><a class="nav-link nav-logout" href="../logout/logout.php"><i class="bi bi-box-arrow-right me-1"></i>Logout</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container py-4">
 
-        <!-- Info Profil -->
-        <div class="card">
-            <div class="profile-header-card">
-                <div class="profile-avatar">👤</div>
-                <h1><?php echo htmlspecialchars($user['nama']); ?></h1>
-                <p>Kelas <?php echo $user['kelas']; ?> • <?php echo $user['kecamatan']; ?></p>
-            </div>
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="label">EMAIL</div>
-                    <div class="value"><?php echo htmlspecialchars($user['email']); ?></div>
+        <!-- Profile Info Card -->
+        <div class="profile-card text-center mb-4">
+            <div class="profile-avatar">👤</div>
+            <h1 class="profile-name"><?php echo htmlspecialchars($user['nama']); ?></h1>
+            <p class="profile-sub">Kelas <?php echo $user['kelas']; ?> • <?php echo $user['kecamatan']; ?></p>
+            <div class="row g-3 mt-3">
+                <div class="col-6 col-md-3">
+                    <div class="info-item"><div class="info-label">EMAIL</div><div class="info-value"><?php echo htmlspecialchars($user['email']); ?></div></div>
                 </div>
-                <div class="info-item">
-                    <div class="label">KELAS</div>
-                    <div class="value"><?php echo $user['kelas']; ?></div>
+                <div class="col-6 col-md-3">
+                    <div class="info-item"><div class="info-label">KELAS</div><div class="info-value"><?php echo $user['kelas']; ?></div></div>
                 </div>
-                <div class="info-item">
-                    <div class="label">KECAMATAN</div>
-                    <div class="value"><?php echo $user['kecamatan']; ?></div>
+                <div class="col-6 col-md-3">
+                    <div class="info-item"><div class="info-label">KECAMATAN</div><div class="info-value"><?php echo $user['kecamatan']; ?></div></div>
                 </div>
-                <div class="info-item">
-                    <div class="label">BERGABUNG</div>
-                    <div class="value"><?php echo date('d M Y', strtotime($user['created_at'])); ?></div>
+                <div class="col-6 col-md-3">
+                    <div class="info-item"><div class="info-label">BERGABUNG</div><div class="info-value"><?php echo date('d M Y', strtotime($user['created_at'])); ?></div></div>
                 </div>
             </div>
         </div>
 
-        <?php if ($success): ?><div class="alert alert-success"><?php echo $success; ?></div><?php endif; ?>
-        <?php if ($error):   ?><div class="alert alert-error"><?php echo $error; ?></div><?php endif; ?>
+        <?php if ($success): ?>
+            <div class="alert alert-success-custom d-flex align-items-center gap-2 mb-4">
+                <i class="bi bi-check-circle-fill"></i><span><?php echo $success; ?></span>
+            </div>
+        <?php endif; ?>
+        <?php if ($error): ?>
+            <div class="alert alert-danger-custom d-flex align-items-center gap-2 mb-4">
+                <i class="bi bi-exclamation-circle-fill"></i><span><?php echo $error; ?></span>
+            </div>
+        <?php endif; ?>
 
-        <!-- Edit Profil -->
-        <div class="card">
-            <h2 class="form-section-title">✏️ Edit Profil</h2>
-            <p class="form-note">Kamu bisa mengubah nama, kelas, dan kecamatan.</p>
-            <form method="POST" novalidate>
-                <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="nama" value="<?php echo htmlspecialchars($user['nama']); ?>" required>
+        <div class="row g-4">
+            <!-- Edit Profil -->
+            <div class="col-lg-6">
+                <div class="form-card">
+                    <h2 class="form-card-title">✏️ Edit Profil</h2>
+                    <p class="form-card-note">Kamu bisa mengubah nama, kelas, dan kecamatan.</p>
+                    <form method="POST" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Nama Lengkap</label>
+                            <input type="text" name="nama" class="form-control custom-input"
+                                   value="<?php echo htmlspecialchars($user['nama']); ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Kelas</label>
+                            <select name="kelas" class="form-select custom-input" required>
+                                <option value="X"   <?php echo $user['kelas']=='X'   ? 'selected':''; ?>>X</option>
+                                <option value="XI"  <?php echo $user['kelas']=='XI'  ? 'selected':''; ?>>XI</option>
+                                <option value="XII" <?php echo $user['kelas']=='XII' ? 'selected':''; ?>>XII</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label custom-label">Kecamatan</label>
+                            <select name="kecamatan" class="form-select custom-input" required>
+                                <?php foreach ($kecamatan_list as $kec): ?>
+                                    <option value="<?php echo $kec; ?>" <?php echo $user['kecamatan']==$kec ? 'selected':''; ?>>
+                                        <?php echo $kec; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" name="update" class="btn btn-custom-primary">
+                                <i class="bi bi-save me-1"></i> Simpan
+                            </button>
+                            <a href="../dashboard/dashboard.php" class="btn btn-custom-outline">Kembali</a>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label>Kelas</label>
-                    <select name="kelas" required>
-                        <option value="X"   <?php echo $user['kelas']=='X'   ? 'selected':''; ?>>X</option>
-                        <option value="XI"  <?php echo $user['kelas']=='XI'  ? 'selected':''; ?>>XI</option>
-                        <option value="XII" <?php echo $user['kelas']=='XII' ? 'selected':''; ?>>XII</option>
-                    </select>
+            <!-- Ganti Password -->
+            <div class="col-lg-6">
+                <div class="form-card">
+                    <h2 class="form-card-title">🔒 Ganti Password</h2>
+                    <form method="POST" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Password Lama</label>
+                            <input type="password" name="old_password" class="form-control custom-input"
+                                   placeholder="Masukkan password lama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Password Baru</label>
+                            <input type="password" id="new_password" name="new_password" class="form-control custom-input"
+                                   placeholder="Minimal 6 karakter" minlength="6" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label custom-label">Konfirmasi Password Baru</label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control custom-input"
+                                   placeholder="Ulangi password baru" required>
+                        </div>
+                        <button type="submit" name="change_password" class="btn btn-custom-primary">
+                            <i class="bi bi-shield-lock me-1"></i> Ganti Password
+                        </button>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label>Kecamatan</label>
-                    <select name="kecamatan" required>
-                        <?php foreach ($kecamatan_list as $kec): ?>
-                            <option value="<?php echo $kec; ?>"
-                                <?php echo $user['kecamatan']==$kec ? 'selected':''; ?>>
-                                <?php echo $kec; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-
-                <div class="btn-row">
-                    <button type="submit" name="update" class="btn btn-primary">Simpan Perubahan</button>
-                    <a href="../dashboard/dashboard.php" class="btn btn-secondary">Kembali</a>
-                </div>
-            </form>
-        </div>
-
-        <!-- Ganti Password -->
-        <div class="card">
-            <h2 class="form-section-title">🔒 Ganti Password</h2>
-            <form method="POST" novalidate>
-                <div class="form-group">
-                    <label>Password Lama</label>
-                    <input type="password" name="old_password" placeholder="Masukkan password lama" required>
-                </div>
-                <div class="form-group">
-                    <label>Password Baru</label>
-                    <input type="password" id="new_password" name="new_password" placeholder="Minimal 6 karakter" minlength="6" required>
-                </div>
-                <div class="form-group">
-                    <label>Konfirmasi Password Baru</label>
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Ulangi password baru" required>
-                </div>
-                <button type="submit" name="change_password" class="btn btn-primary">Ganti Password</button>
-            </form>
+            </div>
         </div>
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/theme.js"></script>
     <script src="profile.js"></script>
 </body>
