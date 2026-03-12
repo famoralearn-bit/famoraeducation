@@ -24,11 +24,12 @@ update_last_seen($_SESSION['user_id']);
 </head>
 <body data-theme="dark" data-user-class="<?php echo $kelas; ?>">
 
-    <!-- Navbar Bootstrap -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
             <a class="navbar-brand brand-logo" href="dashboard.php">
-                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img me-2">FamoraLearn
+                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
+                FamoraLearn
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <i class="bi bi-list"></i>
@@ -102,7 +103,9 @@ update_last_seen($_SESSION['user_id']);
             </div>
         </div>
 
-        <!-- Materi -->
+        <!-- ==============================
+             MATERI MATEMATIKA
+             ============================== -->
         <h2 class="section-title">📖 Materi Matematika</h2>
         <div class="panel-box mb-5">
             <div class="class-tabs mb-3">
@@ -111,34 +114,126 @@ update_last_seen($_SESSION['user_id']);
                 <button class="class-tab-btn materi-tab-btn" onclick="selectMateri('XII')" id="materi-btn-XII">Kelas XII</button>
             </div>
 
+            <!-- KELAS X -->
             <div id="materi-X" class="tab-panel materi-panel">
                 <div class="row g-3">
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">⚡</span><h4>Eksponen</h4><p>Bilangan berpangkat, sifat-sifat eksponen, dan operasi perpangkatan</p><span class="badge badge-popular">Populer</span></a></div>
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">📈</span><h4>Logaritma</h4><p>Definisi logaritma, sifat-sifat logaritma, dan penerapannya</p><span class="badge badge-materi">Materi</span></a></div>
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">🔗</span><h4>Baris & Deret</h4><p>Barisan aritmetika dan geometri, deret hingga dan tak hingga</p><span class="badge badge-materi">Materi</span></a></div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('eksponen-x')" style="cursor:pointer">
+                            <span class="materi-icon">⚡</span>
+                            <h4>Eksponen</h4>
+                            <p>Bilangan berpangkat, sifat-sifat eksponen, dan operasi perpangkatan</p>
+                            <span class="badge badge-popular">Populer</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('logaritma-x')" style="cursor:pointer">
+                            <span class="materi-icon">📈</span>
+                            <h4>Logaritma</h4>
+                            <p>Definisi logaritma, sifat-sifat logaritma, dan penerapannya</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('barisderet-x')" style="cursor:pointer">
+                            <span class="materi-icon">🔗</span>
+                            <h4>Baris & Deret</h4>
+                            <p>Barisan aritmetika dan geometri, deret hingga dan tak hingga</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('trigonometri-x')" style="cursor:pointer">
+                            <span class="materi-icon">📐</span>
+                            <h4>Trigonometri</h4>
+                            <p>Sudut, rasio trigonometri, dan fungsi sinus, cosinus, tangen</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- KELAS XI -->
             <div id="materi-XI" class="tab-panel materi-panel">
                 <div class="row g-3">
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">🔄</span><h4>Fungsi Komposisi &amp; Invers</h4><p>Komposisi fungsi, fungsi invers, dan sifat-sifatnya</p><span class="badge badge-popular">Populer</span></a></div>
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">🎯</span><h4>Matriks</h4><p>Operasi matriks, determinan, invers matriks, dan aplikasinya</p><span class="badge badge-materi">Materi</span></a></div>
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">📉</span><h4>Statistika</h4><p>Ukuran pemusatan, penyebaran data, dan penyajian data statistik</p><span class="badge badge-materi">Materi</span></a></div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('fungsi-xi')" style="cursor:pointer">
+                            <span class="materi-icon">🔄</span>
+                            <h4>Fungsi Komposisi & Invers</h4>
+                            <p>Komposisi fungsi, fungsi invers, dan sifat-sifatnya</p>
+                            <span class="badge badge-popular">Populer</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('matriks-xi')" style="cursor:pointer">
+                            <span class="materi-icon">🎯</span>
+                            <h4>Matriks</h4>
+                            <p>Operasi matriks, determinan, invers matriks, dan aplikasinya</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('statistika-xi')" style="cursor:pointer">
+                            <span class="materi-icon">📉</span>
+                            <h4>Statistika</h4>
+                            <p>Ukuran pemusatan, penyebaran data, dan penyajian data statistik</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('limit-xi')" style="cursor:pointer">
+                            <span class="materi-icon">∞</span>
+                            <h4>Limit Fungsi</h4>
+                            <p>Konsep limit, limit aljabar, dan limit trigonometri</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- KELAS XII -->
             <div id="materi-XII" class="tab-panel materi-panel">
                 <div class="row g-3">
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">🌀</span><h4>Transformasi Fungsi</h4><p>Translasi, refleksi, rotasi, dan dilatasi pada fungsi</p><span class="badge badge-popular">Populer</span></a></div>
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">🎯</span><h4>Matriks</h4><p>Lanjutan operasi matriks, sistem persamaan linear, dan transformasi</p><span class="badge badge-materi">Materi</span></a></div>
-                    <div class="col-md-4"><a href="#" class="materi-card d-block text-decoration-none"><span class="materi-icon">📈</span><h4>Logaritma</h4><p>Persamaan logaritma, pertidaksamaan logaritma, dan penerapannya</p><span class="badge badge-materi">Materi</span></a></div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('transformasi-xii')" style="cursor:pointer">
+                            <span class="materi-icon">🌀</span>
+                            <h4>Transformasi Fungsi</h4>
+                            <p>Translasi, refleksi, rotasi, dan dilatasi pada fungsi</p>
+                            <span class="badge badge-popular">Populer</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('matriks-xii')" style="cursor:pointer">
+                            <span class="materi-icon">🎯</span>
+                            <h4>Matriks</h4>
+                            <p>Lanjutan operasi matriks, sistem persamaan linear, dan transformasi</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('logaritma-xii')" style="cursor:pointer">
+                            <span class="materi-icon">📈</span>
+                            <h4>Logaritma</h4>
+                            <p>Persamaan logaritma, pertidaksamaan logaritma, dan penerapannya</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="materi-card" onclick="bukaMateri('integral-xii')" style="cursor:pointer">
+                            <span class="materi-icon">∫</span>
+                            <h4>Integral</h4>
+                            <p>Integral tak tentu, integral tentu, dan penerapan integral</p>
+                            <span class="badge badge-materi">Materi</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div><!-- end materi -->
 
-        <!-- Latihan Soal -->
+        <!-- ==============================
+             LATIHAN SOAL
+             ============================== -->
         <h2 class="section-title">📝 Latihan Soal</h2>
-        <div class="panel-box">
+        <div class="panel-box mb-5">
             <div class="class-tabs mb-3">
                 <button class="class-tab-btn latihan-tab-btn" onclick="selectLatihan('X')"   id="latihan-btn-X">Kelas X</button>
                 <button class="class-tab-btn latihan-tab-btn" onclick="selectLatihan('XI')"  id="latihan-btn-XI">Kelas XI</button>
@@ -147,78 +242,102 @@ update_last_seen($_SESSION['user_id']);
 
             <div id="latihan-X" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-4"><a href="https://forms.gle/eksponen-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">⚡</span><h4>Eksponen</h4><p>Latihan soal eksponen dan perpangkatan</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-4"><a href="https://forms.gle/logaritma-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-4"><a href="https://forms.gle/barisderet-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔗</span><h4>Baris &amp; Deret</h4><p>Latihan soal baris dan deret</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <!-- Tambahkan soal Kelas X baru di sini -->
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/eksponen-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">⚡</span><h4>Eksponen</h4><p>Latihan soal eksponen dan perpangkatan</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/logaritma-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/barisderet-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔗</span><h4>Baris &amp; Deret</h4><p>Latihan soal baris dan deret</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/trigonometri-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📐</span><h4>Trigonometri</h4><p>Latihan soal trigonometri</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
 
             <div id="latihan-XI" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-4"><a href="https://forms.gle/fungsi-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi &amp; Invers</h4><p>Latihan soal fungsi komposisi dan invers</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-4"><a href="https://forms.gle/matriks-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎯</span><h4>Matriks</h4><p>Latihan soal matriks</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-4"><a href="https://forms.gle/statistika-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Statistika</h4><p>Latihan soal statistika</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <!-- Tambahkan soal Kelas XI baru di sini -->
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/fungsi-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi &amp; Invers</h4><p>Latihan soal fungsi komposisi dan invers</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/matriks-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎯</span><h4>Matriks</h4><p>Latihan soal matriks</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/statistika-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Statistika</h4><p>Latihan soal statistika</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/limit-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">∞</span><h4>Limit Fungsi</h4><p>Latihan soal limit fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
 
             <div id="latihan-XII" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-4"><a href="https://forms.gle/transformasi-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🌀</span><h4>Transformasi Fungsi</h4><p>Latihan soal transformasi fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-4"><a href="https://forms.gle/matriks-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎯</span><h4>Matriks</h4><p>Latihan soal matriks</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-4"><a href="https://forms.gle/logaritma-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <!-- Tambahkan soal Kelas XII baru di sini -->
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/transformasi-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🌀</span><h4>Transformasi Fungsi</h4><p>Latihan soal transformasi fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/matriks-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎯</span><h4>Matriks</h4><p>Latihan soal matriks</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/logaritma-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/integral-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">∫</span><h4>Integral</h4><p>Latihan soal integral</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
         </div>
 
+    </div><!-- end container -->
+
+    <!-- ==============================
+         MODAL MATERI
+         ============================== -->
+    <div class="modal fade" id="materiModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content materi-modal-content">
+                <div class="modal-header materi-modal-header">
+                    <div>
+                        <span id="modal-kelas-badge" class="modal-kelas-badge"></span>
+                        <h5 class="modal-title mt-2" id="materiModalLabel"></h5>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body materi-modal-body" id="materiModalBody">
+                </div>
+                <div class="modal-footer materi-modal-footer">
+                    <button type="button" class="btn btn-modal-close" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i> Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="site-footer mt-5">
+    <footer class="site-footer">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-3 align-items-center">
                 <!-- Brand -->
                 <div class="col-md-4">
-                    <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="d-flex align-items-center gap-2 mb-2">
                         <img src="../assets/images/famora.png" alt="Logo" class="footer-logo">
                         <div>
                             <div class="footer-brand">FamoraLearn</div>
                             <div class="footer-brand-sub">by Famora Education</div>
                         </div>
                     </div>
-                    <p class="footer-desc">Platform belajar matematika interaktif untuk siswa SMA. Belajar lebih mudah, lebih menyenangkan, dan bersama teman.</p>
+                    <p class="footer-desc">Platform belajar matematika interaktif untuk siswa SMA.</p>
                 </div>
 
-                <!-- Alamat & Kontak -->
+                <!-- Kontak -->
                 <div class="col-md-4">
                     <h6 class="footer-heading">Hubungi Kami</h6>
                     <ul class="footer-list">
                         <li><i class="bi bi-envelope-fill me-2"></i><a href="mailto:famoralearn@gmail.com">famoralearn@gmail.com</a></li>
                         <li><i class="bi bi-geo-alt-fill me-2"></i>Kabupaten Bekasi, Jawa Barat</li>
-                        <li><i class="bi bi-clock-fill me-2"></i>Senin – Jumat, 08.00 – 17.00 WIB</li>
                     </ul>
                 </div>
 
-                <!-- Produk & Sosial -->
+                <!-- Produk & Sosmed -->
                 <div class="col-md-4">
-                    <h6 class="footer-heading">Produk</h6>
-                    <ul class="footer-list mb-3">
-                        <li><i class="bi bi-box-fill me-2"></i>Famora Education</li>
-                        <li><i class="bi bi-mortarboard-fill me-2"></i><strong class="text-light-footer">FamoraLearn</strong></li>
-                    </ul>
                     <h6 class="footer-heading">Ikuti Kami</h6>
                     <div class="d-flex gap-2 flex-wrap">
-                        <a href="#" class="footer-social"><i class="bi bi-instagram"></i> Instagram</a>
-                        <a href="#" class="footer-social"><i class="bi bi-youtube"></i> YouTube</a>
-                        <a href="#" class="footer-social discord-social"><i class="bi bi-discord"></i> Discord</a>
+                        <a href="https://instagram.com/famoraeducation" target="_blank" class="footer-social">
+                            <i class="bi bi-instagram"></i> Instagram
+                        </a>
+                        <a href="<?php echo $discord_link; ?>" target="_blank" class="footer-social discord-social">
+                            <i class="bi bi-discord"></i> Discord
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <small class="footer-desc">Produk: <strong class="text-light-footer">FamoraLearn</strong> by Famora Education</small>
                     </div>
                 </div>
             </div>
 
-            <hr class="footer-divider mt-4 mb-3">
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <hr class="footer-divider mt-3 mb-2">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-1">
                 <p class="footer-copy mb-0">© 2024 Famora Education. Semua hak dilindungi.</p>
                 <p class="footer-copy mb-0">Made with ❤️ untuk pelajar Indonesia</p>
             </div>
