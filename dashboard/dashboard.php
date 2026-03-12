@@ -28,7 +28,7 @@ update_last_seen($_SESSION['user_id']);
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
             <a class="navbar-brand brand-logo" href="dashboard.php">
-                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
+                <img src="../assets/images/logo.jpeg" alt="Logo" class="nav-logo-img">
                 FamoraLearn
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -301,7 +301,7 @@ update_last_seen($_SESSION['user_id']);
                 <!-- Brand -->
                 <div class="col-md-4">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <img src="../assets/images/famora.png" alt="Logo" class="footer-logo">
+                        <img src="../assets/images/logo.jpeg" alt="Logo" class="footer-logo">
                         <div>
                             <div class="footer-brand">FamoraLearn</div>
                             <div class="footer-brand-sub">by Famora Education</div>
