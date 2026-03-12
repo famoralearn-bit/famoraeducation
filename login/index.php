@@ -9,9 +9,9 @@ if (isset($_SESSION['user_id'])) {
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email    = clean_input($_POST['email']);
-    $password = $_POST['password'];
-
+    $email    = isset($_POST['email']) ? clean_input($_POST['email']) : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    
     $result = $conn->query("SELECT * FROM users WHERE email = '$email'");
 
     if ($result && $result->num_rows > 0) {
