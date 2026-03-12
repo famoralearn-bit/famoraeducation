@@ -103,13 +103,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label custom-label">
-                        <i class="bi bi-envelope me-1"></i> Email
+                    <label for="gmail" class="form-label custom-label">
+                        <i class="bi bi-envelope me-1"></i> Gmail
                     </label>
-                    <input type="email" id="email" name="email"
+                    <input type="gmail" id="gmail" name="gmail"
                            class="form-control custom-input"
-                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
-                           placeholder="contoh@email.com" required autocomplete="off">
+                           value="<?php echo isset($_POST['gmail']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                           placeholder="contoh@gmail.com" required autocomplete="off">
                 </div>
 
                 <div class="row g-3 mb-3">
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <p class="text-center mt-4 footer-note">
-                © 2024 <strong>Famora Education</strong> · FamoraLearn
+                © 2026<strong>Famora Education</strong> · FamoraLearn
             </p>
         </div>
     </div>

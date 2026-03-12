@@ -70,12 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
             <form method="POST" novalidate autocomplete="off">
                 <div class="mb-4">
-                    <label for="email" class="form-label custom-label">
-                        <i class="bi bi-envelope me-1"></i> Email
+                    <label for="gmail" class="form-label custom-label">
+                        <i class="bi bi-envelope me-1"></i> Gmail
                     </label>
-                    <input type="email" id="email" name="email"
+                    <input type="gmail" id="gmail" name="gmail"
                            class="form-control custom-input"
-                           placeholder="contoh@email.com"
+                           placeholder="contoh@gmail.com"
                            required autocomplete="off">
                 </div>
 
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             </a>
 
             <p class="text-center mt-4 footer-note">
-                © 2024 <strong>Famora Education</strong> · FamoraLearn
+                © 2026 <strong>Famora Education</strong> · FamoraLearn
             </p>
         </div>
     </div>

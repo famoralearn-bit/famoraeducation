@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (togglePwd && pwdInput) {
         togglePwd.addEventListener('click', function () {
-            const isText = pwdInput.type === 'text';
-            pwdInput.type = isText ? 'password' : 'text';
-            togglePwd.textContent = isText ? '👁️' : '🙈';
+            const isPassword = pwdInput.type === 'password';
+            pwdInput.type = isPassword ? 'text' : 'password';
+            eyeIcon.className = isPassword ? 'bi bi-eye-slash' : 'bi bi-eye';
         });
     }
 
