@@ -18,7 +18,7 @@ $kecamatan_list = [
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama             = clean_input($_POST['nama']);
-    $email            = clean_input($_POST['email']);
+    $email            = clean_input($_POST['gmail']);
     $kelas            = clean_input($_POST['kelas']);
     $kecamatan        = clean_input($_POST['kecamatan']);
     $password         = $_POST['password'];
@@ -103,12 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="mb-3">
-                    <label for="gmail" class="form-label custom-label">
+                    <label for="email" class="form-label custom-label">
                         <i class="bi bi-envelope me-1"></i> Gmail
                     </label>
-                    <input type="gmail" id="gmail" name="gmail"
+                    <input type="email" id="email" name="email"
                            class="form-control custom-input"
-                           value="<?php echo isset($_POST['gmail']) ? htmlspecialchars($_POST['gmail']) : ''; ?>"
+                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['gmail']) : ''; ?>"
                            placeholder="contoh@gmail.com" required autocomplete="off">
                 </div>
 
