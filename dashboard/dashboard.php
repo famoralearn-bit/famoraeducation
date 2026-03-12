@@ -338,7 +338,7 @@ update_last_seen($_SESSION['user_id']);
 
             <hr class="footer-divider mt-3 mb-2">
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-1">
-                <p class="footer-copy mb-0">© 2024 Famora Education. Semua hak dilindungi.</p>
+                <p class="footer-copy mb-0">© 2026  Famora Education. Semua hak dilindungi.</p>
                 <p class="footer-copy mb-0">Made with ❤️ untuk pelajar Indonesia</p>
             </div>
         </div>
