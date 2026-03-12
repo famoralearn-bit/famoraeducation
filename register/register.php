@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar - MathLearn</title>
+    <title>Daftar - FamoraLearn</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
@@ -69,19 +69,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="min-vh-100 d-flex align-items-center justify-content-center py-5">
         <div class="register-container">
+
+            <!-- Logo & Brand -->
             <div class="text-center mb-4">
-                <h1 class="logo-title">MathLearn</h1>
+                <img src="../assets/images/famora.png" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
+                <h1 class="logo-title">FamoraLearn</h1>
                 <p class="logo-sub">DAFTAR AKUN BARU</p>
             </div>
 
             <?php if ($error): ?>
-                <div class="alert alert-danger d-flex align-items-center gap-2 py-2">
+                <div class="alert alert-danger d-flex align-items-center gap-2 py-2 mb-4">
                     <i class="bi bi-exclamation-circle-fill"></i>
                     <span><?php echo $error; ?></span>
                 </div>
             <?php endif; ?>
             <?php if ($success): ?>
-                <div class="alert alert-success d-flex align-items-center gap-2 py-2">
+                <div class="alert alert-success-custom d-flex align-items-center gap-2 py-2 mb-4">
                     <i class="bi bi-check-circle-fill"></i>
                     <span><?php echo $success; ?></span>
                 </div>
@@ -152,11 +155,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <i class="bi bi-eye" id="eye-icon"></i>
                         </button>
                     </div>
-                    <!-- Strength bar -->
                     <div class="progress mt-2" style="height:4px; background:var(--border); border-radius:4px;">
                         <div id="strength-bar" class="progress-bar" style="width:0; transition:all 0.3s;"></div>
                     </div>
-                    <small id="strength-text" class="text-muted mt-1 d-block"></small>
+                    <small id="strength-text" class="mt-1 d-block" style="font-size:0.82em;"></small>
                 </div>
 
                 <div class="mb-4">
@@ -179,6 +181,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <i class="bi bi-arrow-left me-1"></i> Sudah punya akun? Login di sini
                 </a>
             </div>
+
+            <p class="text-center mt-4 footer-note">
+                © 2024 <strong>Famora Education</strong> · FamoraLearn
+            </p>
         </div>
     </div>
 
