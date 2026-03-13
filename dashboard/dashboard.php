@@ -27,7 +27,7 @@ update_last_seen($_SESSION['user_id']);
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
             <a class="navbar-brand brand-logo" href="dashboard.php">
-                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
+                <img src="../assets/images/loho.jpeg" alt="Logo" class="nav-logo-img">
                 FamoraLearn
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
