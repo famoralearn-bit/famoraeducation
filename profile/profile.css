@@ -1,29 +1,74 @@
 /* =============================================
-   MathLearn - Profile Page (Bootstrap)
+   FamoraLearn - Profile Page
+   Navbar IDENTIK dashboard, dark mode fixed
    ============================================= */
 
 body { background: var(--bg); }
 
-/* Navbar - same as dashboard */
+/* =============================================
+   NAVBAR — copy-paste identik dari dashboard.css
+   ============================================= */
 .custom-navbar {
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    padding: 12px 0;
+    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 999;
 }
-.brand-logo { font-family: 'Space Mono', monospace; font-size: 1.4em; font-weight: 700; color: var(--light) !important; letter-spacing: -1px; text-decoration: none; }
-.custom-navbar .nav-link { color: var(--text) !important; font-family: 'Space Mono', monospace; font-size: 0.82em; padding: 6px 12px !important; border-radius: 8px; transition: all 0.2s; }
-.custom-navbar .nav-link:hover, .custom-navbar .nav-link.active { color: var(--light) !important; background: rgba(246,177,122,0.08); }
-.nav-theme-btn { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 50px; padding: 5px 14px; font-family: 'Space Mono', monospace; font-size: 0.8em; color: var(--text); transition: all 0.3s; }
+
+.navbar-brand.brand-logo {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--light) !important;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.nav-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #000;
+    flex-shrink: 0;
+}
+
+.custom-navbar .nav-link {
+    color: var(--text) !important;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82em;
+    letter-spacing: 0.5px;
+    padding: 6px 12px !important;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active { color: var(--light) !important; background: rgba(246,177,122,0.08); }
+
+.nav-theme-btn {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8em;
+    color: var(--text);
+    transition: all 0.3s;
+}
 .nav-theme-btn:hover { border-color: var(--light); color: var(--light); }
 .nav-logout { background: rgba(255,82,82,0.15) !important; color: #ff5252 !important; border: 1px solid rgba(255,82,82,0.3); border-radius: 8px !important; }
 .nav-logout:hover { background: rgba(255,82,82,0.3) !important; }
 .custom-toggler { border: 1.5px solid var(--border); color: var(--text); padding: 4px 8px; border-radius: 8px; }
 
-/* Profile card */
+/* =============================================
+   AVATAR SELECTOR — fitur ganti avatar
+   ============================================= */
 .profile-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -32,26 +77,96 @@ body { background: var(--bg); }
     animation: slideUp 0.5s ease;
 }
 
-.profile-avatar {
-    font-size: 4em;
-    width: 90px; height: 90px;
-    background: rgba(246,177,122,0.12);
-    border: 2px solid var(--light);
+/* Avatar besar yang tampil di profil */
+.avatar-display {
+    font-size: 3em;
+    width: 88px;
+    height: 88px;
+    background: rgba(246,177,122,0.1);
+    border: 3px solid var(--light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px;
+    margin: 0 auto 8px;
+    transition: all 0.3s ease;
+    cursor: default;
 }
 
-.profile-name { font-family: 'Space Mono', monospace; font-size: 1.6em; color: var(--light); font-weight: 700; margin-bottom: 6px; }
-.profile-sub  { color: var(--accent); margin-bottom: 0; }
+/* Label "Pilih Avatar" */
+.avatar-label {
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
 
-.info-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 14px 10px; }
-.info-label { font-family: 'Space Mono', monospace; font-size: 0.7em; color: var(--accent); letter-spacing: 2px; margin-bottom: 4px; }
+/* Baris pilihan avatar */
+.avatar-selector {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.avatar-option {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+}
+.avatar-option:hover {
+    border-color: var(--light);
+    background: rgba(246,177,122,0.12);
+    transform: scale(1.1);
+}
+.avatar-option.selected {
+    border-color: var(--light);
+    background: rgba(246,177,122,0.18);
+    box-shadow: 0 0 0 3px rgba(246,177,122,0.25);
+}
+.avatar-option .av-label {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.28em;
+    font-family: 'Space Mono', monospace;
+    color: var(--text-muted);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* =============================================
+   PROFILE INFO
+   ============================================= */
+.profile-name { font-family: 'Space Mono', monospace; font-size: 1.6em; color: var(--light); font-weight: 700; margin-bottom: 6px; }
+.profile-sub  { color: var(--text-muted); margin-bottom: 0; }
+
+.info-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 10px;
+}
+.info-label { font-family: 'Space Mono', monospace; font-size: 0.7em; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 4px; }
 .info-value { color: var(--text); font-size: 0.9em; word-break: break-all; }
 
-/* Form cards */
+/* =============================================
+   FORM CARDS
+   ============================================= */
 .form-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -59,12 +174,19 @@ body { background: var(--bg); }
     padding: 28px;
     height: 100%;
 }
+.form-card-title { font-family: 'Space Mono', monospace; font-size: 1em; color: var(--light); margin-bottom: 18px; }
 
-.form-card-title { font-family: 'Space Mono', monospace; font-size: 1em; color: var(--light); margin-bottom: 6px; }
-.form-card-note  { color: var(--accent); font-size: 0.88em; margin-bottom: 20px; }
+/* Labels — pakai --text agar nyatu dark mode */
+.custom-label {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: block;
+}
 
 /* Inputs */
-.custom-label { color: var(--light); font-weight: 600; font-size: 0.85em; letter-spacing: 1px; margin-bottom: 6px; }
 .custom-input {
     background: var(--input-bg) !important;
     border: 2px solid var(--border) !important;
@@ -72,81 +194,59 @@ body { background: var(--bg); }
     color: var(--text) !important;
     font-family: 'Crimson Pro', serif;
     font-size: 1em;
-    padding: 11px 15px;
+    padding: 12px 15px;
     transition: all 0.3s;
     box-shadow: none !important;
 }
-.custom-input::placeholder { color: var(--accent); opacity: 0.6; font-style: italic; }
+.custom-input::placeholder { color: var(--text-muted); opacity: 0.7; font-style: italic; }
 .custom-input:focus { border-color: var(--light) !important; box-shadow: 0 0 0 3px rgba(246,177,122,0.15) !important; }
 .custom-input:-webkit-autofill { -webkit-text-fill-color: var(--text) !important; -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important; }
+.custom-input option { background: #2D3250; color: #f0f1f8; }
 
 /* Buttons */
 .btn-custom-primary {
-    background: linear-gradient(135deg, var(--light) 0%, #e89f6a 100%);
-    color: #2d3748; border: none; border-radius: 12px;
+    background: linear-gradient(135deg, var(--light) 0%, #e07b2a 100%);
+    color: #1a1d2e; border: none; border-radius: 12px;
     font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.88em;
     padding: 10px 22px; transition: all 0.3s;
 }
-.btn-custom-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(246,177,122,0.4); color: #2d3748; }
+.btn-custom-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(246,177,122,0.4); color: #1a1d2e; }
 
 .btn-custom-outline {
-    background: transparent; color: var(--accent);
-    border: 2px solid var(--accent); border-radius: 12px;
+    background: transparent; color: var(--text-muted);
+    border: 2px solid var(--border); border-radius: 12px;
     font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.88em;
     padding: 9px 22px; transition: all 0.3s;
 }
-.btn-custom-outline:hover { background: var(--accent); color: #fff; }
+.btn-custom-outline:hover { background: var(--light); border-color: var(--light); color: #1a1d2e; }
 
 /* Alerts */
 .alert-success-custom { background: rgba(82,255,168,0.12); border: 1px solid rgba(82,255,168,0.35); color: #10b981; border-radius: 10px; padding: 12px 16px; }
-.alert-danger-custom  { background: rgba(255,82,82,0.15); border: 1px solid rgba(255,82,82,0.4); color: #ef4444; border-radius: 10px; padding: 12px 16px; }
+.alert-danger-custom  { background: rgba(255,82,82,0.15); border: 1px solid rgba(255,82,82,0.4); color: #ff7a7a; border-radius: 10px; padding: 12px 16px; }
 
-/* ---- Nav logo image ---- */
-.nav-logo-img {
-    width: 28px; height: 28px;
-    object-fit: contain;
-    border-radius: 50%;
-    background: #000;
-    vertical-align: middle;
-}
-
-/* ---- Fix teks dark/light mode ---- */
-.profile-name   { color: var(--light); }
-.profile-sub    { color: var(--text-muted); }
-.info-label     { color: var(--text-muted); }
-.info-value     { color: var(--text); }
-.info-item      { background: rgba(255,255,255,0.04); }
-.form-card-title { color: var(--light); }
-.form-card-note  { color: var(--text-muted); margin-bottom: 0; }
-.custom-label    { color: var(--text); }
-
-/* Light mode info item */
-[data-theme="light"] .info-item { background: #f7fafc; }
-
-/* ---- Light mode overrides ---- */
-[data-theme="light"] .profile-name   { color: #d4720f; }
-[data-theme="light"] .profile-sub    { color: #4a5568; }
-[data-theme="light"] .info-label     { color: #4a56c8; }
-[data-theme="light"] .info-value     { color: #1a202c; }
-[data-theme="light"] .info-item      { background: #f7fafc; border-color: #e2e8f0; }
+/* =============================================
+   LIGHT MODE OVERRIDES
+   ============================================= */
+[data-theme="light"] .nav-theme-btn   { color: #1a202c; }
+[data-theme="light"] .profile-name    { color: #d4720f; }
+[data-theme="light"] .profile-sub     { color: #4a5568; }
+[data-theme="light"] .avatar-label    { color: #718096; }
+[data-theme="light"] .avatar-display  { background: rgba(212,114,15,0.08); border-color: #d4720f; }
+[data-theme="light"] .avatar-option   { background: rgba(0,0,0,0.02); border-color: #e2e8f0; }
+[data-theme="light"] .avatar-option:hover   { border-color: #d4720f; background: rgba(212,114,15,0.08); }
+[data-theme="light"] .avatar-option.selected { border-color: #d4720f; background: rgba(212,114,15,0.12); box-shadow: 0 0 0 3px rgba(212,114,15,0.18); }
+[data-theme="light"] .avatar-option .av-label { color: #718096; }
+[data-theme="light"] .info-item       { background: #f7fafc; border-color: #e2e8f0; }
+[data-theme="light"] .info-label      { color: #4a56c8; }
+[data-theme="light"] .info-value      { color: #1a202c; }
 [data-theme="light"] .form-card-title { color: #d4720f; }
-[data-theme="light"] .form-card-note  { color: #4a5568; }
 [data-theme="light"] .custom-label    { color: #1a202c; }
 [data-theme="light"] .custom-input {
     border-color: #cbd5e0 !important;
     color: #1a202c !important;
     background: #ffffff !important;
 }
-[data-theme="light"] .custom-input::placeholder {
-    color: #718096;
-    opacity: 1;
-}
-[data-theme="light"] .btn-custom-outline {
-    color: #4a56c8;
-    border-color: #4a56c8;
-}
-[data-theme="light"] .btn-custom-outline:hover {
-    background: #4a56c8;
-    color: #fff;
-}
-[data-theme="light"] .nav-theme-btn { color: #1a202c; }
+[data-theme="light"] .custom-input::placeholder { color: #718096; opacity: 1; }
+[data-theme="light"] .custom-input option { background: #ffffff; color: #1a202c; }
+[data-theme="light"] .btn-custom-outline { color: #4a5568; border-color: #cbd5e0; }
+[data-theme="light"] .btn-custom-outline:hover { color: #1a1d2e; }

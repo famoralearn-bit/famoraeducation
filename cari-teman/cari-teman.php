@@ -156,11 +156,27 @@ $kecamatan_list = [
                                 <span class="user-badge">Kelas <?php echo $u['kelas']; ?></span>
                                 <span class="user-badge"><?php echo htmlspecialchars($u['kecamatan']); ?></span>
                             </div>
-                            <?php if ($u['is_online']): ?>
-                                <a class="btn btn-discord w-100" href="<?php echo get_discord_link(); ?>" target="_blank">
-                                    💬 Ajak Belajar
-                                </a>
-                            <?php endif; ?>
+                            <?php
+                                $last = $u['last_seen'];
+                                if ($u['is_online']) {
+                                    $last_info = '<span class="last-seen-online"><i class="bi bi-circle-fill me-1"></i>Sedang online</span>';
+                                } else {
+                                    $diff = time() - strtotime($last);
+                                    if ($diff < 60) {
+                                        $waktu = 'Baru saja';
+                                    } elseif ($diff < 3600) {
+                                        $waktu = floor($diff/60) . ' menit yang lalu';
+                                    } elseif ($diff < 86400) {
+                                        $waktu = floor($diff/3600) . ' jam yang lalu';
+                                    } elseif ($diff < 604800) {
+                                        $waktu = floor($diff/86400) . ' hari yang lalu';
+                                    } else {
+                                        $waktu = date('d M Y', strtotime($last));
+                                    }
+                                    $last_info = '<span class="last-seen-offline"><i class="bi bi-clock me-1"></i>Terakhir online: ' . $waktu . '</span>';
+                                }
+                                echo '<div class="last-seen-box">' . $last_info . '</div>';
+                            ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
