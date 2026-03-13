@@ -2,150 +2,104 @@
    FamoraLearn - Dashboard JS
    ============================================= */
 
-// ---- Class tab selection (Materi) ----
 function selectMateri(className) {
-    document.querySelectorAll('.materi-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.materi-panel').forEach(p => p.classList.remove('active'));
-    const btn   = document.getElementById('materi-btn-' + className);
-    const panel = document.getElementById('materi-' + className);
+    document.querySelectorAll('.materi-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.materi-panel').forEach(function(p)   { p.classList.remove('active'); });
+    var btn   = document.getElementById('materi-btn-' + className);
+    var panel = document.getElementById('materi-' + className);
     if (btn)   btn.classList.add('active');
     if (panel) panel.classList.add('active');
 }
 
-// ---- Class tab selection (Latihan Soal) ----
 function selectLatihan(className) {
-    document.querySelectorAll('.latihan-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.latihan-panel').forEach(p => p.classList.remove('active'));
-    const btn   = document.getElementById('latihan-btn-' + className);
-    const panel = document.getElementById('latihan-' + className);
+    document.querySelectorAll('.latihan-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.latihan-panel').forEach(function(p)   { p.classList.remove('active'); });
+    var btn   = document.getElementById('latihan-btn-' + className);
+    var panel = document.getElementById('latihan-' + className);
     if (btn)   btn.classList.add('active');
     if (panel) panel.classList.add('active');
 }
 
-// ---- Real-time clock ----
 function updateTime() {
-    const now = new Date();
-    const hms = [now.getHours(), now.getMinutes(), now.getSeconds()]
-        .map(n => String(n).padStart(2, '0')).join(':');
-    const el = document.getElementById('current-time');
-    if (el) el.textContent = hms;
+    var now = new Date();
+    var h = String(now.getHours()).padStart(2,'0');
+    var m = String(now.getMinutes()).padStart(2,'0');
+    var s = String(now.getSeconds()).padStart(2,'0');
+    var el = document.getElementById('current-time');
+    if (el) el.textContent = h + ':' + m + ':' + s;
 }
 
-// ---- Auto reload on 16:00 and 20:00 ----
 function autoReload() {
-    const now = new Date();
+    var now = new Date();
     if ((now.getHours() === 16 || now.getHours() === 20)
         && now.getMinutes() === 0 && now.getSeconds() === 0) {
         location.reload();
     }
 }
 
-// ============================================================
-//   KONTEN MATERI
-// ============================================================
-const MATERI_DATA = {
+/* ============================================================
+   KONTEN MATERI — 12 topik lengkap
+   ============================================================ */
+var MATERI_DATA = {
 
-    // ===================== KELAS X =====================
+    /* ==================== KELAS X ==================== */
+
     'eksponen-x': {
         kelas: 'Kelas X',
         judul: '⚡ Eksponen',
         isi: `
-<p>Eksponen adalah cara menulis perkalian berulang dari suatu bilangan. Dengan eksponen, kita bisa menyingkat penulisan dan menghitung angka-angka yang besar atau rumit dengan lebih mudah. Dalam notasi eksponen, ada dua bagian penting: <strong>basis</strong> dan <strong>eksponen</strong>. Basis adalah bilangan yang dikalikan berulang kali, sedangkan eksponen menunjukkan berapa kali bilangan itu dikalikan dengan dirinya sendiri. Misalnya, <strong>aⁿ</strong> berarti <em>a</em> dikalikan sebanyak <em>n</em> kali.</p>
-<p>Eksponen memiliki sejumlah sifat penting yang memudahkan dalam perhitungan. Sifat pertama adalah perkalian dengan basis yang sama — eksponennya dijumlahkan. Sebaliknya, pembagian dengan basis yang sama dilakukan dengan mengurangkan eksponennya.</p>
-<p>Selanjutnya, ada aturan pangkat dari pangkat, di mana eksponen dikalikan. Selain itu, eksponen memiliki aturan khusus untuk bilangan berpangkat nol dan negatif. Setiap bilangan selain nol yang dipangkatkan nol selalu bernilai satu, dan eksponen negatif menunjukkan kebalikan dari bilangan berpangkat positif.</p>
+<p>Eksponen (pangkat) adalah cara menulis perkalian berulang suatu bilangan. Jika <strong>a</strong> adalah bilangan real dan <strong>n</strong> bilangan bulat positif, maka <strong>aⁿ = a × a × … × a</strong> (sebanyak n kali).</p>
+
+<h2>Definisi Dasar</h2>
+<div class="rumus-box">
+aⁿ = a × a × a × … × a &nbsp; (n kali)<br>
+Contoh: 2⁴ = 2 × 2 × 2 × 2 = 16
+</div>
 
 <h2>Sifat-Sifat Eksponen</h2>
 
 <h3>1. Perkalian dengan Basis Sama</h3>
-<p>Jika dua bilangan dengan basis sama dikalikan, maka eksponennya dijumlahkan.</p>
 <div class="rumus-box">aᵐ × aⁿ = aᵐ⁺ⁿ</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  2³ × 2⁴ = 2³⁺⁴ = 2⁷ = 128<br>
-  5² × 5³ = 5⁵ = 3125
-</div>
+<div class="contoh-box"><strong>Contoh:</strong> 3² × 3⁴ = 3⁶ = 729 &nbsp;|&nbsp; 2³ × 2⁵ = 2⁸ = 256</div>
 
 <h3>2. Pembagian dengan Basis Sama</h3>
-<p>Jika dua bilangan dengan basis sama dibagi, maka eksponennya dikurangkan.</p>
-<div class="rumus-box">aᵐ ÷ aⁿ = aᵐ⁻ⁿ</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  3⁵ ÷ 3² = 3³ = 27<br>
-  10⁴ ÷ 10¹ = 10³ = 1000
-</div>
+<div class="rumus-box">aᵐ ÷ aⁿ = aᵐ⁻ⁿ &nbsp; (a ≠ 0)</div>
+<div class="contoh-box"><strong>Contoh:</strong> 5⁶ ÷ 5² = 5⁴ = 625 &nbsp;|&nbsp; 2⁷ ÷ 2³ = 2⁴ = 16</div>
 
 <h3>3. Pangkat dari Pangkat</h3>
-<p>Jika sebuah bilangan berpangkat dipangkatkan lagi, maka eksponennya dikalikan.</p>
 <div class="rumus-box">(aᵐ)ⁿ = aᵐˣⁿ</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  (2³)² = 2⁶ = 64<br>
-  (5²)³ = 5⁶ = 15625
-</div>
+<div class="contoh-box"><strong>Contoh:</strong> (2³)⁴ = 2¹² = 4096 &nbsp;|&nbsp; (5²)³ = 5⁶ = 15625</div>
 
-<h3>4. Pangkat dari Perkalian</h3>
-<p>Jika suatu perkalian dipangkatkan, maka setiap faktor ikut dipangkatkan.</p>
-<div class="rumus-box">(ab)ⁿ = aⁿ × bⁿ</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  (2 × 3)² = 2² × 3² = 4 × 9 = 36<br>
-  (4 × 5)² = 4² × 5² = 16 × 25 = 400
-</div>
+<h3>4. Pangkat Perkalian</h3>
+<div class="rumus-box">(a × b)ⁿ = aⁿ × bⁿ</div>
+<div class="contoh-box"><strong>Contoh:</strong> (2 × 3)³ = 2³ × 3³ = 8 × 27 = 216</div>
 
-<h3>5. Pangkat dari Pembagian</h3>
-<p>Jika suatu pembagian dipangkatkan, maka pembilang dan penyebut dipangkatkan.</p>
-<div class="rumus-box">(a/b)ⁿ = aⁿ / bⁿ</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  (4/2)² = 4²/2² = 16/4 = 4<br>
-  (6/3)² = 36/9 = 4
-</div>
+<h3>5. Pangkat Pembagian</h3>
+<div class="rumus-box">(a/b)ⁿ = aⁿ/bⁿ &nbsp; (b ≠ 0)</div>
+<div class="contoh-box"><strong>Contoh:</strong> (4/2)³ = 4³/2³ = 64/8 = 8</div>
 
-<h3>6. Eksponen Nol</h3>
-<p>Setiap bilangan selain nol yang dipangkatkan nol bernilai 1.</p>
+<h3>6. Pangkat Nol</h3>
 <div class="rumus-box">a⁰ = 1 &nbsp; (a ≠ 0)</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  5⁰ = 1 &nbsp;&nbsp; 10⁰ = 1 &nbsp;&nbsp; 99⁰ = 1
-</div>
+<div class="contoh-box"><strong>Contoh:</strong> 5⁰ = 1 &nbsp;|&nbsp; 100⁰ = 1 &nbsp;|&nbsp; (−3)⁰ = 1</div>
 
-<h3>7. Eksponen Negatif</h3>
-<p>Eksponen negatif menunjukkan kebalikan dari pangkat positif.</p>
-<div class="rumus-box">a⁻ⁿ = 1 / aⁿ</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  2⁻³ = 1/2³ = 1/8<br>
-  5⁻² = 1/25
-</div>
+<h3>7. Pangkat Negatif</h3>
+<div class="rumus-box">a⁻ⁿ = 1/aⁿ &nbsp; (a ≠ 0)</div>
+<div class="contoh-box"><strong>Contoh:</strong> 2⁻³ = 1/8 = 0,125 &nbsp;|&nbsp; 5⁻² = 1/25 = 0,04</div>
 
-<h3>8. Pangkat Pecahan</h3>
-<p>Eksponen pecahan menunjukkan akar dari bilangan.</p>
-<div class="rumus-box">a^(1/n) = ⁿ√a</div>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  16^(1/2) = √16 = 4<br>
-  27^(1/3) = ³√27 = 3
-</div>
-
-<h3>9. Pangkat Desimal</h3>
-<p>Eksponen desimal adalah bentuk lain dari pangkat pecahan.</p>
-<div class="contoh-box">
-  <strong>Contoh:</strong><br>
-  9^0.5 = 9^(1/2) = √9 = 3<br>
-  16^0.5 = 4
-</div>
+<h3>8. Pangkat Pecahan (Akar)</h3>
+<div class="rumus-box">a^(1/n) = ⁿ√a &nbsp; dan &nbsp; a^(m/n) = ⁿ√(aᵐ)</div>
+<div class="contoh-box"><strong>Contoh:</strong> 16^(1/2) = √16 = 4 &nbsp;|&nbsp; 8^(2/3) = ∛(8²) = ∛64 = 4</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <p>Eksponen digunakan untuk menyederhanakan perkalian berulang. Aturan-aturan penting:</p>
-  <ul>
-    <li>Perkalian pangkat → eksponen dijumlah</li>
-    <li>Pembagian pangkat → eksponen dikurang</li>
-    <li>Pangkat dari pangkat → eksponen dikali</li>
-    <li>Pangkat nol → hasilnya 1</li>
-    <li>Pangkat negatif → bentuk pecahan (1/aⁿ)</li>
-    <li>Pangkat pecahan → bentuk akar</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Pangkat nol → hasilnya selalu 1 (a ≠ 0)</li>
+  <li>Perkalian basis sama → eksponen dijumlah</li>
+  <li>Pembagian basis sama → eksponen dikurang</li>
+  <li>Pangkat dari pangkat → eksponen dikali</li>
+  <li>Pangkat negatif → bentuk pecahan 1/aⁿ</li>
+  <li>Pangkat pecahan → bentuk akar</li>
+</ul>
 </div>`
     },
 
@@ -153,45 +107,61 @@ const MATERI_DATA = {
         kelas: 'Kelas X',
         judul: '📈 Logaritma',
         isi: `
-<p>Logaritma adalah operasi kebalikan dari eksponen. Jika aⁿ = b, maka <strong>ₐlog b = n</strong>. Logaritma menjawab pertanyaan: "Pangkat berapa yang harus kita berikan pada basis untuk mendapatkan suatu bilangan?"</p>
+<p>Logaritma adalah kebalikan (invers) dari operasi eksponen. Jika <strong>bˣ = y</strong>, maka <strong>ₒlog y = x</strong> (dibaca "log basis b dari y sama dengan x").</p>
 
-<h2>Bentuk Umum</h2>
-<div class="rumus-box">ₐlog b = n  ⟺  aⁿ = b</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>²log 8 = 3 karena 2³ = 8<br>³log 27 = 3 karena 3³ = 27</div>
+<h2>Definisi</h2>
+<div class="rumus-box">
+ᵦlog y = x &nbsp; ⟺ &nbsp; bˣ = y<br>
+Syarat: b > 0, b ≠ 1, y > 0
+</div>
+<div class="contoh-box">
+<strong>Contoh dasar:</strong><br>
+²log 8 = 3 karena 2³ = 8<br>
+³log 81 = 4 karena 3⁴ = 81<br>
+¹⁰log 1000 = 3 karena 10³ = 1000<br>
+²log 1 = 0 karena 2⁰ = 1
+</div>
 
 <h2>Sifat-Sifat Logaritma</h2>
+
 <h3>1. Logaritma Perkalian</h3>
-<div class="rumus-box">ₐlog (b × c) = ₐlog b + ₐlog c</div>
+<div class="rumus-box">ᵦlog (p × q) = ᵦlog p + ᵦlog q</div>
+<div class="contoh-box"><strong>Contoh:</strong> ²log (4 × 8) = ²log 4 + ²log 8 = 2 + 3 = 5 ✓ (²log 32 = 5)</div>
 
 <h3>2. Logaritma Pembagian</h3>
-<div class="rumus-box">ₐlog (b / c) = ₐlog b − ₐlog c</div>
+<div class="rumus-box">ᵦlog (p / q) = ᵦlog p − ᵦlog q</div>
+<div class="contoh-box"><strong>Contoh:</strong> ²log (32/4) = ²log 32 − ²log 4 = 5 − 2 = 3 ✓ (²log 8 = 3)</div>
 
 <h3>3. Logaritma Pangkat</h3>
-<div class="rumus-box">ₐlog bⁿ = n × ₐlog b</div>
+<div class="rumus-box">ᵦlog pⁿ = n × ᵦlog p</div>
+<div class="contoh-box"><strong>Contoh:</strong> ²log 64 = ²log 2⁶ = 6 × ²log 2 = 6 × 1 = 6</div>
 
-<h3>4. Logaritma Basis Sendiri</h3>
-<div class="rumus-box">ₐlog a = 1</div>
+<h3>4. Nilai Khusus</h3>
+<div class="rumus-box">
+ᵦlog b = 1 &nbsp; (log dari basis sendiri = 1)<br>
+ᵦlog 1 = 0 &nbsp; (log dari 1 selalu 0)
+</div>
 
-<h3>5. Logaritma 1</h3>
-<div class="rumus-box">ₐlog 1 = 0</div>
+<h3>5. Sifat Eksponen-Logaritma</h3>
+<div class="rumus-box">b^(ᵦlog x) = x</div>
 
 <h3>6. Pergantian Basis</h3>
-<div class="rumus-box">ₐlog b = (log b) / (log a)</div>
+<div class="rumus-box">ᵦlog x = (log x)/(log b) = (ln x)/(ln b)</div>
 
 <div class="contoh-box">
-  <strong>Contoh Penerapan:</strong><br>
-  ²log 32 = ²log 2⁵ = 5<br>
-  ¹⁰log 1000 = 3 karena 10³ = 1000
+<strong>Soal latihan:</strong> Hitung ²log 4 + ²log 8 − ²log 2<br>
+= ²log (4 × 8 / 2) = ²log 16 = 4 ✓
 </div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Logaritma adalah kebalikan dari eksponen</li>
-    <li>ₐlog b = n berarti aⁿ = b</li>
-    <li>Logaritma memiliki sifat perkalian, pembagian, dan pangkat</li>
-    <li>Log basis 10 disebut logaritma umum, basis e disebut logaritma natural (ln)</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Logaritma = kebalikan eksponen: ᵦlog y = x ⟺ bˣ = y</li>
+  <li>Perkalian dalam logaritma → penjumlahan</li>
+  <li>Pembagian dalam logaritma → pengurangan</li>
+  <li>Pangkat dalam logaritma → pengali di depan</li>
+  <li>ᵦlog b = 1 dan ᵦlog 1 = 0 selalu berlaku</li>
+</ul>
 </div>`
     },
 
@@ -199,35 +169,61 @@ const MATERI_DATA = {
         kelas: 'Kelas X',
         judul: '🔗 Baris & Deret',
         isi: `
-<p>Barisan adalah urutan bilangan yang memiliki pola tertentu. Deret adalah jumlah dari suku-suku suatu barisan.</p>
+<p><strong>Barisan</strong> adalah urutan bilangan yang disusun menurut aturan tertentu. <strong>Deret</strong> adalah hasil penjumlahan suku-suku barisan. Dua jenis utama: <strong>aritmetika</strong> (beda tetap) dan <strong>geometri</strong> (rasio tetap).</p>
 
-<h2>Barisan Aritmetika</h2>
-<p>Barisan di mana setiap suku memiliki selisih tetap (beda = <strong>b</strong>).</p>
-<div class="rumus-box">Uₙ = a + (n−1)b</div>
-<div class="contoh-box"><strong>Contoh:</strong> 2, 5, 8, 11, ... (b = 3)<br>U₅ = 2 + (5−1)×3 = 14</div>
+<h2>A. Barisan & Deret Aritmetika</h2>
+<p>Setiap suku berbeda secara konstan dengan beda <strong>b</strong>.</p>
 
-<h2>Deret Aritmetika</h2>
-<div class="rumus-box">Sₙ = n/2 × (2a + (n−1)b)  atau  Sₙ = n/2 × (a + Uₙ)</div>
+<div class="rumus-box">
+Suku ke-n: Uₙ = a + (n − 1)b<br>
+a = suku pertama, b = beda = U₂ − U₁
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> 3, 7, 11, 15, ... (a = 3, b = 4)<br>
+U₁₀ = 3 + (10−1) × 4 = 3 + 36 = 39
+</div>
 
-<h2>Barisan Geometri</h2>
-<p>Barisan di mana setiap suku memiliki rasio tetap (<strong>r</strong>).</p>
-<div class="rumus-box">Uₙ = a × rⁿ⁻¹</div>
-<div class="contoh-box"><strong>Contoh:</strong> 3, 6, 12, 24, ... (r = 2)<br>U₅ = 3 × 2⁴ = 48</div>
+<div class="rumus-box">
+Deret aritmetika (jumlah n suku pertama):<br>
+Sₙ = n/2 × (2a + (n−1)b)<br>
+atau: Sₙ = n/2 × (a + Uₙ)
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Jumlah 10 suku pertama dari 3, 7, 11, ...<br>
+S₁₀ = 10/2 × (2×3 + 9×4) = 5 × (6 + 36) = 5 × 42 = 210
+</div>
 
-<h2>Deret Geometri</h2>
-<div class="rumus-box">Sₙ = a(rⁿ − 1)/(r − 1)  untuk r ≠ 1</div>
+<h2>B. Barisan & Deret Geometri</h2>
+<p>Setiap suku memiliki rasio <strong>r</strong> yang tetap.</p>
 
-<h2>Deret Geometri Tak Hingga</h2>
-<div class="rumus-box">S∞ = a/(1−r)  untuk |r| &lt; 1</div>
+<div class="rumus-box">
+Suku ke-n: Uₙ = a × rⁿ⁻¹<br>
+r = rasio = U₂/U₁
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> 2, 6, 18, 54, ... (a = 2, r = 3)<br>
+U₆ = 2 × 3⁵ = 2 × 243 = 486
+</div>
+
+<div class="rumus-box">
+Deret geometri hingga:<br>
+Sₙ = a(rⁿ − 1)/(r − 1) &nbsp; untuk r ≠ 1<br><br>
+Deret geometri tak hingga (|r| &lt; 1):<br>
+S∞ = a / (1 − r)
+</div>
+<div class="contoh-box">
+<strong>Contoh S∞:</strong> 8 + 4 + 2 + 1 + ... (a = 8, r = 1/2)<br>
+S∞ = 8 / (1 − 1/2) = 8 / (1/2) = 16
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Barisan Aritmetika: beda (b) tetap → Uₙ = a + (n−1)b</li>
-    <li>Barisan Geometri: rasio (r) tetap → Uₙ = a·rⁿ⁻¹</li>
-    <li>Deret = jumlah suku-suku barisan</li>
-    <li>Deret geometri tak hingga berlaku jika |r| &lt; 1</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Aritmetika: beda (b) konstan → Uₙ = a + (n−1)b</li>
+  <li>Geometri: rasio (r) konstan → Uₙ = a·rⁿ⁻¹</li>
+  <li>Deret = jumlah suku-suku barisan</li>
+  <li>Deret geometri tak hingga hanya ada jika |r| &lt; 1</li>
+</ul>
 </div>`
     },
 
@@ -235,27 +231,40 @@ const MATERI_DATA = {
         kelas: 'Kelas X',
         judul: '📐 Trigonometri',
         isi: `
-<p>Trigonometri adalah cabang matematika yang mempelajari hubungan antara sudut dan sisi segitiga, terutama segitiga siku-siku.</p>
+<p>Trigonometri mempelajari hubungan antara sudut dan sisi pada segitiga. Tiga perbandingan dasar: <strong>sinus (sin)</strong>, <strong>cosinus (cos)</strong>, dan <strong>tangen (tan)</strong>.</p>
 
-<h2>Perbandingan Trigonometri</h2>
+<h2>Perbandingan pada Segitiga Siku-Siku</h2>
 <div class="rumus-box">
 sin θ = sisi depan / sisi miring<br>
 cos θ = sisi samping / sisi miring<br>
-tan θ = sisi depan / sisi samping
+tan θ = sisi depan / sisi samping = sin θ / cos θ<br><br>
+Kebalikannya:<br>
+csc θ = 1/sin θ &nbsp;|&nbsp; sec θ = 1/cos θ &nbsp;|&nbsp; cot θ = 1/tan θ
 </div>
 
-<h2>Nilai Trigonometri Sudut Istimewa</h2>
+<h2>Nilai Sudut Istimewa</h2>
 <div class="contoh-box">
-<strong>Sudut 30°:</strong> sin=1/2, cos=½√3, tan=⅓√3<br>
-<strong>Sudut 45°:</strong> sin=½√2, cos=½√2, tan=1<br>
-<strong>Sudut 60°:</strong> sin=½√3, cos=1/2, tan=√3<br>
-<strong>Sudut 90°:</strong> sin=1, cos=0, tan=∞
+<strong>0°:</strong>  sin = 0,  cos = 1,   tan = 0<br>
+<strong>30°:</strong> sin = ½,  cos = ½√3, tan = ⅓√3<br>
+<strong>45°:</strong> sin = ½√2, cos = ½√2, tan = 1<br>
+<strong>60°:</strong> sin = ½√3, cos = ½,  tan = √3<br>
+<strong>90°:</strong> sin = 1,  cos = 0,   tan = ∞
+</div>
+
+<h2>Tanda di Setiap Kuadran</h2>
+<div class="contoh-box">
+<strong>Kuadran I</strong> (0°–90°):     sin +, cos +, tan +<br>
+<strong>Kuadran II</strong> (90°–180°):   sin +, cos −, tan −<br>
+<strong>Kuadran III</strong> (180°–270°): sin −, cos −, tan +<br>
+<strong>Kuadran IV</strong> (270°–360°):  sin −, cos +, tan −<br>
+<em>Ingat: "Semua – Sinus – Tangen – Cosinus" (searah jarum jam)</em>
 </div>
 
 <h2>Identitas Trigonometri Dasar</h2>
 <div class="rumus-box">
 sin²θ + cos²θ = 1<br>
-tan θ = sin θ / cos θ
+1 + tan²θ = sec²θ<br>
+1 + cot²θ = csc²θ
 </div>
 
 <h2>Aturan Sinus & Cosinus</h2>
@@ -263,266 +272,488 @@ tan θ = sin θ / cos θ
 Aturan Sinus: a/sin A = b/sin B = c/sin C<br>
 Aturan Cosinus: a² = b² + c² − 2bc·cos A
 </div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Segitiga dengan A = 30°, B = 45°, a = 6.<br>
+b/sin B = a/sin A → b = 6 × sin 45°/sin 30° = 6 × (½√2)/(½) = 6√2
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Trigonometri menggunakan sin, cos, tan pada segitiga siku-siku</li>
-    <li>Identitas dasar: sin²θ + cos²θ = 1</li>
-    <li>Sudut istimewa: 0°, 30°, 45°, 60°, 90°</li>
-    <li>Aturan sinus & cosinus untuk segitiga sembarang</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>sin, cos, tan = perbandingan sisi segitiga siku-siku</li>
+  <li>Identitas utama: sin²θ + cos²θ = 1</li>
+  <li>Tanda berubah tiap kuadran (ASTC/CAST)</li>
+  <li>Aturan sinus & cosinus untuk segitiga sembarang</li>
+</ul>
 </div>`
     },
 
-    // ===================== KELAS XI =====================
+    /* ==================== KELAS XI ==================== */
+
     'fungsi-xi': {
         kelas: 'Kelas XI',
         judul: '🔄 Fungsi Komposisi & Invers',
         isi: `
-<p>Fungsi komposisi adalah penggabungan dua fungsi sehingga hasil satu fungsi menjadi input fungsi berikutnya. Fungsi invers adalah fungsi kebalikan yang mengembalikan output ke input semula.</p>
+<p><strong>Fungsi komposisi</strong> menggabungkan dua fungsi sehingga output satu menjadi input yang lain. <strong>Fungsi invers</strong> membalikkan relasi suatu fungsi — input dan output ditukar.</p>
 
 <h2>Fungsi Komposisi</h2>
-<div class="rumus-box">(f∘g)(x) = f(g(x))</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>f(x) = 2x + 1, g(x) = x²<br>(f∘g)(x) = f(x²) = 2x² + 1<br>(g∘f)(x) = g(2x+1) = (2x+1)²</div>
+<div class="rumus-box">
+(f ∘ g)(x) = f(g(x))<br>
+Artinya: masukkan x ke g lebih dulu, hasilnya masukkan ke f.
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> f(x) = 2x + 1, g(x) = x²<br>
+(f ∘ g)(x) = f(g(x)) = f(x²) = 2x² + 1<br>
+(g ∘ f)(x) = g(f(x)) = g(2x+1) = (2x+1)² = 4x² + 4x + 1<br>
+→ f ∘ g ≠ g ∘ f &nbsp; (tidak komutatif)
+</div>
 
-<h2>Sifat Komposisi</h2>
-<ul>
-  <li>Umumnya f∘g ≠ g∘f (tidak komutatif)</li>
-  <li>(f∘g)∘h = f∘(g∘h) (asosiatif)</li>
-  <li>f∘I = I∘f = f (I = fungsi identitas)</li>
-</ul>
+<h3>Sifat Komposisi</h3>
+<div class="contoh-box">
+• Asosiatif: (f ∘ g) ∘ h = f ∘ (g ∘ h)<br>
+• Ada elemen identitas: f ∘ I = I ∘ f = f<br>
+• Umumnya tidak komutatif: f ∘ g ≠ g ∘ f
+</div>
 
 <h2>Fungsi Invers</h2>
-<p>Fungsi f⁻¹ adalah invers dari f jika (f∘f⁻¹)(x) = x</p>
-<div class="rumus-box">Cara mencari invers: ganti f(x) dengan y, tukar x dan y, selesaikan untuk y</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>f(x) = 3x − 2<br>y = 3x − 2 → x = (y+2)/3<br>f⁻¹(x) = (x+2)/3</div>
+<p>f⁻¹ adalah invers dari f jika (f ∘ f⁻¹)(x) = (f⁻¹ ∘ f)(x) = x.</p>
+
+<div class="rumus-box">
+Cara mencari f⁻¹(x):<br>
+1. Tulis y = f(x)<br>
+2. Tukar x dan y → x = f(y)<br>
+3. Selesaikan y dalam x → y = f⁻¹(x)
+</div>
+
+<div class="contoh-box">
+<strong>Contoh 1:</strong> f(x) = 3x − 2<br>
+y = 3x − 2 → x = (y + 2)/3 → f⁻¹(x) = (x + 2)/3<br><br>
+<strong>Contoh 2:</strong> f(x) = (2x + 1)/(x − 3)<br>
+y(x − 3) = 2x + 1 → yx − 3y = 2x + 1 → x(y − 2) = 3y + 1<br>
+→ f⁻¹(x) = (3x + 1)/(x − 2)
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Komposisi: (f∘g)(x) = f(g(x)) — output g jadi input f</li>
-    <li>Komposisi tidak komutatif (f∘g ≠ g∘f)</li>
-    <li>Invers: tukar x dan y lalu selesaikan</li>
-    <li>(f∘f⁻¹)(x) = x</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>(f ∘ g)(x) = f(g(x)) — output g → input f</li>
+  <li>Komposisi tidak komutatif secara umum</li>
+  <li>Invers: tukar x dan y lalu selesaikan</li>
+  <li>Syarat invers ada: fungsi harus bijektif (1-1 dan onto)</li>
+  <li>Grafik f dan f⁻¹ simetri terhadap garis y = x</li>
+</ul>
 </div>`
     },
 
-    'matriks-xi': {
+    'peluang-xi': {
         kelas: 'Kelas XI',
-        judul: '🎯 Matriks',
+        judul: '🎲 Peluang',
         isi: `
-<p>Matriks adalah susunan bilangan dalam bentuk baris dan kolom. Matriks digunakan untuk menyederhanakan sistem persamaan linear dan berbagai aplikasi matematika.</p>
+<p><strong>Peluang</strong> adalah ukuran kemungkinan suatu kejadian terjadi. Nilainya antara 0 (mustahil) dan 1 (pasti terjadi).</p>
 
-<h2>Operasi Matriks</h2>
-<h3>Penjumlahan & Pengurangan</h3>
-<p>Hanya bisa dilakukan pada matriks dengan ordo yang sama. Operasi dilakukan pada elemen-elemen yang bersesuaian.</p>
-<div class="rumus-box">(A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ</div>
+<h2>Konsep Dasar</h2>
+<div class="rumus-box">
+P(A) = n(A) / n(S)<br>
+n(A) = banyak kejadian A, &nbsp; n(S) = banyak ruang sampel
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Dadu dilempar. P(muncul angka ganjil)?<br>
+S = {1,2,3,4,5,6}, A = {1,3,5}<br>
+P(A) = 3/6 = 1/2 = 0,5
+</div>
 
-<h3>Perkalian Matriks</h3>
-<p>Matriks A (m×n) dapat dikalikan matriks B (n×p), hasilnya ordo m×p.</p>
-<div class="rumus-box">(AB)ᵢⱼ = Σ Aᵢₖ × Bₖⱼ</div>
+<h2>Sifat-Sifat Peluang</h2>
+<div class="rumus-box">
+0 ≤ P(A) ≤ 1 untuk setiap kejadian A<br>
+P(S) = 1 &nbsp;|&nbsp; P(∅) = 0<br>
+P(Aᶜ) = 1 − P(A) &nbsp; (komplemen)
+</div>
 
-<h2>Determinan (Ordo 2×2)</h2>
-<div class="rumus-box">det|a b; c d| = ad − bc</div>
+<h2>Peluang Gabungan (Penjumlahan)</h2>
+<div class="rumus-box">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
+<div class="rumus-box">
+Jika A dan B saling lepas (P(A ∩ B) = 0):<br>
+P(A ∪ B) = P(A) + P(B)
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Kartu diambil dari 52 kartu. P(As atau Hati)?<br>
+P(As) = 4/52, P(Hati) = 13/52, P(As Hati) = 1/52<br>
+P(As ∪ Hati) = 4/52 + 13/52 − 1/52 = 16/52 = 4/13
+</div>
 
-<h2>Invers Matriks (Ordo 2×2)</h2>
-<div class="rumus-box">A⁻¹ = (1/det A) × |d -b; -c a|</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>A = |2 1; 3 4| → det = 8−3 = 5<br>A⁻¹ = (1/5)|4 -1; -3 2|</div>
+<h2>Kejadian Bebas (Independen)</h2>
+<div class="rumus-box">P(A ∩ B) = P(A) × P(B)</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Dua koin dilempar. P(keduanya muka)?<br>
+P = 1/2 × 1/2 = 1/4
+</div>
+
+<h2>Peluang Bersyarat</h2>
+<div class="rumus-box">P(A | B) = P(A ∩ B) / P(B) &nbsp; (P(B) ≠ 0)</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> P(A) = 0,3, P(B) = 0,4, P(A∩B) = 0,12<br>
+P(A|B) = 0,12 / 0,4 = 0,3 → A dan B saling bebas karena P(A|B) = P(A)
+</div>
+
+<h2>Frekuensi Harapan</h2>
+<div class="rumus-box">fh = P(A) × n &nbsp; (n = banyak percobaan)</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Dadu dilempar 120 kali. Harapan muncul angka 6?<br>
+fh = 1/6 × 120 = 20 kali
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Penjumlahan/pengurangan: ordo harus sama</li>
-    <li>Perkalian: kolom A = baris B</li>
-    <li>Determinan 2×2: ad − bc</li>
-    <li>Invers ada jika det ≠ 0</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>P(A) = n(A)/n(S), nilainya 0 sampai 1</li>
+  <li>Komplemen: P(Aᶜ) = 1 − P(A)</li>
+  <li>Saling lepas: P(A∪B) = P(A) + P(B)</li>
+  <li>Bebas: P(A∩B) = P(A) × P(B)</li>
+  <li>Bersyarat: P(A|B) = P(A∩B)/P(B)</li>
+</ul>
 </div>`
     },
 
     'statistika-xi': {
         kelas: 'Kelas XI',
-        judul: '📉 Statistika',
+        judul: '📊 Statistika',
         isi: `
-<p>Statistika adalah ilmu yang mempelajari cara mengumpulkan, mengolah, menyajikan, dan menganalisis data untuk mengambil kesimpulan.</p>
+<p>Statistika mempelajari cara mengumpulkan, mengolah, menyajikan, dan menginterpretasi data untuk mengambil kesimpulan. Dibagi menjadi statistika deskriptif dan inferensial.</p>
 
 <h2>Ukuran Pemusatan Data</h2>
-<h3>Mean (Rata-rata)</h3>
-<div class="rumus-box">x̄ = (Σxᵢ) / n</div>
 
-<h3>Median</h3>
-<p>Nilai tengah data setelah diurutkan.</p>
-<div class="rumus-box">Data ganjil: nilai tengah<br>Data genap: rata-rata dua nilai tengah</div>
+<h3>1. Mean (Rata-rata)</h3>
+<div class="rumus-box">
+Data tunggal: x̄ = (Σxᵢ) / n<br>
+Data berkelompok: x̄ = Σ(fᵢ · xᵢ) / Σfᵢ
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Data: 5, 7, 8, 6, 9<br>
+x̄ = (5+7+8+6+9)/5 = 35/5 = 7
+</div>
 
-<h3>Modus</h3>
-<p>Nilai yang paling sering muncul dalam data.</p>
+<h3>2. Median (Nilai Tengah)</h3>
+<div class="rumus-box">
+n ganjil: nilai tengah setelah diurutkan<br>
+n genap: rata-rata dua nilai tengah
+</div>
+<div class="contoh-box">
+<strong>Contoh ganjil:</strong> 3, 5, 7, 9, 11 → Median = 7<br>
+<strong>Contoh genap:</strong> 2, 4, 6, 8 → Median = (4+6)/2 = 5
+</div>
+
+<h3>3. Modus</h3>
+<p>Nilai yang paling sering muncul. Bisa unimodal, bimodal, atau tidak ada.</p>
+<div class="contoh-box"><strong>Contoh:</strong> 3, 5, 7, 5, 8, 5, 9 → Modus = 5</div>
 
 <h2>Ukuran Penyebaran Data</h2>
-<h3>Jangkauan (Range)</h3>
-<div class="rumus-box">R = nilai max − nilai min</div>
+
+<h3>Jangkauan & Kuartil</h3>
+<div class="rumus-box">
+Jangkauan (range): R = nilai maks − nilai min<br>
+Jangkauan interkuartil: IQR = Q₃ − Q₁
+</div>
 
 <h3>Varians & Simpangan Baku</h3>
 <div class="rumus-box">
-σ² = Σ(xᵢ − x̄)² / n<br>
-σ = √σ²
+Varians populasi: σ² = Σ(xᵢ − x̄)² / n<br>
+Varians sampel:   s² = Σ(xᵢ − x̄)² / (n − 1)<br>
+Simpangan baku: σ = √σ² &nbsp; atau &nbsp; s = √s²
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Data: 2, 4, 4, 4, 5, 5, 7, 9 &nbsp; (n=8, x̄=5)<br>
+σ² = [(9)+(1)+(1)+(1)+(0)+(0)+(4)+(16)] / 8 = 32/8 = 4<br>
+σ = √4 = 2
 </div>
 
-<div class="contoh-box"><strong>Contoh:</strong><br>Data: 4, 7, 8, 5, 6<br>Mean = (4+7+8+5+6)/5 = 30/5 = 6<br>Median (diurutkan: 4,5,6,7,8) = 6<br>Modus = tidak ada (semua muncul 1 kali)</div>
+<h2>Penyajian Data</h2>
+<div class="contoh-box">
+• Tabel distribusi frekuensi<br>
+• Histogram dan poligon frekuensi<br>
+• Diagram batang, lingkaran, garis<br>
+• Ogive (kurva frekuensi kumulatif)<br>
+• Diagram kotak-garis (box plot)
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Mean = rata-rata semua data</li>
-    <li>Median = nilai tengah data terurut</li>
-    <li>Modus = nilai yang paling sering muncul</li>
-    <li>Simpangan baku mengukur seberapa menyebar data dari rata-rata</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Mean = jumlah data / banyak data</li>
+  <li>Median = nilai tengah data terurut</li>
+  <li>Modus = nilai paling sering muncul</li>
+  <li>Simpangan baku mengukur sebaran dari rata-rata</li>
+  <li>IQR = Q₃ − Q₁ mengukur penyebaran data tengah</li>
+</ul>
 </div>`
     },
 
-    'limit-xi': {
+    'relasifungsi-xi': {
         kelas: 'Kelas XI',
-        judul: '∞ Limit Fungsi',
+        judul: '🗺️ Relasi & Fungsi',
         isi: `
-<p>Limit adalah nilai yang didekati oleh suatu fungsi ketika variabelnya mendekati suatu titik tertentu.</p>
+<p><strong>Relasi</strong> menghubungkan anggota dua himpunan. <strong>Fungsi</strong> adalah relasi khusus di mana setiap elemen domain dipetakan ke tepat satu elemen kodomain.</p>
 
-<h2>Notasi Limit</h2>
-<div class="rumus-box">lim f(x) = L &nbsp; (x → a)</div>
-<p>Artinya: ketika x mendekati a, nilai f(x) mendekati L.</p>
-
-<h2>Limit Aljabar</h2>
-<h3>Substitusi Langsung</h3>
-<div class="contoh-box"><strong>Contoh:</strong><br>lim (x→2) (x² + 3x) = 4 + 6 = 10</div>
-
-<h3>Limit Bentuk 0/0 (Faktorisasi)</h3>
-<div class="contoh-box"><strong>Contoh:</strong><br>lim (x→2) (x²−4)/(x−2)<br>= lim (x→2) (x+2)(x−2)/(x−2)<br>= lim (x→2) (x+2) = 4</div>
-
-<h2>Limit Trigonometri</h2>
-<div class="rumus-box">
-lim (x→0) sin x / x = 1<br>
-lim (x→0) tan x / x = 1
+<h2>Relasi</h2>
+<div class="contoh-box">
+<strong>Contoh:</strong> A = {1, 2, 3}, B = {2, 4, 6}<br>
+Relasi "dikali 2": {(1,2), (2,4), (3,6)}<br>
+Cara menyatakan: diagram panah, himpunan pasangan, tabel, atau grafik
 </div>
 
-<h2>Limit Tak Hingga</h2>
-<div class="rumus-box">lim (x→∞) 1/x = 0</div>
+<h2>Fungsi (Pemetaan)</h2>
+<p>Fungsi f: A → B jika <strong>setiap</strong> a ∈ A memiliki tepat <strong>satu</strong> pasangan b ∈ B.</p>
+<div class="rumus-box">
+Domain (Dₓ): nilai x yang boleh dimasukkan<br>
+Kodomain: himpunan B (tujuan pemetaan)<br>
+Range (Rf): himpunan nilai f(x) yang benar-benar tercapai
+</div>
+
+<h2>Jenis-Jenis Fungsi</h2>
+<div class="contoh-box">
+<strong>Injektif (satu-satu):</strong> x₁ ≠ x₂ → f(x₁) ≠ f(x₂)<br>
+<strong>Surjektif (onto):</strong> setiap y di kodomain punya pasangan di domain<br>
+<strong>Bijektif:</strong> injektif sekaligus surjektif (korespondensi satu-satu)
+</div>
+
+<h2>Domain Fungsi Khusus</h2>
+<div class="rumus-box">
+Fungsi akar: f(x) = √g(x) → syarat g(x) ≥ 0<br>
+Fungsi pecahan: f(x) = p(x)/q(x) → syarat q(x) ≠ 0<br>
+Fungsi log: f(x) = log g(x) → syarat g(x) > 0
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> f(x) = √(x − 3)<br>
+Domain: x − 3 ≥ 0 → x ≥ 3 → Dₓ = [3, ∞)<br><br>
+<strong>Contoh:</strong> f(x) = 1/(x² − 4)<br>
+Domain: x² − 4 ≠ 0 → x ≠ ±2 → Dₓ = ℝ \ {−2, 2}
+</div>
+
+<h2>Operasi pada Fungsi</h2>
+<div class="rumus-box">
+(f + g)(x) = f(x) + g(x)<br>
+(f − g)(x) = f(x) − g(x)<br>
+(f · g)(x) = f(x) · g(x)<br>
+(f/g)(x) = f(x)/g(x), &nbsp; g(x) ≠ 0
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Limit = nilai pendekatan fungsi saat x → a</li>
-    <li>Bentuk 0/0 diselesaikan dengan faktorisasi atau L'Hôpital</li>
-    <li>lim sin x/x = 1 (x→0) adalah limit trigonometri penting</li>
-    <li>Limit tak hingga: lim 1/x = 0 saat x → ∞</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Fungsi = relasi khusus: satu domain → tepat satu nilai</li>
+  <li>Domain: nilai x yang diperbolehkan</li>
+  <li>Range: himpunan nilai fungsi yang sesungguhnya</li>
+  <li>Injektif: beda input → beda output</li>
+  <li>Bijektif: korespondensi satu-satu, syarat memiliki invers</li>
+</ul>
 </div>`
     },
 
-    // ===================== KELAS XII =====================
-    'transformasi-xii': {
+    /* ==================== KELAS XII ==================== */
+
+    'limitturunan-xii': {
         kelas: 'Kelas XII',
-        judul: '🌀 Transformasi Fungsi',
+        judul: '📉 Limit & Turunan Fungsi',
         isi: `
-<p>Transformasi fungsi adalah perubahan posisi, ukuran, atau bentuk grafik fungsi. Ada empat jenis transformasi dasar: translasi, refleksi, dilatasi, dan rotasi.</p>
+<p><strong>Limit</strong> adalah nilai yang didekati fungsi ketika variabelnya mendekati suatu titik. <strong>Turunan</strong> adalah laju perubahan sesaat suatu fungsi, didefinisikan sebagai limit.</p>
 
-<h2>Translasi (Pergeseran)</h2>
-<div class="rumus-box">f(x) → f(x−h) + k<br>Geser h satuan ke kanan, k satuan ke atas</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>y = x² digeser 3 ke kanan dan 2 ke atas → y = (x−3)² + 2</div>
+<h2>Limit Fungsi</h2>
+<div class="rumus-box">lim f(x) = L &nbsp; berarti f(x) mendekati L ketika x → a
+    (x→a)</div>
 
-<h2>Refleksi (Pencerminan)</h2>
-<div class="rumus-box">
-Terhadap sumbu-x: f(x) → −f(x)<br>
-Terhadap sumbu-y: f(x) → f(−x)<br>
-Terhadap y=x: tukar x dan y
+<h3>Teknik Menghitung Limit</h3>
+<div class="contoh-box">
+<strong>1. Substitusi langsung:</strong><br>
+lim(x→3) (x² + 2x) = 9 + 6 = 15<br><br>
+<strong>2. Faktorisasi (bentuk 0/0):</strong><br>
+lim(x→2) (x²−4)/(x−2) = lim(x→2) (x+2)(x−2)/(x−2) = lim(x→2) (x+2) = 4<br><br>
+<strong>3. Kali sekawan (untuk akar):</strong><br>
+lim(x→0) (√(x+1)−1)/x × (√(x+1)+1)/(√(x+1)+1)<br>
+= lim(x→0) x / [x(√(x+1)+1)] = 1/(1+1) = 1/2
 </div>
 
-<h2>Dilatasi (Peregangan)</h2>
+<h3>Limit Trigonometri Penting</h3>
 <div class="rumus-box">
-Arah vertikal: f(x) → a·f(x)<br>
-Arah horizontal: f(x) → f(x/b)
+lim(x→0) sin x / x = 1<br>
+lim(x→0) tan x / x = 1<br>
+lim(x→0) (1 − cos x) / x² = 1/2
 </div>
-<div class="contoh-box"><strong>Contoh:</strong><br>y = sin x diperlebar 2× secara horizontal → y = sin(x/2)</div>
 
-<h2>Rotasi</h2>
-<p>Rotasi 90° berlawanan jarum jam: (x, y) → (−y, x)</p>
+<h2>Turunan Fungsi</h2>
+<div class="rumus-box">
+f′(x) = lim [f(x+h) − f(x)] / h
+       (h→0)
+</div>
+
+<h3>Rumus Turunan Dasar</h3>
+<div class="rumus-box">
+d/dx (c) = 0 &nbsp; (c = konstanta)<br>
+d/dx (xⁿ) = n·xⁿ⁻¹<br>
+d/dx (sin x) = cos x<br>
+d/dx (cos x) = −sin x<br>
+d/dx (tan x) = sec²x<br>
+d/dx (eˣ) = eˣ<br>
+d/dx (ln x) = 1/x
+</div>
+
+<h3>Aturan Turunan</h3>
+<div class="rumus-box">
+Konstanta: d/dx [c·f(x)] = c·f′(x)<br>
+Jumlah:    [f + g]′ = f′ + g′<br>
+Perkalian: [f·g]′ = f′g + fg′<br>
+Pembagian: [f/g]′ = (f′g − fg′)/g²<br>
+Rantai:    [f(g(x))]′ = f′(g(x))·g′(x)
+</div>
+
+<div class="contoh-box">
+<strong>Contoh:</strong><br>
+f(x) = 4x³ − 3x² + 2x → f′(x) = 12x² − 6x + 2<br>
+f(x) = sin(3x) → f′(x) = 3cos(3x)<br>
+f(x) = x²·eˣ → f′(x) = 2x·eˣ + x²·eˣ = eˣ(x² + 2x)
+</div>
+
+<h2>Aplikasi Turunan</h2>
+<div class="contoh-box">
+• Gradien garis singgung kurva di (x₀, f(x₀)) = f′(x₀)<br>
+• Nilai stasioner: f′(x) = 0 → cari titik maks/min<br>
+• Uji turunan kedua: f″(x) &lt; 0 → maks; f″(x) > 0 → min<br>
+• Kecepatan v(t) = s′(t); Percepatan a(t) = v′(t) = s″(t)
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Translasi: geser posisi grafik</li>
-    <li>Refleksi: cerminkan grafik terhadap sumbu</li>
-    <li>Dilatasi: regangkan atau kompreskan grafik</li>
-    <li>Semua transformasi mempengaruhi bentuk/posisi grafik, bukan nilai domain</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Limit: nilai pendekatan, atasi 0/0 dengan faktorisasi/sekawan</li>
+  <li>Turunan: f′(x) = lim [f(x+h)−f(x)]/h saat h→0</li>
+  <li>d/dx (xⁿ) = n·xⁿ⁻¹ adalah rumus dasar paling penting</li>
+  <li>Aturan rantai untuk fungsi komposit</li>
+  <li>f′(x) = 0 → titik stasioner (kandidat maks/min)</li>
+</ul>
 </div>`
     },
 
-    'matriks-xii': {
+    'kaidah-xii': {
         kelas: 'Kelas XII',
-        judul: '🎯 Matriks Lanjutan',
+        judul: '🔢 Kaidah Pencacahan',
         isi: `
-<p>Materi matriks kelas XII berfokus pada penerapan matriks untuk menyelesaikan sistem persamaan linear (SPL) dan transformasi geometri.</p>
+<p>Kaidah pencacahan adalah metode matematis untuk menghitung jumlah cara suatu peristiwa dapat terjadi tanpa harus mendaftarkan semua kemungkinan satu per satu.</p>
 
-<h2>Sistem Persamaan Linear dengan Matriks</h2>
-<p>SPL: ax + by = p dan cx + dy = q dapat ditulis dalam bentuk matriks:</p>
-<div class="rumus-box">
-|a b| |x|   |p|<br>
-|c d| |y| = |q|<br><br>
-Solusi: X = A⁻¹ · B
+<h2>Aturan Penjumlahan</h2>
+<p>Jika peristiwa A terjadi dengan <em>m</em> cara, dan peristiwa B dengan <em>n</em> cara, dan <strong>tidak bisa terjadi bersamaan</strong>:</p>
+<div class="rumus-box">Total cara = m + n</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Memilih 1 mata pelajaran dari 4 IPA atau 3 IPS<br>
+Total = 4 + 3 = 7 cara
 </div>
 
-<h2>Eliminasi Gauss</h2>
-<p>Metode sistematis menyelesaikan SPL menggunakan matriks augmentasi, dengan operasi baris elementer (OBE).</p>
+<h2>Aturan Perkalian (Prinsip Fundamental)</h2>
+<p>Jika peristiwa A dilakukan dengan <em>m</em> cara, kemudian diikuti peristiwa B dengan <em>n</em> cara:</p>
+<div class="rumus-box">Total cara = m × n × ...</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Membuat kode PIN 4 digit (0-9, boleh ulang)<br>
+Total = 10 × 10 × 10 × 10 = 10.000 cara
+</div>
 
-<h2>Transformasi Geometri dengan Matriks</h2>
+<h2>Faktorial</h2>
+<div class="rumus-box">n! = n × (n−1) × (n−2) × … × 2 × 1 &nbsp;|&nbsp; 0! = 1!</div>
+<div class="contoh-box">5! = 120 &nbsp;|&nbsp; 4! = 24 &nbsp;|&nbsp; 3! = 6 &nbsp;|&nbsp; 2! = 2 &nbsp;|&nbsp; 1! = 1</div>
+
+<h2>Permutasi — Urutan Diperhatikan</h2>
 <div class="rumus-box">
-Refleksi terhadap sumbu-x: |1  0|<br>
-                            |0 -1|<br><br>
-Rotasi 90°: | 0 -1|<br>
-            | 1  0|<br><br>
-Dilatasi k: |k 0|<br>
-            |0 k|
+P(n, r) = n! / (n − r)! &nbsp; (r unsur dari n, urutan penting)
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Berapa susunan 3 huruf dari {A, B, C, D, E}?<br>
+P(5, 3) = 5!/(5−3)! = 120/2 = 60 susunan
+</div>
+
+<h3>Permutasi Khusus</h3>
+<div class="contoh-box">
+<strong>Melingkar:</strong> P = (n−1)! &nbsp; (kursi bundar, dll.)<br>
+<strong>Ada unsur sama:</strong> P = n! / (n₁! × n₂! × …)<br>
+Contoh: susunan huruf "MAMA" = 4!/(2!×2!) = 24/4 = 6
+</div>
+
+<h2>Kombinasi — Urutan Tidak Diperhatikan</h2>
+<div class="rumus-box">C(n, r) = n! / [r! × (n − r)!]</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> Memilih 3 siswa dari 8 untuk mewakili sekolah<br>
+C(8, 3) = 8! / (3! × 5!) = 40320 / (6 × 120) = 56 cara
 </div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>SPL bisa diselesaikan dengan X = A⁻¹B</li>
-    <li>Eliminasi Gauss menggunakan matriks augmentasi</li>
-    <li>Transformasi geometri bisa diwakili matriks transformasi</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Aturan jumlah: OR (pilih salah satu) → tambah</li>
+  <li>Aturan kali: AND (lakukan berturutan) → kali</li>
+  <li>Permutasi: urutan penting → P(n,r) = n!/(n−r)!</li>
+  <li>Kombinasi: urutan tidak penting → C(n,r) = n!/[r!(n−r)!]</li>
+  <li>C(n,r) = C(n, n−r) selalu berlaku</li>
+</ul>
 </div>`
     },
 
-    'logaritma-xii': {
+    'logika-xii': {
         kelas: 'Kelas XII',
-        judul: '📈 Logaritma Lanjutan',
+        judul: '🧠 Logika Matematika',
         isi: `
-<p>Di kelas XII, logaritma diperdalam dengan persamaan dan pertidaksamaan logaritma serta penerapannya dalam berbagai masalah.</p>
+<p>Logika matematika mempelajari penalaran yang valid berdasarkan pernyataan yang dapat dinilai <strong>benar (B)</strong> atau <strong>salah (S)</strong>. Menjadi fondasi pembuktian matematis dan ilmu komputer.</p>
 
-<h2>Persamaan Logaritma</h2>
-<p>Persamaan yang memuat variabel di dalam logaritma.</p>
-<div class="rumus-box">ₐlog f(x) = ₐlog g(x)  ⟺  f(x) = g(x)</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>²log(x+3) = ²log(2x−1)<br>x + 3 = 2x − 1<br>x = 4</div>
+<h2>Pernyataan (Proposisi)</h2>
+<p>Kalimat yang nilai kebenarannya dapat ditentukan (tidak bisa keduanya sekaligus).</p>
+<div class="contoh-box">
+<strong>Pernyataan:</strong> "7 adalah bilangan prima" (B) &nbsp;|&nbsp; "2 + 3 = 6" (S)<br>
+<strong>Bukan pernyataan:</strong> "x + 3 = 7" (tergantung x) &nbsp;|&nbsp; "Tutup pintunya!" (perintah)
+</div>
 
-<h2>Persamaan Logaritma Bentuk Kuadrat</h2>
-<div class="contoh-box"><strong>Contoh:</strong><br>(²log x)² − 3(²log x) + 2 = 0<br>Misal p = ²log x → p² − 3p + 2 = 0<br>(p−1)(p−2) = 0 → p=1 atau p=2<br>x = 2 atau x = 4</div>
+<h2>Negasi (¬p atau ~p)</h2>
+<div class="rumus-box">¬p membalik nilai kebenaran p</div>
+<div class="contoh-box">p: "Hari ini hujan" → ¬p: "Hari ini tidak hujan"<br>
+Tabel: p=B → ¬p=S; &nbsp; p=S → ¬p=B</div>
 
-<h2>Pertidaksamaan Logaritma</h2>
+<h2>Konjungsi (p ∧ q)</h2>
+<div class="rumus-box">p ∧ q bernilai B hanya jika KEDUANYA B</div>
+<div class="contoh-box">B∧B=B &nbsp;|&nbsp; B∧S=S &nbsp;|&nbsp; S∧B=S &nbsp;|&nbsp; S∧S=S</div>
+
+<h2>Disjungsi (p ∨ q)</h2>
+<div class="rumus-box">p ∨ q bernilai S hanya jika KEDUANYA S</div>
+<div class="contoh-box">B∨B=B &nbsp;|&nbsp; B∨S=B &nbsp;|&nbsp; S∨B=B &nbsp;|&nbsp; S∨S=S</div>
+
+<h2>Implikasi (p → q)</h2>
+<div class="rumus-box">p → q bernilai S hanya jika p=B dan q=S</div>
+<div class="contoh-box">B→B=B &nbsp;|&nbsp; B→S=<strong>S</strong> &nbsp;|&nbsp; S→B=B &nbsp;|&nbsp; S→S=B</div>
+
+<h3>Implikasi Terkait</h3>
+<div class="contoh-box">
+Dari p → q:<br>
+<strong>Konvers:</strong> q → p<br>
+<strong>Invers:</strong> ¬p → ¬q<br>
+<strong>Kontraposisi:</strong> ¬q → ¬p &nbsp; ← ekuivalen dengan p → q!
+</div>
+
+<h2>Biimplikasi (p ↔ q)</h2>
+<div class="rumus-box">p ↔ q bernilai B jika p dan q memiliki nilai kebenaran SAMA</div>
+<div class="contoh-box">B↔B=B &nbsp;|&nbsp; B↔S=S &nbsp;|&nbsp; S↔B=S &nbsp;|&nbsp; S↔S=B</div>
+
+<h2>Penarikan Kesimpulan</h2>
 <div class="rumus-box">
-Jika a > 1: ₐlog f(x) > ₐlog g(x) ⟺ f(x) > g(x)<br>
-Jika 0 &lt; a &lt; 1: ₐlog f(x) > ₐlog g(x) ⟺ f(x) &lt; g(x)
+Modus Ponens: &nbsp; p→q, &nbsp; p &nbsp; ∴ q<br>
+Modus Tollens: &nbsp; p→q, &nbsp; ¬q &nbsp; ∴ ¬p<br>
+Silogisme: &nbsp; p→q, &nbsp; q→r &nbsp; ∴ p→r
+</div>
+<div class="contoh-box">
+<strong>Modus Ponens:</strong> Jika hujan maka basah. Sekarang hujan. ∴ Sekarang basah.<br>
+<strong>Modus Tollens:</strong> Jika hujan maka basah. Tidak basah. ∴ Tidak hujan.
 </div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Persamaan log: samakan basis lalu samakan argumen</li>
-    <li>Bentuk kuadrat: substitusi misal p = ₐlog x</li>
-    <li>Pertidaksamaan: tanda berubah jika basis 0 &lt; a &lt; 1</li>
-    <li>Syarat: argumen logaritma harus positif</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Konjungsi (∧): benar hanya jika keduanya benar</li>
+  <li>Disjungsi (∨): salah hanya jika keduanya salah</li>
+  <li>Implikasi (→): salah hanya jika depan B, belakang S</li>
+  <li>Kontraposisi ekuivalen dengan implikasi aslinya</li>
+  <li>Tiga metode penarikan kesimpulan: MP, MT, Silogisme</li>
+</ul>
 </div>`
     },
 
@@ -530,56 +761,91 @@ Jika 0 &lt; a &lt; 1: ₐlog f(x) > ₐlog g(x) ⟺ f(x) &lt; g(x)
         kelas: 'Kelas XII',
         judul: '∫ Integral',
         isi: `
-<p>Integral adalah operasi kebalikan dari diferensial (turunan). Integral digunakan untuk menghitung luas daerah, volume, dan banyak aplikasi lainnya.</p>
+<p>Integral adalah operasi kebalikan dari turunan (antideferensiasi). Integral digunakan untuk menghitung luas daerah, volume benda putar, panjang busur, dan banyak aplikasi lainnya.</p>
 
 <h2>Integral Tak Tentu</h2>
-<div class="rumus-box">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp; (n ≠ −1)</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>∫ 3x² dx = x³ + C<br>∫ 4x³ dx = x⁴ + C</div>
+<div class="rumus-box">
+∫ xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp; (n ≠ −1)<br>
+∫ k dx = kx + C<br>
+∫ sin x dx = −cos x + C<br>
+∫ cos x dx = sin x + C<br>
+∫ sec²x dx = tan x + C<br>
+∫ eˣ dx = eˣ + C<br>
+∫ (1/x) dx = ln|x| + C
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong><br>
+∫ (6x² − 4x + 3) dx = 2x³ − 2x² + 3x + C<br>
+∫ 5eˣ dx = 5eˣ + C
+</div>
 
 <h2>Sifat Integral</h2>
 <div class="rumus-box">
-∫ [f(x) + g(x)] dx = ∫f(x)dx + ∫g(x)dx<br>
+∫ [f(x) ± g(x)] dx = ∫f(x)dx ± ∫g(x)dx<br>
 ∫ k·f(x) dx = k · ∫f(x)dx
 </div>
 
-<h2>Integral Tentu</h2>
-<div class="rumus-box">∫ₐᵇ f(x) dx = F(b) − F(a)</div>
-<div class="contoh-box"><strong>Contoh:</strong><br>∫₁³ 2x dx = [x²]₁³ = 9 − 1 = 8</div>
+<h2>Teknik Integral</h2>
 
-<h2>Luas Daerah</h2>
-<div class="rumus-box">L = ∫ₐᵇ |f(x)| dx</div>
+<h3>Substitusi</h3>
+<div class="contoh-box">
+<strong>Contoh:</strong> ∫ 2x(x²+1)⁵ dx<br>
+Misal u = x²+1 → du = 2x dx<br>
+= ∫ u⁵ du = u⁶/6 + C = (x²+1)⁶/6 + C
+</div>
+
+<h3>Parsial: ∫ u dv = uv − ∫ v du</h3>
+<div class="contoh-box">
+<strong>Contoh:</strong> ∫ x·eˣ dx<br>
+u = x → du = dx; &nbsp; dv = eˣ dx → v = eˣ<br>
+= x·eˣ − ∫ eˣ dx = x·eˣ − eˣ + C = eˣ(x − 1) + C
+</div>
+
+<h2>Integral Tentu — Teorema Dasar Kalkulus</h2>
+<div class="rumus-box">∫ₐᵇ f(x) dx = F(b) − F(a) &nbsp; di mana F′ = f</div>
+<div class="contoh-box">
+<strong>Contoh 1:</strong> ∫₁³ (2x + 1) dx = [x² + x]₁³ = (9+3) − (1+1) = 12 − 2 = 10<br>
+<strong>Contoh 2:</strong> ∫₀^(π/2) cos x dx = [sin x]₀^(π/2) = 1 − 0 = 1
+</div>
+
+<h2>Aplikasi Integral</h2>
+<div class="rumus-box">
+Luas daerah: L = ∫ₐᵇ |f(x)| dx<br>
+Antara dua kurva: L = ∫ₐᵇ |f(x) − g(x)| dx<br>
+Volume (rotasi sumbu-x): V = π ∫ₐᵇ [f(x)]² dx
+</div>
 
 <div class="kesimpulan-box">
-  <h3>📌 Kesimpulan</h3>
-  <ul>
-    <li>Integral tak tentu: kebalikan turunan, hasilnya fungsi + C</li>
-    <li>Integral tentu: dihitung pada interval [a, b]</li>
-    <li>Integral tentu = F(b) − F(a)</li>
-    <li>Digunakan untuk menghitung luas, volume, dll.</li>
-  </ul>
+<h3>📌 Kesimpulan</h3>
+<ul>
+  <li>Integral tak tentu = antiderivatif + konstanta C</li>
+  <li>∫xⁿdx = xⁿ⁺¹/(n+1) + C adalah rumus utama</li>
+  <li>Integral tentu: F(b) − F(a) (tidak ada C)</li>
+  <li>Substitusi untuk fungsi komposit</li>
+  <li>Parsial: ∫u dv = uv − ∫v du</li>
+  <li>Digunakan untuk luas, volume, panjang busur</li>
+</ul>
 </div>`
     }
-};
 
-// ---- Buka Modal Materi ----
+}; // end MATERI_DATA
+
+/* ---- Buka Modal Materi ---- */
 function bukaMateri(id) {
-    const data = MATERI_DATA[id];
+    var data = MATERI_DATA[id];
     if (!data) return;
-
-    document.getElementById('modal-kelas-badge').textContent = data.kelas;
-    document.getElementById('materiModalLabel').textContent = data.judul;
-    document.getElementById('materiModalBody').innerHTML = data.isi;
-
-    const modal = new bootstrap.Modal(document.getElementById('materiModal'));
+    document.getElementById('modal-kelas-badge').textContent  = data.kelas;
+    document.getElementById('materiModalLabel').textContent   = data.judul;
+    document.getElementById('materiModalBody').innerHTML      = data.isi;
+    var modal = new bootstrap.Modal(document.getElementById('materiModal'));
     modal.show();
 }
 
-// ---- DOMContentLoaded ----
-document.addEventListener('DOMContentLoaded', function () {
-    const userClass = document.body.dataset.userClass || 'X';
+/* ---- Init ---- */
+document.addEventListener('DOMContentLoaded', function() {
+    var userClass = document.body.dataset.userClass || 'X';
     selectMateri(userClass);
     selectLatihan(userClass);
-
     updateTime();
     setInterval(updateTime, 1000);
     setInterval(autoReload, 1000);
