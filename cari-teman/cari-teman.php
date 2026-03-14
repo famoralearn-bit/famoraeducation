@@ -13,7 +13,7 @@ $filter_kelas     = isset($_GET['kelas'])     ? clean_input($_GET['kelas'])     
 $filter_kecamatan = isset($_GET['kecamatan']) ? clean_input($_GET['kecamatan']) : '';
 $search_nama      = isset($_GET['search'])    ? clean_input($_GET['search'])    : '';
 
-$query = "SELECT id, nama, kelas, kecamatan, last_seen FROM users WHERE id != $user_id";
+$query = "SELECT id, nama, kelas, kecamatan, last_seen, avatar FROM users WHERE id != $user_id";
 if ($filter_kelas)     $query .= " AND kelas = '$filter_kelas'";
 if ($filter_kecamatan) $query .= " AND kecamatan = '$filter_kecamatan'";
 if ($search_nama)      $query .= " AND nama LIKE '%$search_nama%'";
@@ -54,7 +54,7 @@ $kecamatan_list = [
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
             <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">
-                <img src="../assets/images/logo.jpeg" alt="Logo" class="nav-logo-img">
+                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
                 FamoraLearn
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -145,9 +145,19 @@ $kecamatan_list = [
                          data-user-id="<?php echo $u['id']; ?>">
                         <div class="user-card text-center h-100">
                             <div class="user-avatar-wrap mb-2">
-                                <div class="user-avatar">👤</div>
+                                <?php
+                                $av_map = [
+                                    'pria1'   => ['emoji'=>'👦', 'gender'=>'pria'],
+                                    'wanita1' => ['emoji'=>'👧', 'gender'=>'wanita'],
+                                ];
+                                $av_key    = isset($u['avatar']) && isset($av_map[$u['avatar']]) ? $u['avatar'] : 'pria1';
+                                $av_emoji  = $av_map[$av_key]['emoji'];
+                                $av_gender = $av_map[$av_key]['gender'];
+                                ?>
+                                <div class="user-avatar user-avatar-<?php echo $av_gender; ?>"><?php echo $av_emoji; ?></div>
                                 <div class="online-dot <?php echo $u['is_online'] ? 'online' : 'offline'; ?>"></div>
                             </div>
+                            <span class="user-gender-badge gender-<?php echo $av_gender; ?>"><?php echo ucfirst($av_gender); ?></span>
                             <span class="status-label <?php echo $u['is_online'] ? 'online' : 'offline'; ?> mb-2">
                                 <?php echo $u['is_online'] ? '🟢 Online' : '⚫ Offline'; ?>
                             </span>

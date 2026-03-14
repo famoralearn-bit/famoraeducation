@@ -188,6 +188,24 @@ body { background: var(--bg); }
 .status-label.online  { color: #10b981; }
 .status-label.offline { color: #6b7280; }
 
+/* Avatar gender colors */
+.user-avatar-pria   { background: rgba(88,130,242,0.15) !important; border-color: rgba(88,130,242,0.35) !important; }
+.user-avatar-wanita { background: rgba(242,88,170,0.15) !important; border-color: rgba(242,88,170,0.35) !important; }
+
+.user-gender-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+}
+.gender-pria   { background: rgba(88,130,242,0.12); border-color: rgba(88,130,242,0.3); color: #7ba4f8; }
+.gender-wanita { background: rgba(242,88,170,0.12); border-color: rgba(242,88,170,0.3); color: #f87bbb; }
+
 /* KRITIS: nama dan badge pakai var(--text) agar nyatu dark mode */
 .user-name  { font-family: 'Space Mono', monospace; font-size: 0.95em; color: var(--text); margin: 8px 0 10px; text-align: center; }
 .user-badge { background: rgba(112,119,161,0.15); border: 1px solid var(--border); color: var(--text-muted); border-radius: 20px; padding: 3px 10px; font-size: 0.78em; }
