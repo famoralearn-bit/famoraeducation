@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
             <!-- Logo & Brand -->
             <div class="text-center mb-4">
-                <img src="../assets/images/famora.png" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
+                <img src="../assets/images/logo.jpeg" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
                 <h1 class="logo-title">FamoraLearn</h1>
                 <p class="logo-sub">PLATFORM BELAJAR MATEMATIKA</p>
             </div>
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             </a>
 
             <p class="text-center mt-4 footer-note">
-                © 2024 <strong>Famora Education</strong> · FamoraLearn
+                © 2026 <strong>Famora Education</strong> · FamoraLearn
             </p>
         </div>
     </div>
