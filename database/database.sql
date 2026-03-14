@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
     password    VARCHAR(255) NOT NULL,
     kelas       ENUM('X','XI','XII') NOT NULL,
     kecamatan   VARCHAR(60) NOT NULL DEFAULT '',
+    avatar      VARCHAR(20) NOT NULL DEFAULT 'pria1',
     last_seen   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
@@ -40,8 +41,11 @@ CREATE TABLE IF NOT EXISTS login_history (
 ) ENGINE=InnoDB;
 
 -- =============================================
---  Upgrade dari database lama (jika ada):
---  ALTER TABLE users DROP COLUMN IF EXISTS nisn;
---  ALTER TABLE users ADD COLUMN IF NOT EXISTS kecamatan VARCHAR(60) NOT NULL DEFAULT '';
---  ALTER TABLE users ADD COLUMN IF NOT EXISTS last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+--  Jika database LAMA masih ada kolom nisn,
+--  jalankan perintah ini di phpMyAdmin:
 -- =============================================
+ALTER TABLE users DROP COLUMN IF EXISTS nisn;
+ALTER TABLE users MODIFY COLUMN kecamatan VARCHAR(60) NOT NULL DEFAULT '';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar VARCHAR(20) NOT NULL DEFAULT 'pria1';
