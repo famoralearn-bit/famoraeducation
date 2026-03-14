@@ -1,46 +1,54 @@
 /* =============================================
    FamoraLearn - Profile JS
-   Avatar selector with localStorage
+   Avatar dipilih di client, disimpan ke DB via form POST
    ============================================= */
 
-const AVATAR_MAP = {
-    'priamuda':   '👦',
-    'wanitamuda': '👧',
-    'pria':       '👨‍🎓',
-    'wanita':     '👩‍🎓',
+var AVATAR_DATA = {
+    'pria1':   { emoji: '👦', label: 'Pria',   gender: 'Pria' },
+    'wanita1': { emoji: '👧', label: 'Wanita', gender: 'Wanita' },
 };
 
 function pilihAvatar(id) {
+    if (!AVATAR_DATA[id]) return;
+
     // Update display besar
-    const display = document.getElementById('avatarDisplay');
-    if (display) display.textContent = AVATAR_MAP[id] || '👤';
+    var display = document.getElementById('avatarDisplay');
+    if (display) display.textContent = AVATAR_DATA[id].emoji;
+
+    // Update badge gender
+    var badge = document.getElementById('avatarGenderBadge');
+    if (badge) {
+        badge.textContent = AVATAR_DATA[id].gender;
+        badge.className = 'avatar-gender-badge gender-' + AVATAR_DATA[id].gender.toLowerCase();
+    }
+
+    // Update hidden input untuk form POST
+    var input = document.getElementById('avatarInput');
+    if (input) input.value = id;
 
     // Update border terpilih
-    Object.keys(AVATAR_MAP).forEach(function(key) {
+    Object.keys(AVATAR_DATA).forEach(function(key) {
         var el = document.getElementById('av-' + key);
         if (el) {
             if (key === id) el.classList.add('selected');
             else            el.classList.remove('selected');
         }
     });
-
-    // Simpan pilihan
-    try { localStorage.setItem('fl_avatar', id); } catch(e) {}
-}
-
-function muatAvatar() {
-    var saved = null;
-    try { saved = localStorage.getItem('fl_avatar'); } catch(e) {}
-    if (saved && AVATAR_MAP[saved]) {
-        pilihAvatar(saved);
-    } else {
-        // Default: pria muda
-        pilihAvatar('priamuda');
-    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    muatAvatar();
+    // Sync badge gender sesuai avatar yang sudah terpilih dari PHP
+    var input = document.getElementById('avatarInput');
+    if (input && input.value) {
+        var id = input.value;
+        if (AVATAR_DATA[id]) {
+            var badge = document.getElementById('avatarGenderBadge');
+            if (badge) {
+                badge.textContent = AVATAR_DATA[id].gender;
+                badge.className = 'avatar-gender-badge gender-' + AVATAR_DATA[id].gender.toLowerCase();
+            }
+        }
+    }
 
     // Password match live-check
     var newPwd  = document.getElementById('new_password');

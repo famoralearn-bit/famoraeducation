@@ -20,6 +20,21 @@ $kecamatan_list = [
     'Sukawangi','Tambelang','Tarumajaya','Cabangbungin'
 ];
 
+// Daftar avatar yang valid
+$valid_avatars = ['pria1','wanita1'];
+
+// Update avatar
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_avatar'])) {
+    $av = clean_input($_POST['avatar_id']);
+    if (in_array($av, $valid_avatars)) {
+        $conn->query("UPDATE users SET avatar='$av' WHERE id=$user_id");
+        $_SESSION['avatar'] = $av;
+        $success = 'Avatar berhasil disimpan!';
+        $user    = $conn->query($query)->fetch_assoc();
+    }
+}
+
+// Update profil
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $nama      = clean_input($_POST['nama']);
     $kelas     = clean_input($_POST['kelas']);
@@ -39,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     }
 }
 
+// Ganti password
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
     $old = $_POST['old_password'];
     $new = $_POST['new_password'];
@@ -55,6 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
         $success = 'Password berhasil diubah!';
     }
 }
+
+// Avatar aktif
+$current_avatar = isset($user['avatar']) ? $user['avatar'] : 'pria1';
+$avatar_map = [
+    'pria1'   => ['emoji'=>'👦', 'label'=>'Pria',   'gender'=>'Pria'],
+    'wanita1' => ['emoji'=>'👧', 'label'=>'Wanita', 'gender'=>'Wanita'],
+];
+$current_emoji  = $avatar_map[$current_avatar]['emoji'] ?? '👤';
+$current_gender = $avatar_map[$current_avatar]['gender'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -69,13 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 </head>
 <body data-theme="dark">
 
-    <!-- ============================================================
-         NAVBAR — identik dengan dashboard
-         ============================================================ -->
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
             <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">
-                <img src="../assets/images/logo.jpeg" alt="Logo" class="nav-logo-img">
+                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
                 FamoraLearn
             </a>
             <button class="navbar-toggler custom-toggler" type="button"
@@ -84,112 +106,78 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../dashboard/dashboard.php">
-                            <i class="bi bi-house me-1"></i>Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="profile.php">
-                            <i class="bi bi-person me-1"></i>Profil
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../cari-teman/cari-teman.php">
-                            <i class="bi bi-people me-1"></i>Cari Teman
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../dashboard/dashboard.php"><i class="bi bi-house me-1"></i>Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="profile.php"><i class="bi bi-person me-1"></i>Profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../cari-teman/cari-teman.php"><i class="bi bi-people me-1"></i>Cari Teman</a></li>
                     <li class="nav-item">
                         <button class="btn nav-theme-btn" onclick="toggleTheme()">
-                            <span id="theme-icon">🌙</span>
-                            <span id="theme-text">Dark</span>
+                            <span id="theme-icon">🌙</span><span id="theme-text">Dark</span>
                         </button>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-logout" href="../logout/logout.php">
-                            <i class="bi bi-box-arrow-right me-1"></i>Logout
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link nav-logout" href="../logout/logout.php"><i class="bi bi-box-arrow-right me-1"></i>Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ============================================================
-         MAIN CONTENT
-         ============================================================ -->
     <div class="container py-4">
 
-        <!-- Profile card + avatar selector -->
+        <!-- ======== Profile Card ======== -->
         <div class="profile-card text-center mb-4">
 
-            <!-- Avatar besar (display) -->
-            <div class="avatar-display" id="avatarDisplay">👤</div>
+            <!-- Avatar display besar -->
+            <div class="avatar-display" id="avatarDisplay"><?php echo $current_emoji; ?></div>
+            <div class="avatar-gender-badge" id="avatarGenderBadge"><?php echo $current_gender; ?></div>
 
-            <!-- Label -->
+            <!-- Ganti avatar — form POST ke DB -->
             <p class="avatar-label mt-2">Pilih Avatar</p>
+            <form method="POST" id="avatarForm">
+                <input type="hidden" name="avatar_id" id="avatarInput" value="<?php echo htmlspecialchars($current_avatar); ?>">
+                <div class="avatar-selector mb-3">
+                    <?php foreach ($avatar_map as $key => $av): ?>
+                    <div class="avatar-option <?php echo $current_avatar === $key ? 'selected' : ''; ?>"
+                         id="av-<?php echo $key; ?>"
+                         onclick="pilihAvatar('<?php echo $key; ?>')"
+                         title="<?php echo $av['label']; ?>">
+                        <?php echo $av['emoji']; ?>
+                        <span class="av-label"><?php echo $av['label']; ?></span>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <button type="submit" name="save_avatar" class="btn btn-save-avatar">
+                    <i class="bi bi-check2-circle me-1"></i> Simpan Avatar
+                </button>
+            </form>
 
-            <!-- Baris 4 pilihan avatar -->
-            <div class="avatar-selector mb-4">
-                <div class="avatar-option" id="av-priamuda"  onclick="pilihAvatar('priamuda')"  title="Pria Muda">
-                    👦
-                    <span class="av-label">Pria</span>
-                </div>
-                <div class="avatar-option" id="av-wanitamuda" onclick="pilihAvatar('wanitamuda')" title="Wanita Muda">
-                    👧
-                    <span class="av-label">Wanita</span>
-                </div>
-                <div class="avatar-option" id="av-pria"   onclick="pilihAvatar('pria')"   title="Pria Dewasa">
-                    👨‍🎓
-                    <span class="av-label">Mahasiswa</span>
-                </div>
-                <div class="avatar-option" id="av-wanita" onclick="pilihAvatar('wanita')" title="Wanita Dewasa">
-                    👩‍🎓
-                    <span class="av-label">Mahasiswi</span>
-                </div>
-            </div>
+            <hr class="my-3" style="border-color:var(--border);">
 
             <h1 class="profile-name"><?php echo htmlspecialchars($user['nama']); ?></h1>
             <p class="profile-sub">Kelas <?php echo $user['kelas']; ?> · <?php echo $user['kecamatan']; ?></p>
 
             <div class="row g-3 mt-3">
                 <div class="col-6 col-md-3">
-                    <div class="info-item">
-                        <div class="info-label">EMAIL</div>
-                        <div class="info-value"><?php echo htmlspecialchars($user['email']); ?></div>
-                    </div>
+                    <div class="info-item"><div class="info-label">EMAIL</div><div class="info-value"><?php echo htmlspecialchars($user['email']); ?></div></div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="info-item">
-                        <div class="info-label">KELAS</div>
-                        <div class="info-value"><?php echo $user['kelas']; ?></div>
-                    </div>
+                    <div class="info-item"><div class="info-label">KELAS</div><div class="info-value"><?php echo $user['kelas']; ?></div></div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="info-item">
-                        <div class="info-label">KECAMATAN</div>
-                        <div class="info-value"><?php echo $user['kecamatan']; ?></div>
-                    </div>
+                    <div class="info-item"><div class="info-label">KECAMATAN</div><div class="info-value"><?php echo $user['kecamatan']; ?></div></div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="info-item">
-                        <div class="info-label">BERGABUNG</div>
-                        <div class="info-value"><?php echo date('d M Y', strtotime($user['created_at'])); ?></div>
-                    </div>
+                    <div class="info-item"><div class="info-label">BERGABUNG</div><div class="info-value"><?php echo date('d M Y', strtotime($user['created_at'])); ?></div></div>
                 </div>
             </div>
         </div>
 
         <?php if ($success): ?>
             <div class="alert alert-success-custom d-flex align-items-center gap-2 mb-4">
-                <i class="bi bi-check-circle-fill"></i>
-                <span><?php echo $success; ?></span>
+                <i class="bi bi-check-circle-fill"></i><span><?php echo $success; ?></span>
             </div>
         <?php endif; ?>
         <?php if ($error): ?>
             <div class="alert alert-danger-custom d-flex align-items-center gap-2 mb-4">
-                <i class="bi bi-exclamation-circle-fill"></i>
-                <span><?php echo $error; ?></span>
+                <i class="bi bi-exclamation-circle-fill"></i><span><?php echo $error; ?></span>
             </div>
         <?php endif; ?>
 
@@ -216,8 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                             <label class="form-label custom-label">Kecamatan</label>
                             <select name="kecamatan" class="form-select custom-input" required>
                                 <?php foreach ($kecamatan_list as $kec): ?>
-                                    <option value="<?php echo $kec; ?>"
-                                        <?php echo $user['kecamatan']==$kec ? 'selected':''; ?>>
+                                    <option value="<?php echo $kec; ?>" <?php echo $user['kecamatan']==$kec ? 'selected':''; ?>>
                                         <?php echo $kec; ?>
                                     </option>
                                 <?php endforeach; ?>

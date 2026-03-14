@@ -94,6 +94,24 @@ body { background: var(--bg); }
 }
 
 /* Label "Pilih Avatar" */
+/* Badge gender di bawah avatar display */
+.avatar-gender-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 14px;
+    border-radius: 20px;
+    margin: 6px auto 4px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    transition: all 0.3s;
+}
+.gender-pria   { background: rgba(88,130,242,0.15); border-color: rgba(88,130,242,0.4); color: #7ba4f8; }
+.gender-wanita { background: rgba(242,88,170,0.15); border-color: rgba(242,88,170,0.4); color: #f87bbb; }
+
 .avatar-label {
     color: var(--text-muted);
     font-family: 'Space Mono', monospace;
@@ -101,6 +119,24 @@ body { background: var(--bg); }
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 12px;
+}
+
+/* Tombol simpan avatar */
+.btn-save-avatar {
+    background: rgba(246,177,122,0.12);
+    border: 1.5px solid rgba(246,177,122,0.4);
+    color: var(--light);
+    border-radius: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82em;
+    padding: 7px 20px;
+    transition: all 0.25s;
+    margin-bottom: 4px;
+}
+.btn-save-avatar:hover {
+    background: rgba(246,177,122,0.25);
+    color: var(--light);
+    transform: translateY(-1px);
 }
 
 /* Baris pilihan avatar */

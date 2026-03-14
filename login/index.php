@@ -1,35 +1,58 @@
 <?php
 require_once '../config/config.php';
 
-if (isset($_SESSION['user_id'])) {
-    header("Location: ../dashboard/dashboard.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login/index.php");
     exit();
 }
 
-$error = '';
+$user_id = $_SESSION['user_id'];
+$query   = "SELECT * FROM users WHERE id = $user_id";
+$user    = $conn->query($query)->fetch_assoc();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email    = clean_input($_POST['email']);
-    $password = $_POST['password'];
+$success = '';
+$error   = '';
 
-    $result = $conn->query("SELECT * FROM users WHERE email = '$email'");
+$kecamatan_list = [
+    'Cikarang','Tambun','Babelan','Bojongmangu','Cibarusah',
+    'Cibitung','Karangbahagia','Kedungwaringin','Muaragembong',
+    'Pebayuran','Serang Baru','Setu','Sukaraya','Sukatani',
+    'Sukawangi','Tambelang','Tarumajaya','Cabangbungin'
+];
 
-    if ($result && $result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id']   = $user['id'];
-            $_SESSION['nama']      = $user['nama'];
-            $_SESSION['kelas']     = $user['kelas'];
-            $_SESSION['kecamatan'] = $user['kecamatan'];
-            $uid = $user['id'];
-            $conn->query("INSERT INTO login_history (user_id) VALUES ($uid)");
-            header("Location: ../dashboard/dashboard.php");
-            exit();
-        } else {
-            $error = 'Password salah!';
-        }
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
+    $nama      = clean_input($_POST['nama']);
+    $kelas     = clean_input($_POST['kelas']);
+    $kecamatan = clean_input($_POST['kecamatan']);
+    if (empty($nama)) {
+        $error = 'Nama tidak boleh kosong!';
     } else {
-        $error = 'Email tidak ditemukan!';
+        if ($conn->query("UPDATE users SET nama='$nama', kelas='$kelas', kecamatan='$kecamatan' WHERE id=$user_id")) {
+            $_SESSION['nama']      = $nama;
+            $_SESSION['kelas']     = $kelas;
+            $_SESSION['kecamatan'] = $kecamatan;
+            $success = 'Profil berhasil diupdate!';
+            $user    = $conn->query($query)->fetch_assoc();
+        } else {
+            $error = 'Gagal update profil!';
+        }
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
+    $old = $_POST['old_password'];
+    $new = $_POST['new_password'];
+    $cnf = $_POST['confirm_password'];
+    if (!password_verify($old, $user['password'])) {
+        $error = 'Password lama salah!';
+    } elseif ($new !== $cnf) {
+        $error = 'Password baru tidak cocok!';
+    } elseif (strlen($new) < 6) {
+        $error = 'Password minimal 6 karakter!';
+    } else {
+        $hash = password_hash($new, PASSWORD_DEFAULT);
+        $conn->query("UPDATE users SET password='$hash' WHERE id=$user_id");
+        $success = 'Password berhasil diubah!';
     }
 }
 ?>
@@ -38,81 +61,212 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - FamoraLearn</title>
+    <title>Profil - FamoraLearn</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body data-theme="dark">
 
-    <button class="theme-toggle-fixed" onclick="toggleTheme()">
-        <span id="theme-icon">🌙</span>
-        <span id="theme-text">Dark</span>
-    </button>
+    <!-- ============================================================
+         NAVBAR — identik dengan dashboard
+         ============================================================ -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand brand-logo" href="../dashboard/dashboard.php">
+                <img src="../assets/images/famora.png" alt="Logo" class="nav-logo-img">
+                FamoraLearn
+            </a>
+            <button class="navbar-toggler custom-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../dashboard/dashboard.php">
+                            <i class="bi bi-house me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile.php">
+                            <i class="bi bi-person me-1"></i>Profil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../cari-teman/cari-teman.php">
+                            <i class="bi bi-people me-1"></i>Cari Teman
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn nav-theme-btn" onclick="toggleTheme()">
+                            <span id="theme-icon">🌙</span>
+                            <span id="theme-text">Dark</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-logout" href="../logout/logout.php">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="min-vh-100 d-flex align-items-center justify-content-center py-5">
-        <div class="login-container">
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+    <div class="container py-4">
 
-            <!-- Logo & Brand -->
-            <div class="text-center mb-4">
-                <img src="../assets/images/logo.jpeg" alt="FamoraLearn Logo" class="brand-logo-img mb-3">
-                <h1 class="logo-title">FamoraLearn</h1>
-                <p class="logo-sub">PLATFORM BELAJAR MATEMATIKA</p>
+        <!-- Profile card + avatar selector -->
+        <div class="profile-card text-center mb-4">
+
+            <!-- Avatar besar (display) -->
+            <div class="avatar-display" id="avatarDisplay">👤</div>
+
+            <!-- Label -->
+            <p class="avatar-label mt-2">Pilih Avatar</p>
+
+            <!-- Baris 4 pilihan avatar -->
+            <div class="avatar-selector mb-4">
+                <div class="avatar-option" id="av-priamuda"  onclick="pilihAvatar('priamuda')"  title="Pria Muda">
+                    👦
+                    <span class="av-label">Pria</span>
+                </div>
+                <div class="avatar-option" id="av-wanitamuda" onclick="pilihAvatar('wanitamuda')" title="Wanita Muda">
+                    👧
+                    <span class="av-label">Wanita</span>
+                </div>
+                <div class="avatar-option" id="av-pria"   onclick="pilihAvatar('pria')"   title="Pria Dewasa">
+                    👨‍🎓
+                    <span class="av-label">Mahasiswa</span>
+                </div>
+                <div class="avatar-option" id="av-wanita" onclick="pilihAvatar('wanita')" title="Wanita Dewasa">
+                    👩‍🎓
+                    <span class="av-label">Mahasiswi</span>
+                </div>
             </div>
 
-            <?php if ($error): ?>
-                <div class="alert alert-danger d-flex align-items-center gap-2 py-2 mb-4" role="alert">
-                    <i class="bi bi-exclamation-circle-fill"></i>
-                    <span><?php echo $error; ?></span>
-                </div>
-            <?php endif; ?>
+            <h1 class="profile-name"><?php echo htmlspecialchars($user['nama']); ?></h1>
+            <p class="profile-sub">Kelas <?php echo $user['kelas']; ?> · <?php echo $user['kecamatan']; ?></p>
 
-            <form method="POST" novalidate autocomplete="off">
-                <div class="mb-4">
-                    <label for="email" class="form-label custom-label">
-                        <i class="bi bi-envelope me-1"></i> Email
-                    </label>
-                    <input type="email" id="email" name="email"
-                           class="form-control custom-input"
-                           placeholder="contoh@gmail.com"
-                           required autocomplete="off">
-                </div>
-
-                <div class="mb-4">
-                    <label for="password" class="form-label custom-label">
-                        <i class="bi bi-lock me-1"></i> Password
-                    </label>
-                    <div class="input-group">
-                        <input type="password" id="password" name="password"
-                               class="form-control custom-input"
-                               placeholder="Masukkan password"
-                               required autocomplete="new-password">
-                        <button class="btn custom-eye-btn" type="button" id="toggle-password" tabindex="-1">
-                            <i class="bi bi-eye" id="eye-icon"></i>
-                        </button>
+            <div class="row g-3 mt-3">
+                <div class="col-6 col-md-3">
+                    <div class="info-item">
+                        <div class="info-label">EMAIL</div>
+                        <div class="info-value"><?php echo htmlspecialchars($user['email']); ?></div>
                     </div>
                 </div>
-
-                <button type="submit" name="login" class="btn btn-custom-primary w-100 mt-1">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Masuk
-                </button>
-            </form>
-
-            <div class="divider my-4"><span>atau</span></div>
-
-            <a href="../register/register.php" class="btn btn-custom-outline w-100">
-                <i class="bi bi-person-plus me-2"></i> Buat Akun Baru
-            </a>
-
-            <p class="text-center mt-4 footer-note">
-                © 2026 <strong>Famora Education</strong> · FamoraLearn
-            </p>
+                <div class="col-6 col-md-3">
+                    <div class="info-item">
+                        <div class="info-label">KELAS</div>
+                        <div class="info-value"><?php echo $user['kelas']; ?></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="info-item">
+                        <div class="info-label">KECAMATAN</div>
+                        <div class="info-value"><?php echo $user['kecamatan']; ?></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="info-item">
+                        <div class="info-label">BERGABUNG</div>
+                        <div class="info-value"><?php echo date('d M Y', strtotime($user['created_at'])); ?></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <?php if ($success): ?>
+            <div class="alert alert-success-custom d-flex align-items-center gap-2 mb-4">
+                <i class="bi bi-check-circle-fill"></i>
+                <span><?php echo $success; ?></span>
+            </div>
+        <?php endif; ?>
+        <?php if ($error): ?>
+            <div class="alert alert-danger-custom d-flex align-items-center gap-2 mb-4">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                <span><?php echo $error; ?></span>
+            </div>
+        <?php endif; ?>
+
+        <div class="row g-4">
+            <!-- Edit Profil -->
+            <div class="col-lg-6">
+                <div class="form-card">
+                    <h2 class="form-card-title">✏️ Edit Profil</h2>
+                    <form method="POST" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Nama Lengkap</label>
+                            <input type="text" name="nama" class="form-control custom-input"
+                                   value="<?php echo htmlspecialchars($user['nama']); ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Kelas</label>
+                            <select name="kelas" class="form-select custom-input" required>
+                                <option value="X"   <?php echo $user['kelas']=='X'   ? 'selected':''; ?>>X</option>
+                                <option value="XI"  <?php echo $user['kelas']=='XI'  ? 'selected':''; ?>>XI</option>
+                                <option value="XII" <?php echo $user['kelas']=='XII' ? 'selected':''; ?>>XII</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label custom-label">Kecamatan</label>
+                            <select name="kecamatan" class="form-select custom-input" required>
+                                <?php foreach ($kecamatan_list as $kec): ?>
+                                    <option value="<?php echo $kec; ?>"
+                                        <?php echo $user['kecamatan']==$kec ? 'selected':''; ?>>
+                                        <?php echo $kec; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" name="update" class="btn btn-custom-primary">
+                                <i class="bi bi-save me-1"></i> Simpan
+                            </button>
+                            <a href="../dashboard/dashboard.php" class="btn btn-custom-outline">Kembali</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Ganti Password -->
+            <div class="col-lg-6">
+                <div class="form-card">
+                    <h2 class="form-card-title">🔒 Ganti Password</h2>
+                    <form method="POST" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Password Lama</label>
+                            <input type="password" name="old_password" class="form-control custom-input"
+                                   placeholder="Masukkan password lama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label custom-label">Password Baru</label>
+                            <input type="password" id="new_password" name="new_password"
+                                   class="form-control custom-input"
+                                   placeholder="Minimal 6 karakter" minlength="6" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label custom-label">Konfirmasi Password Baru</label>
+                            <input type="password" id="confirm_password" name="confirm_password"
+                                   class="form-control custom-input"
+                                   placeholder="Ulangi password baru" required>
+                        </div>
+                        <button type="submit" name="change_password" class="btn btn-custom-primary">
+                            <i class="bi bi-shield-lock me-1"></i> Ganti Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/theme.js"></script>
-    <script src="login.js"></script>
+    <script src="profile.js"></script>
 </body>
 </html>
