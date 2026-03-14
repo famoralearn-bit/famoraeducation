@@ -292,55 +292,76 @@ b/sin B = a/sin A → b = 6 × sin 45°/sin 30° = 6 × (½√2)/(½) = 6√2
 
     'fungsi-xi': {
         kelas: 'Kelas XI',
-        judul: '🔄 Fungsi Komposisi & Invers',
+        judul: '🔄 Fungsi Komposisi',
         isi: `
-<p><strong>Fungsi komposisi</strong> menggabungkan dua fungsi sehingga output satu menjadi input yang lain. <strong>Fungsi invers</strong> membalikkan relasi suatu fungsi — input dan output ditukar.</p>
+<p><strong>Fungsi komposisi</strong> adalah operasi yang menggabungkan dua atau lebih fungsi secara berantai, sehingga <em>output</em> dari fungsi pertama menjadi <em>input</em> bagi fungsi berikutnya. Simbol komposisi adalah <strong>∘</strong> (dibaca "bundaran").</p>
 
-<h2>Fungsi Komposisi</h2>
+<h2>Definisi Fungsi Komposisi</h2>
 <div class="rumus-box">
-(f ∘ g)(x) = f(g(x))<br>
-Artinya: masukkan x ke g lebih dulu, hasilnya masukkan ke f.
-</div>
-<div class="contoh-box">
-<strong>Contoh:</strong> f(x) = 2x + 1, g(x) = x²<br>
-(f ∘ g)(x) = f(g(x)) = f(x²) = 2x² + 1<br>
-(g ∘ f)(x) = g(f(x)) = g(2x+1) = (2x+1)² = 4x² + 4x + 1<br>
-→ f ∘ g ≠ g ∘ f &nbsp; (tidak komutatif)
+(f ∘ g)(x) = f(g(x))<br><br>
+Cara baca: "f komposisi g dari x"<br>
+Urutan: masukkan x ke g dulu → hasilnya masukkan ke f
 </div>
 
-<h3>Sifat Komposisi</h3>
-<div class="contoh-box">
-• Asosiatif: (f ∘ g) ∘ h = f ∘ (g ∘ h)<br>
-• Ada elemen identitas: f ∘ I = I ∘ f = f<br>
-• Umumnya tidak komutatif: f ∘ g ≠ g ∘ f
-</div>
-
-<h2>Fungsi Invers</h2>
-<p>f⁻¹ adalah invers dari f jika (f ∘ f⁻¹)(x) = (f⁻¹ ∘ f)(x) = x.</p>
-
+<h2>Cara Menghitung Komposisi</h2>
 <div class="rumus-box">
-Cara mencari f⁻¹(x):<br>
-1. Tulis y = f(x)<br>
-2. Tukar x dan y → x = f(y)<br>
-3. Selesaikan y dalam x → y = f⁻¹(x)
+Langkah:<br>
+1. Hitung g(x) terlebih dahulu<br>
+2. Substitusikan hasil g(x) ke dalam f<br>
+3. Sederhanakan ekspresi akhir
+</div>
+<div class="contoh-box">
+<strong>Contoh 1:</strong> f(x) = 2x + 1, &nbsp; g(x) = x²<br>
+(f ∘ g)(x) = f(g(x)) = f(x²) = 2(x²) + 1 = <strong>2x² + 1</strong><br><br>
+<strong>Contoh 2:</strong> f(x) = 3x − 2, &nbsp; g(x) = x + 4<br>
+(f ∘ g)(x) = f(x+4) = 3(x+4) − 2 = 3x + 12 − 2 = <strong>3x + 10</strong><br><br>
+<strong>Contoh 3:</strong> f(x) = x², &nbsp; g(x) = 2x − 1<br>
+(g ∘ f)(x) = g(x²) = 2(x²) − 1 = <strong>2x² − 1</strong>
 </div>
 
+<h2>Komposisi Tidak Komutatif</h2>
 <div class="contoh-box">
-<strong>Contoh 1:</strong> f(x) = 3x − 2<br>
-y = 3x − 2 → x = (y + 2)/3 → f⁻¹(x) = (x + 2)/3<br><br>
-<strong>Contoh 2:</strong> f(x) = (2x + 1)/(x − 3)<br>
-y(x − 3) = 2x + 1 → yx − 3y = 2x + 1 → x(y − 2) = 3y + 1<br>
-→ f⁻¹(x) = (3x + 1)/(x − 2)
+<strong>Bukti:</strong> f(x) = 2x + 1, &nbsp; g(x) = x²<br>
+(f ∘ g)(x) = 2x² + 1<br>
+(g ∘ f)(x) = g(2x+1) = (2x+1)² = 4x² + 4x + 1<br>
+→ <strong>f ∘ g ≠ g ∘ f</strong> &nbsp; (urutan sangat berpengaruh!)
+</div>
+
+<h2>Sifat-Sifat Komposisi</h2>
+<div class="contoh-box">
+<strong>1. Asosiatif:</strong> (f ∘ g) ∘ h = f ∘ (g ∘ h) ✓<br>
+<strong>2. Tidak Komutatif:</strong> f ∘ g ≠ g ∘ f (umumnya) ✓<br>
+<strong>3. Elemen Identitas I(x) = x:</strong> f ∘ I = I ∘ f = f ✓<br>
+<strong>4. Domain:</strong> Domain (f ∘ g) = {x ∈ Dg | g(x) ∈ Df}
+</div>
+
+<h2>Komposisi Tiga Fungsi</h2>
+<div class="rumus-box">
+(f ∘ g ∘ h)(x) = f(g(h(x)))<br>
+Kerjakan dari dalam ke luar: h → g → f
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> f(x) = x + 1, &nbsp; g(x) = 2x, &nbsp; h(x) = x²<br>
+(f ∘ g ∘ h)(3) = f(g(h(3))) = f(g(9)) = f(18) = 19
+</div>
+
+<h2>Mencari Fungsi dari Hasil Komposisi</h2>
+<p>Jika diketahui hasil komposisi dan salah satu fungsi, cari fungsi yang lain dengan substitusi.</p>
+<div class="contoh-box">
+<strong>Contoh:</strong> (f ∘ g)(x) = 6x − 4 dan g(x) = 2x. Tentukan f(x)!<br>
+Misalkan g(x) = 2x = t, maka x = t/2<br>
+f(t) = 6·(t/2) − 4 = 3t − 4<br>
+∴ <strong>f(x) = 3x − 4</strong> &nbsp; (cek: f(g(x)) = f(2x) = 3(2x)−4 = 6x−4 ✓)
 </div>
 
 <div class="kesimpulan-box">
 <h3>📌 Kesimpulan</h3>
 <ul>
-  <li>(f ∘ g)(x) = f(g(x)) — output g → input f</li>
-  <li>Komposisi tidak komutatif secara umum</li>
-  <li>Invers: tukar x dan y lalu selesaikan</li>
-  <li>Syarat invers ada: fungsi harus bijektif (1-1 dan onto)</li>
-  <li>Grafik f dan f⁻¹ simetri terhadap garis y = x</li>
+  <li>(f ∘ g)(x) = f(g(x)) — kerjakan dari dalam ke luar</li>
+  <li>Komposisi <strong>tidak komutatif</strong>: f∘g ≠ g∘f pada umumnya</li>
+  <li>Komposisi <strong>asosiatif</strong>: urutan tanda kurung tidak berpengaruh</li>
+  <li>Perhatikan domain: g(x) harus masuk wilayah domain f</li>
+  <li>Untuk mencari fungsi dari hasil komposisi → gunakan substitusi</li>
 </ul>
 </div>`
     },
@@ -349,67 +370,97 @@ y(x − 3) = 2x + 1 → yx − 3y = 2x + 1 → x(y − 2) = 3y + 1<br>
         kelas: 'Kelas XI',
         judul: '🎲 Peluang',
         isi: `
-<p><strong>Peluang</strong> adalah ukuran kemungkinan suatu kejadian terjadi. Nilainya antara 0 (mustahil) dan 1 (pasti terjadi).</p>
+<p><strong>Peluang</strong> (probabilitas) adalah ukuran seberapa besar kemungkinan suatu kejadian akan terjadi. Nilai peluang selalu berada di antara <strong>0</strong> (mustahil terjadi) dan <strong>1</strong> (pasti terjadi).</p>
 
-<h2>Konsep Dasar</h2>
+<h2>Konsep Dasar: Ruang Sampel & Kejadian</h2>
+<p><strong>Ruang sampel (S)</strong> adalah himpunan semua hasil yang mungkin. <strong>Kejadian (A)</strong> adalah himpunan bagian dari ruang sampel.</p>
 <div class="rumus-box">
-P(A) = n(A) / n(S)<br>
-n(A) = banyak kejadian A, &nbsp; n(S) = banyak ruang sampel
+P(A) = n(A) / n(S)<br><br>
+n(A) = banyak anggota kejadian A<br>
+n(S) = banyak anggota ruang sampel
 </div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Dadu dilempar. P(muncul angka ganjil)?<br>
-S = {1,2,3,4,5,6}, A = {1,3,5}<br>
-P(A) = 3/6 = 1/2 = 0,5
+<strong>Contoh 1 — Dadu:</strong> Satu dadu dilempar sekali.<br>
+S = {1, 2, 3, 4, 5, 6} → n(S) = 6<br>
+A = muncul bilangan ganjil = {1, 3, 5} → n(A) = 3<br>
+P(A) = 3/6 = <strong>1/2</strong><br><br>
+<strong>Contoh 2 — Koin:</strong> Dua koin dilempar bersamaan.<br>
+S = {(G,G), (G,A), (A,G), (A,A)} → n(S) = 4<br>
+B = muncul tepat satu Angka = {(G,A), (A,G)} → n(B) = 2<br>
+P(B) = 2/4 = <strong>1/2</strong>
 </div>
 
 <h2>Sifat-Sifat Peluang</h2>
 <div class="rumus-box">
-0 ≤ P(A) ≤ 1 untuk setiap kejadian A<br>
-P(S) = 1 &nbsp;|&nbsp; P(∅) = 0<br>
-P(Aᶜ) = 1 − P(A) &nbsp; (komplemen)
+0 ≤ P(A) ≤ 1 &nbsp; untuk setiap kejadian A<br>
+P(S) = 1 &nbsp; (kejadian pasti)<br>
+P(∅) = 0 &nbsp; (kejadian mustahil)<br>
+P(Aᶜ) = 1 − P(A) &nbsp; (komplemen/kebalikan A)
+</div>
+<div class="contoh-box">
+<strong>Contoh komplemen:</strong> Dadu dilempar. P(bukan angka 6)?<br>
+P(muncul 6) = 1/6<br>
+P(bukan 6) = 1 − 1/6 = <strong>5/6</strong>
 </div>
 
-<h2>Peluang Gabungan (Penjumlahan)</h2>
-<div class="rumus-box">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
+<h2>Kejadian Majemuk: Gabungan (A ∪ B)</h2>
 <div class="rumus-box">
-Jika A dan B saling lepas (P(A ∩ B) = 0):<br>
-P(A ∪ B) = P(A) + P(B)
+P(A ∪ B) = P(A) + P(B) − P(A ∩ B)<br><br>
+Khusus jika A dan B <strong>saling lepas</strong> (tidak bisa terjadi bersamaan):<br>
+P(A ∩ B) = 0 &nbsp; → &nbsp; P(A ∪ B) = P(A) + P(B)
 </div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Kartu diambil dari 52 kartu. P(As atau Hati)?<br>
-P(As) = 4/52, P(Hati) = 13/52, P(As Hati) = 1/52<br>
-P(As ∪ Hati) = 4/52 + 13/52 − 1/52 = 16/52 = 4/13
+<strong>Contoh:</strong> Dari 52 kartu bridge, diambil 1 kartu.<br>
+A = kartu As, B = kartu Hati<br>
+P(A) = 4/52, &nbsp; P(B) = 13/52, &nbsp; P(A∩B) = P(As Hati) = 1/52<br>
+P(A ∪ B) = 4/52 + 13/52 − 1/52 = <strong>16/52 = 4/13</strong>
 </div>
 
-<h2>Kejadian Bebas (Independen)</h2>
-<div class="rumus-box">P(A ∩ B) = P(A) × P(B)</div>
+<h2>Kejadian Saling Bebas (Independen)</h2>
+<p>Kejadian A dan B saling bebas jika terjadinya A tidak mempengaruhi peluang terjadinya B.</p>
+<div class="rumus-box">
+A dan B saling bebas ⟺ P(A ∩ B) = P(A) × P(B)
+</div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Dua koin dilempar. P(keduanya muka)?<br>
-P = 1/2 × 1/2 = 1/4
+<strong>Contoh:</strong> Sebuah dadu dan sebuah koin dilempar bersamaan.<br>
+A = dadu muncul angka 6 → P(A) = 1/6<br>
+B = koin muncul Gambar → P(B) = 1/2<br>
+P(A ∩ B) = 1/6 × 1/2 = <strong>1/12</strong>
 </div>
 
 <h2>Peluang Bersyarat</h2>
-<div class="rumus-box">P(A | B) = P(A ∩ B) / P(B) &nbsp; (P(B) ≠ 0)</div>
+<p>P(A|B) dibaca "peluang A terjadi <strong>dengan syarat</strong> B sudah terjadi".</p>
+<div class="rumus-box">
+P(A | B) = P(A ∩ B) / P(B) &nbsp; , P(B) ≠ 0
+</div>
 <div class="contoh-box">
-<strong>Contoh:</strong> P(A) = 0,3, P(B) = 0,4, P(A∩B) = 0,12<br>
-P(A|B) = 0,12 / 0,4 = 0,3 → A dan B saling bebas karena P(A|B) = P(A)
+<strong>Contoh:</strong> Dalam sebuah kelas, 60% siswa suka Matematika (M), 40% suka Fisika (F), dan 25% suka keduanya.<br>
+P(M|F) = P(M∩F) / P(F) = 0,25 / 0,40 = <strong>0,625</strong><br>
+Artinya: dari siswa yang suka Fisika, 62,5% juga suka Matematika.
 </div>
 
 <h2>Frekuensi Harapan</h2>
-<div class="rumus-box">fh = P(A) × n &nbsp; (n = banyak percobaan)</div>
+<div class="rumus-box">
+Fh = P(A) × n<br>
+n = banyaknya percobaan yang dilakukan
+</div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Dadu dilempar 120 kali. Harapan muncul angka 6?<br>
-fh = 1/6 × 120 = 20 kali
+<strong>Contoh 1:</strong> Dadu dilempar 180 kali. Frekuensi harapan muncul angka 5?<br>
+Fh = 1/6 × 180 = <strong>30 kali</strong><br><br>
+<strong>Contoh 2:</strong> Koin dilempar 200 kali. Frekuensi harapan muncul Angka?<br>
+Fh = 1/2 × 200 = <strong>100 kali</strong>
 </div>
 
 <div class="kesimpulan-box">
 <h3>📌 Kesimpulan</h3>
 <ul>
-  <li>P(A) = n(A)/n(S), nilainya 0 sampai 1</li>
+  <li>P(A) = n(A)/n(S), selalu antara 0 dan 1</li>
   <li>Komplemen: P(Aᶜ) = 1 − P(A)</li>
-  <li>Saling lepas: P(A∪B) = P(A) + P(B)</li>
-  <li>Bebas: P(A∩B) = P(A) × P(B)</li>
+  <li>Gabungan: P(A∪B) = P(A) + P(B) − P(A∩B)</li>
+  <li>Saling lepas: P(A∩B) = 0, sehingga P(A∪B) = P(A) + P(B)</li>
+  <li>Saling bebas: P(A∩B) = P(A) × P(B)</li>
   <li>Bersyarat: P(A|B) = P(A∩B)/P(B)</li>
+  <li>Frekuensi harapan: Fh = P(A) × n</li>
 </ul>
 </div>`
     },
@@ -491,59 +542,99 @@ Simpangan baku: σ = √σ² &nbsp; atau &nbsp; s = √s²
         kelas: 'Kelas XI',
         judul: '🗺️ Relasi & Fungsi',
         isi: `
-<p><strong>Relasi</strong> menghubungkan anggota dua himpunan. <strong>Fungsi</strong> adalah relasi khusus di mana setiap elemen domain dipetakan ke tepat satu elemen kodomain.</p>
+<p><strong>Relasi</strong> adalah aturan yang menghubungkan anggota satu himpunan dengan anggota himpunan lainnya. <strong>Fungsi</strong> adalah relasi khusus di mana setiap anggota domain dipasangkan dengan <em>tepat satu</em> anggota kodomain.</p>
 
-<h2>Relasi</h2>
+<h2>Relasi dan Cara Penyajiannya</h2>
+<p>Relasi dari himpunan A ke himpunan B dapat dinyatakan dengan empat cara:</p>
 <div class="contoh-box">
-<strong>Contoh:</strong> A = {1, 2, 3}, B = {2, 4, 6}<br>
-Relasi "dikali 2": {(1,2), (2,4), (3,6)}<br>
-Cara menyatakan: diagram panah, himpunan pasangan, tabel, atau grafik
+<strong>Contoh:</strong> A = {1, 2, 3}, B = {1, 2, 4, 6, 9}, relasi "kuadrat dari"<br><br>
+<strong>1. Diagram Panah:</strong> &nbsp; 1 → 1, &nbsp; 2 → 4, &nbsp; 3 → 9<br>
+<strong>2. Himpunan Pasangan Berurutan:</strong> &nbsp; {(1,1), (2,4), (3,9)}<br>
+<strong>3. Tabel:</strong><br>
+&nbsp;&nbsp; x &nbsp;|&nbsp; y<br>
+&nbsp;&nbsp; 1 &nbsp;|&nbsp; 1<br>
+&nbsp;&nbsp; 2 &nbsp;|&nbsp; 4<br>
+&nbsp;&nbsp; 3 &nbsp;|&nbsp; 9<br>
+<strong>4. Grafik Cartesius:</strong> titik-titik (1,1), (2,4), (3,9) pada bidang koordinat
 </div>
 
-<h2>Fungsi (Pemetaan)</h2>
-<p>Fungsi f: A → B jika <strong>setiap</strong> a ∈ A memiliki tepat <strong>satu</strong> pasangan b ∈ B.</p>
+<h2>Definisi Fungsi (Pemetaan)</h2>
+<p>Fungsi f: A → B adalah relasi yang memenuhi dua syarat:</p>
 <div class="rumus-box">
-Domain (Dₓ): nilai x yang boleh dimasukkan<br>
-Kodomain: himpunan B (tujuan pemetaan)<br>
-Range (Rf): himpunan nilai f(x) yang benar-benar tercapai
+Syarat fungsi f: A → B:<br>
+1. Setiap anggota A harus punya pasangan di B (total/terdefinisi)<br>
+2. Setiap anggota A dipasangkan ke tepat SATU anggota B (tunggal/unik)
+</div>
+<div class="contoh-box">
+<strong>Fungsi:</strong> {(1,a), (2,b), (3,c)} ✓ — setiap x punya tepat satu pasangan<br>
+<strong>Bukan Fungsi:</strong> {(1,a), (1,b), (2,c)} ✗ — x=1 punya dua pasangan<br>
+<strong>Bukan Fungsi:</strong> {(1,a), (3,c)} ✗ — x=2 tidak punya pasangan (jika domain = {1,2,3})
+</div>
+
+<h2>Domain, Kodomain, dan Range</h2>
+<div class="rumus-box">
+Domain (Df): himpunan semua nilai x yang "boleh masuk" ke fungsi<br>
+Kodomain: himpunan B (semua nilai yang "mungkin" jadi output)<br>
+Range (Rf): himpunan nilai f(x) yang benar-benar dihasilkan (Rf ⊆ Kodomain)
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> f: A → B, f = {(1,3), (2,5), (3,7)}<br>
+Domain = {1, 2, 3}<br>
+Kodomain = {3, 5, 7, 9} (misalkan B = {3,5,7,9})<br>
+Range = {3, 5, 7} &nbsp; ← nilai 9 tidak tercapai, jadi 9 ∉ Range
+</div>
+
+<h2>Menentukan Domain Fungsi Aljabar</h2>
+<div class="rumus-box">
+Fungsi akar: f(x) = √g(x) &nbsp; → &nbsp; syarat g(x) ≥ 0<br>
+Fungsi pecahan: f(x) = 1/g(x) &nbsp; → &nbsp; syarat g(x) ≠ 0<br>
+Fungsi logaritma: f(x) = log(g(x)) &nbsp; → &nbsp; syarat g(x) > 0
+</div>
+<div class="contoh-box">
+<strong>Contoh 1:</strong> f(x) = √(2x − 6)<br>
+Syarat: 2x − 6 ≥ 0 → x ≥ 3 → <strong>Df = [3, ∞)</strong><br><br>
+<strong>Contoh 2:</strong> f(x) = 3/(x² − 9)<br>
+Syarat: x² − 9 ≠ 0 → x ≠ ±3 → <strong>Df = ℝ \ {−3, 3}</strong><br><br>
+<strong>Contoh 3:</strong> f(x) = √(x−1) / (x−4)<br>
+Syarat: x−1 ≥ 0 dan x ≠ 4 → x ≥ 1 dan x ≠ 4 → <strong>Df = [1,∞) \ {4}</strong>
 </div>
 
 <h2>Jenis-Jenis Fungsi</h2>
 <div class="contoh-box">
-<strong>Injektif (satu-satu):</strong> x₁ ≠ x₂ → f(x₁) ≠ f(x₂)<br>
-<strong>Surjektif (onto):</strong> setiap y di kodomain punya pasangan di domain<br>
-<strong>Bijektif:</strong> injektif sekaligus surjektif (korespondensi satu-satu)
+<strong>Injektif (satu-satu):</strong><br>
+x₁ ≠ x₂ ⟹ f(x₁) ≠ f(x₂) — tidak ada dua input yang menghasilkan output sama<br>
+Contoh: f(x) = 2x + 1 ✓ (setiap nilai y hanya punya satu x)<br><br>
+<strong>Surjektif (onto/kepada):</strong><br>
+Setiap y ∈ kodomain punya pasangan x ∈ domain, sehingga Range = Kodomain<br>
+Contoh: f: ℝ → ℝ, f(x) = x³ ✓<br><br>
+<strong>Bijektif (korespondensi satu-satu):</strong><br>
+Injektif DAN surjektif sekaligus<br>
+Syarat fungsi memiliki invers!<br>
+Contoh: f(x) = 2x + 3 di f: ℝ → ℝ ✓
 </div>
 
-<h2>Domain Fungsi Khusus</h2>
-<div class="rumus-box">
-Fungsi akar: f(x) = √g(x) → syarat g(x) ≥ 0<br>
-Fungsi pecahan: f(x) = p(x)/q(x) → syarat q(x) ≠ 0<br>
-Fungsi log: f(x) = log g(x) → syarat g(x) > 0
-</div>
-<div class="contoh-box">
-<strong>Contoh:</strong> f(x) = √(x − 3)<br>
-Domain: x − 3 ≥ 0 → x ≥ 3 → Dₓ = [3, ∞)<br><br>
-<strong>Contoh:</strong> f(x) = 1/(x² − 4)<br>
-Domain: x² − 4 ≠ 0 → x ≠ ±2 → Dₓ = ℝ \ {−2, 2}
-</div>
-
-<h2>Operasi pada Fungsi</h2>
+<h2>Operasi Aljabar pada Fungsi</h2>
 <div class="rumus-box">
 (f + g)(x) = f(x) + g(x)<br>
 (f − g)(x) = f(x) − g(x)<br>
 (f · g)(x) = f(x) · g(x)<br>
-(f/g)(x) = f(x)/g(x), &nbsp; g(x) ≠ 0
+(f/g)(x)  = f(x) / g(x), &nbsp; syarat g(x) ≠ 0
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> f(x) = x + 2, &nbsp; g(x) = x² − 1<br>
+(f + g)(x) = x + 2 + x² − 1 = x² + x + 1<br>
+(f · g)(x) = (x+2)(x²−1) = x³ + 2x² − x − 2<br>
+(f/g)(3) = f(3)/g(3) = 5/8
 </div>
 
 <div class="kesimpulan-box">
 <h3>📌 Kesimpulan</h3>
 <ul>
-  <li>Fungsi = relasi khusus: satu domain → tepat satu nilai</li>
-  <li>Domain: nilai x yang diperbolehkan</li>
-  <li>Range: himpunan nilai fungsi yang sesungguhnya</li>
-  <li>Injektif: beda input → beda output</li>
-  <li>Bijektif: korespondensi satu-satu, syarat memiliki invers</li>
+  <li>Relasi: aturan menghubungkan dua himpunan — bisa disajikan 4 cara</li>
+  <li>Fungsi: tiap anggota domain punya tepat SATU pasangan di kodomain</li>
+  <li>Domain ≠ Kodomain ≠ Range (Range ⊆ Kodomain)</li>
+  <li>Syarat domain: akar → ≥ 0; pecahan → ≠ 0; log → > 0</li>
+  <li>Bijektif = injektif + surjektif = syarat fungsi memiliki invers</li>
 </ul>
 </div>`
     },
@@ -554,79 +645,124 @@ Domain: x² − 4 ≠ 0 → x ≠ ±2 → Dₓ = ℝ \ {−2, 2}
         kelas: 'Kelas XII',
         judul: '📉 Limit & Turunan Fungsi',
         isi: `
-<p><strong>Limit</strong> adalah nilai yang didekati fungsi ketika variabelnya mendekati suatu titik. <strong>Turunan</strong> adalah laju perubahan sesaat suatu fungsi, didefinisikan sebagai limit.</p>
+<p><strong>Limit</strong> menggambarkan nilai yang didekati suatu fungsi ketika variabel bebasnya mendekati titik tertentu. <strong>Turunan</strong> adalah laju perubahan sesaat fungsi di suatu titik, dan didefinisikan menggunakan konsep limit.</p>
 
-<h2>Limit Fungsi</h2>
-<div class="rumus-box">lim f(x) = L &nbsp; berarti f(x) mendekati L ketika x → a
-    (x→a)</div>
+<h2>A. Limit Fungsi</h2>
 
-<h3>Teknik Menghitung Limit</h3>
+<h3>Definisi Intuitif</h3>
+<div class="rumus-box">
+lim f(x) = L
+(x→a)
+berarti: nilai f(x) semakin mendekati L ketika x semakin mendekati a
+(x boleh mendekati a dari kiri maupun kanan, tapi tidak harus x = a)
+</div>
+
+<h3>Teknik 1 — Substitusi Langsung</h3>
+<p>Berlaku jika fungsi terdefinisi di titik tersebut (tidak menghasilkan bentuk tak tentu).</p>
 <div class="contoh-box">
-<strong>1. Substitusi langsung:</strong><br>
-lim(x→3) (x² + 2x) = 9 + 6 = 15<br><br>
-<strong>2. Faktorisasi (bentuk 0/0):</strong><br>
-lim(x→2) (x²−4)/(x−2) = lim(x→2) (x+2)(x−2)/(x−2) = lim(x→2) (x+2) = 4<br><br>
-<strong>3. Kali sekawan (untuk akar):</strong><br>
-lim(x→0) (√(x+1)−1)/x × (√(x+1)+1)/(√(x+1)+1)<br>
-= lim(x→0) x / [x(√(x+1)+1)] = 1/(1+1) = 1/2
+<strong>Contoh:</strong><br>
+lim(x→3) (x² + 2x − 1) = 9 + 6 − 1 = <strong>14</strong><br>
+lim(x→2) (3x³ − 5) = 24 − 5 = <strong>19</strong>
+</div>
+
+<h3>Teknik 2 — Faktorisasi (Bentuk 0/0)</h3>
+<div class="contoh-box">
+<strong>Contoh 1:</strong> lim(x→2) (x²−4)/(x−2)<br>
+= lim(x→2) (x+2)(x−2)/(x−2) &nbsp; ← faktorkan<br>
+= lim(x→2) (x+2) = <strong>4</strong><br><br>
+<strong>Contoh 2:</strong> lim(x→3) (x²−9)/(x²−x−6)<br>
+= lim(x→3) (x+3)(x−3)/[(x−3)(x+2)]<br>
+= lim(x→3) (x+3)/(x+2) = 6/5 = <strong>1,2</strong>
+</div>
+
+<h3>Teknik 3 — Kali Sekawan (Bentuk Akar)</h3>
+<div class="contoh-box">
+<strong>Contoh:</strong> lim(x→0) (√(x+4) − 2)/x<br>
+× (√(x+4)+2)/(√(x+4)+2):<br>
+= lim(x→0) (x+4−4) / [x·(√(x+4)+2)]<br>
+= lim(x→0) x / [x·(√(x+4)+2)]<br>
+= lim(x→0) 1/(√(x+4)+2) = 1/4 = <strong>0,25</strong>
 </div>
 
 <h3>Limit Trigonometri Penting</h3>
 <div class="rumus-box">
 lim(x→0) sin x / x = 1<br>
 lim(x→0) tan x / x = 1<br>
+lim(x→0) (1 − cos x) / x = 0<br>
 lim(x→0) (1 − cos x) / x² = 1/2
 </div>
+<div class="contoh-box">
+<strong>Contoh:</strong> lim(x→0) sin 3x / x<br>
+= lim(x→0) 3 · sin(3x)/(3x) = 3 · 1 = <strong>3</strong>
+</div>
 
-<h2>Turunan Fungsi</h2>
+<h2>B. Turunan Fungsi</h2>
+
+<h3>Definisi Turunan (dari Limit)</h3>
 <div class="rumus-box">
 f′(x) = lim [f(x+h) − f(x)] / h
        (h→0)
+f′(x) juga ditulis: dy/dx atau df/dx
+</div>
+<div class="contoh-box">
+<strong>Contoh dengan definisi:</strong> f(x) = x²<br>
+f′(x) = lim [(x+h)² − x²]/h = lim [x²+2xh+h²−x²]/h<br>
+= lim [2xh + h²]/h = lim (2x + h) = <strong>2x</strong>
 </div>
 
 <h3>Rumus Turunan Dasar</h3>
 <div class="rumus-box">
-d/dx (c) = 0 &nbsp; (c = konstanta)<br>
-d/dx (xⁿ) = n·xⁿ⁻¹<br>
-d/dx (sin x) = cos x<br>
-d/dx (cos x) = −sin x<br>
-d/dx (tan x) = sec²x<br>
-d/dx (eˣ) = eˣ<br>
-d/dx (ln x) = 1/x
+(c)′ = 0 &nbsp; (c = konstanta)<br>
+(xⁿ)′ = n·xⁿ⁻¹ &nbsp; ← paling penting!<br>
+(sin x)′ = cos x<br>
+(cos x)′ = −sin x<br>
+(tan x)′ = sec²x = 1/cos²x<br>
+(eˣ)′ = eˣ<br>
+(ln x)′ = 1/x &nbsp; (x > 0)
 </div>
 
 <h3>Aturan Turunan</h3>
 <div class="rumus-box">
-Konstanta: d/dx [c·f(x)] = c·f′(x)<br>
-Jumlah:    [f + g]′ = f′ + g′<br>
-Perkalian: [f·g]′ = f′g + fg′<br>
-Pembagian: [f/g]′ = (f′g − fg′)/g²<br>
-Rantai:    [f(g(x))]′ = f′(g(x))·g′(x)
+Aturan Konstanta: (c·f)′ = c·f′<br>
+Aturan Jumlah:    (f ± g)′ = f′ ± g′<br>
+Aturan Perkalian: (f·g)′ = f′g + fg′<br>
+Aturan Pembagian: (f/g)′ = (f′g − fg′)/g²<br>
+Aturan Rantai:    [f(g(x))]′ = f′(g(x)) · g′(x)
 </div>
-
 <div class="contoh-box">
-<strong>Contoh:</strong><br>
-f(x) = 4x³ − 3x² + 2x → f′(x) = 12x² − 6x + 2<br>
-f(x) = sin(3x) → f′(x) = 3cos(3x)<br>
-f(x) = x²·eˣ → f′(x) = 2x·eˣ + x²·eˣ = eˣ(x² + 2x)
+<strong>Aturan perkalian:</strong> h(x) = (x²)(sin x)<br>
+h′(x) = 2x·sin x + x²·cos x<br><br>
+<strong>Aturan rantai:</strong> h(x) = sin(3x²)<br>
+h′(x) = cos(3x²) · 6x = <strong>6x cos(3x²)</strong><br><br>
+<strong>Polinom biasa:</strong> f(x) = 5x⁴ − 3x² + 7x − 2<br>
+f′(x) = 20x³ − 6x + 7
 </div>
 
 <h2>Aplikasi Turunan</h2>
 <div class="contoh-box">
-• Gradien garis singgung kurva di (x₀, f(x₀)) = f′(x₀)<br>
-• Nilai stasioner: f′(x) = 0 → cari titik maks/min<br>
-• Uji turunan kedua: f″(x) &lt; 0 → maks; f″(x) > 0 → min<br>
-• Kecepatan v(t) = s′(t); Percepatan a(t) = v′(t) = s″(t)
+<strong>1. Gradien garis singgung</strong> kurva y = f(x) di titik (x₀, f(x₀)):<br>
+m = f′(x₀)<br>
+Persamaan garis: y − f(x₀) = m(x − x₀)<br><br>
+<strong>2. Nilai Stasioner (Ekstrim Lokal)</strong><br>
+Syarat: f′(x) = 0 → cari nilai x<br>
+Uji turunan kedua:<br>
+  f″(x) &lt; 0 → titik maksimum lokal<br>
+  f″(x) > 0 → titik minimum lokal<br><br>
+<strong>3. Gerak Lurus</strong><br>
+s(t) = fungsi posisi<br>
+v(t) = s′(t) = kecepatan<br>
+a(t) = v′(t) = s″(t) = percepatan
 </div>
 
 <div class="kesimpulan-box">
 <h3>📌 Kesimpulan</h3>
 <ul>
-  <li>Limit: nilai pendekatan, atasi 0/0 dengan faktorisasi/sekawan</li>
-  <li>Turunan: f′(x) = lim [f(x+h)−f(x)]/h saat h→0</li>
-  <li>d/dx (xⁿ) = n·xⁿ⁻¹ adalah rumus dasar paling penting</li>
-  <li>Aturan rantai untuk fungsi komposit</li>
-  <li>f′(x) = 0 → titik stasioner (kandidat maks/min)</li>
+  <li>Limit: nilai pendekatan f(x) saat x→a; atasi 0/0 dengan faktorisasi atau sekawan</li>
+  <li>Turunan: f′(x) = lim[f(x+h)−f(x)]/h saat h→0</li>
+  <li>(xⁿ)′ = n·xⁿ⁻¹ adalah rumus dasar terpenting</li>
+  <li>Aturan rantai: turunan fungsi komposit → kalikan dengan turunan "dalam"</li>
+  <li>f′(x) = 0 → titik stasioner; uji f″ untuk tentukan maks/min</li>
+  <li>lim(x→0) sinx/x = 1 adalah limit trigonometri yang paling sering muncul</li>
 </ul>
 </div>`
     },
@@ -635,59 +771,110 @@ f(x) = x²·eˣ → f′(x) = 2x·eˣ + x²·eˣ = eˣ(x² + 2x)
         kelas: 'Kelas XII',
         judul: '🔢 Kaidah Pencacahan',
         isi: `
-<p>Kaidah pencacahan adalah metode matematis untuk menghitung jumlah cara suatu peristiwa dapat terjadi tanpa harus mendaftarkan semua kemungkinan satu per satu.</p>
+<p><strong>Kaidah pencacahan</strong> adalah teknik matematika untuk menghitung jumlah cara suatu kejadian dapat terjadi secara sistematis, tanpa perlu mendaftar semua kemungkinan satu per satu.</p>
 
 <h2>Aturan Penjumlahan</h2>
-<p>Jika peristiwa A terjadi dengan <em>m</em> cara, dan peristiwa B dengan <em>n</em> cara, dan <strong>tidak bisa terjadi bersamaan</strong>:</p>
-<div class="rumus-box">Total cara = m + n</div>
+<p>Digunakan saat memilih <strong>salah satu</strong> dari beberapa kelompok yang terpisah (OR).</p>
+<div class="rumus-box">
+Jika kejadian A terjadi dengan m cara DAN kejadian B terjadi dengan n cara,<br>
+dan keduanya tidak bisa terjadi bersamaan:<br>
+Total cara = m + n
+</div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Memilih 1 mata pelajaran dari 4 IPA atau 3 IPS<br>
-Total = 4 + 3 = 7 cara
+<strong>Contoh 1:</strong> Hendak pergi ke sekolah, bisa naik 3 jenis bus atau 2 jenis ojek.<br>
+Total cara = 3 + 2 = <strong>5 cara</strong><br><br>
+<strong>Contoh 2:</strong> Memilih 1 mata pelajaran dari 4 pilihan IPA atau 3 pilihan IPS.<br>
+Total = 4 + 3 = <strong>7 cara</strong>
 </div>
 
-<h2>Aturan Perkalian (Prinsip Fundamental)</h2>
-<p>Jika peristiwa A dilakukan dengan <em>m</em> cara, kemudian diikuti peristiwa B dengan <em>n</em> cara:</p>
-<div class="rumus-box">Total cara = m × n × ...</div>
+<h2>Aturan Perkalian (Kaidah Dasar Pencacahan)</h2>
+<p>Digunakan saat melakukan beberapa tahap berturutan (AND).</p>
+<div class="rumus-box">
+Jika tahap 1 bisa dilakukan p cara, tahap 2 bisa dilakukan q cara, dst:<br>
+Total cara = p × q × r × …
+</div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Membuat kode PIN 4 digit (0-9, boleh ulang)<br>
-Total = 10 × 10 × 10 × 10 = 10.000 cara
+<strong>Contoh 1:</strong> PIN 4 digit (tiap digit 0–9, boleh ulang)<br>
+Total = 10 × 10 × 10 × 10 = <strong>10.000 cara</strong><br><br>
+<strong>Contoh 2:</strong> Nomor plat 2 huruf + 4 angka (huruf dan angka tidak boleh ulang)<br>
+Huruf: 26 × 25 = 650, Angka: 10 × 9 × 8 × 7 = 5040<br>
+Total = 650 × 5040 = <strong>3.276.000 cara</strong>
 </div>
 
 <h2>Faktorial</h2>
-<div class="rumus-box">n! = n × (n−1) × (n−2) × … × 2 × 1 &nbsp;|&nbsp; 0! = 1!</div>
-<div class="contoh-box">5! = 120 &nbsp;|&nbsp; 4! = 24 &nbsp;|&nbsp; 3! = 6 &nbsp;|&nbsp; 2! = 2 &nbsp;|&nbsp; 1! = 1</div>
-
-<h2>Permutasi — Urutan Diperhatikan</h2>
 <div class="rumus-box">
-P(n, r) = n! / (n − r)! &nbsp; (r unsur dari n, urutan penting)
+n! = n × (n−1) × (n−2) × … × 2 × 1<br>
+0! = 1 &nbsp; (by definisi)
 </div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Berapa susunan 3 huruf dari {A, B, C, D, E}?<br>
-P(5, 3) = 5!/(5−3)! = 120/2 = 60 susunan
-</div>
-
-<h3>Permutasi Khusus</h3>
-<div class="contoh-box">
-<strong>Melingkar:</strong> P = (n−1)! &nbsp; (kursi bundar, dll.)<br>
-<strong>Ada unsur sama:</strong> P = n! / (n₁! × n₂! × …)<br>
-Contoh: susunan huruf "MAMA" = 4!/(2!×2!) = 24/4 = 6
+1! = 1 &nbsp;|&nbsp; 2! = 2 &nbsp;|&nbsp; 3! = 6 &nbsp;|&nbsp; 4! = 24 &nbsp;|&nbsp; 5! = 120 &nbsp;|&nbsp; 6! = 720
 </div>
 
-<h2>Kombinasi — Urutan Tidak Diperhatikan</h2>
-<div class="rumus-box">C(n, r) = n! / [r! × (n − r)!]</div>
+<h2>Permutasi — Urutan DIPERHATIKAN</h2>
+<div class="rumus-box">
+P(n, r) = ⁿPᵣ = n! / (n − r)!<br><br>
+n = banyak objek tersedia, r = banyak objek dipilih
+</div>
 <div class="contoh-box">
-<strong>Contoh:</strong> Memilih 3 siswa dari 8 untuk mewakili sekolah<br>
-C(8, 3) = 8! / (3! × 5!) = 40320 / (6 × 120) = 56 cara
+<strong>Contoh 1:</strong> Berapa banyak susunan 3 huruf berbeda dari {A, B, C, D, E}?<br>
+P(5,3) = 5!/(5−3)! = 120/2 = <strong>60 susunan</strong><br><br>
+<strong>Contoh 2:</strong> Berapa banyak cara 8 peserta lomba mendapatkan juara 1, 2, 3?<br>
+P(8,3) = 8!/(8−3)! = 8!/5! = 8×7×6 = <strong>336 cara</strong>
+</div>
+
+<h3>Permutasi Melingkar</h3>
+<div class="rumus-box">
+Pmeling = (n − 1)!<br>
+(untuk n objek berbeda yang disusun melingkar)
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> 5 orang duduk melingkar di meja bundar.<br>
+P = (5−1)! = 4! = <strong>24 cara</strong>
+</div>
+
+<h3>Permutasi dengan Unsur yang Sama</h3>
+<div class="rumus-box">
+P = n! / (n₁! × n₂! × n₃! × …)<br>
+nᵢ = banyak unsur yang sama jenis ke-i
+</div>
+<div class="contoh-box">
+<strong>Contoh 1:</strong> Susunan huruf dari kata "MATEMATIKA" (10 huruf)<br>
+M=2, A=3, T=2, E=1, I=1, K=1<br>
+P = 10! / (2! × 3! × 2!) = 3.628.800 / (2×6×2) = <strong>151.200 susunan</strong><br><br>
+<strong>Contoh 2:</strong> Susunan kata "BUKU" = 4!/(2!) = 24/2 = <strong>12 susunan</strong>
+</div>
+
+<h2>Kombinasi — Urutan TIDAK Diperhatikan</h2>
+<div class="rumus-box">
+C(n, r) = ⁿCᵣ = n! / [r! × (n − r)!]<br><br>
+Sifat penting: C(n, r) = C(n, n−r)
+</div>
+<div class="contoh-box">
+<strong>Contoh 1:</strong> Memilih 3 orang dari 10 untuk panitia (posisi sama).<br>
+C(10,3) = 10! / (3! × 7!) = 720/6 = <strong>120 cara</strong><br><br>
+<strong>Contoh 2:</strong> Dari 6 pria dan 4 wanita dipilih 4 orang, terdiri 2 pria dan 2 wanita.<br>
+C(6,2) × C(4,2) = 15 × 6 = <strong>90 cara</strong><br><br>
+<strong>Contoh 3:</strong> Dari 8 titik pada lingkaran, berapa banyak tali busur yang terbentuk?<br>
+C(8,2) = 8!/(2!×6!) = 56/2 = <strong>28 tali busur</strong>
+</div>
+
+<h2>Perbedaan Permutasi vs Kombinasi</h2>
+<div class="contoh-box">
+<strong>Permutasi:</strong> Tim relay 4 orang dari 8 (posisi 1,2,3,4 berbeda) → P(8,4) = 1680<br>
+<strong>Kombinasi:</strong> Tim 4 orang dari 8 (semua posisi sama) → C(8,4) = 70<br>
+<em>Kunci: jika "AB" berbeda dengan "BA" → Permutasi. Jika sama → Kombinasi.</em>
 </div>
 
 <div class="kesimpulan-box">
 <h3>📌 Kesimpulan</h3>
 <ul>
-  <li>Aturan jumlah: OR (pilih salah satu) → tambah</li>
-  <li>Aturan kali: AND (lakukan berturutan) → kali</li>
+  <li>Aturan jumlah (OR): pilih salah satu → total = m + n</li>
+  <li>Aturan kali (AND): lakukan berurutan → total = p × q × r</li>
   <li>Permutasi: urutan penting → P(n,r) = n!/(n−r)!</li>
+  <li>Permutasi melingkar: (n−1)!</li>
+  <li>Permutasi unsur sama: n!/(n₁!·n₂!·…)</li>
   <li>Kombinasi: urutan tidak penting → C(n,r) = n!/[r!(n−r)!]</li>
-  <li>C(n,r) = C(n, n−r) selalu berlaku</li>
+  <li>C(n,r) = C(n, n−r) sehingga C(10,7) = C(10,3) = 120</li>
 </ul>
 </div>`
     },
@@ -696,63 +883,133 @@ C(8, 3) = 8! / (3! × 5!) = 40320 / (6 × 120) = 56 cara
         kelas: 'Kelas XII',
         judul: '🧠 Logika Matematika',
         isi: `
-<p>Logika matematika mempelajari penalaran yang valid berdasarkan pernyataan yang dapat dinilai <strong>benar (B)</strong> atau <strong>salah (S)</strong>. Menjadi fondasi pembuktian matematis dan ilmu komputer.</p>
+<p><strong>Logika matematika</strong> mempelajari cara berpikir dan bernalar secara tepat dan sistematis menggunakan pernyataan-pernyataan yang nilai kebenarannya dapat ditentukan. Logika merupakan fondasi pembuktian matematika dan pemrograman komputer.</p>
 
 <h2>Pernyataan (Proposisi)</h2>
-<p>Kalimat yang nilai kebenarannya dapat ditentukan (tidak bisa keduanya sekaligus).</p>
+<p>Pernyataan adalah kalimat yang nilai kebenarannya dapat ditentukan: <strong>Benar (B)</strong> atau <strong>Salah (S)</strong>, tidak keduanya sekaligus.</p>
 <div class="contoh-box">
-<strong>Pernyataan:</strong> "7 adalah bilangan prima" (B) &nbsp;|&nbsp; "2 + 3 = 6" (S)<br>
-<strong>Bukan pernyataan:</strong> "x + 3 = 7" (tergantung x) &nbsp;|&nbsp; "Tutup pintunya!" (perintah)
+<strong>Pernyataan:</strong><br>
+✓ "Bilangan 7 adalah bilangan prima" → Benar<br>
+✓ "2 + 3 = 8" → Salah<br>
+✓ "Jakarta adalah ibu kota Indonesia" → Benar<br><br>
+<strong>Bukan Pernyataan:</strong><br>
+✗ "Apakah kamu sudah makan?" (kalimat tanya)<br>
+✗ "Tolong tutup pintunya!" (kalimat perintah)<br>
+✗ "x + 5 = 10" (nilai kebenarannya bergantung pada x → kalimat terbuka)
 </div>
 
-<h2>Negasi (¬p atau ~p)</h2>
-<div class="rumus-box">¬p membalik nilai kebenaran p</div>
-<div class="contoh-box">p: "Hari ini hujan" → ¬p: "Hari ini tidak hujan"<br>
-Tabel: p=B → ¬p=S; &nbsp; p=S → ¬p=B</div>
-
-<h2>Konjungsi (p ∧ q)</h2>
-<div class="rumus-box">p ∧ q bernilai B hanya jika KEDUANYA B</div>
-<div class="contoh-box">B∧B=B &nbsp;|&nbsp; B∧S=S &nbsp;|&nbsp; S∧B=S &nbsp;|&nbsp; S∧S=S</div>
-
-<h2>Disjungsi (p ∨ q)</h2>
-<div class="rumus-box">p ∨ q bernilai S hanya jika KEDUANYA S</div>
-<div class="contoh-box">B∨B=B &nbsp;|&nbsp; B∨S=B &nbsp;|&nbsp; S∨B=B &nbsp;|&nbsp; S∨S=S</div>
-
-<h2>Implikasi (p → q)</h2>
-<div class="rumus-box">p → q bernilai S hanya jika p=B dan q=S</div>
-<div class="contoh-box">B→B=B &nbsp;|&nbsp; B→S=<strong>S</strong> &nbsp;|&nbsp; S→B=B &nbsp;|&nbsp; S→S=B</div>
-
-<h3>Implikasi Terkait</h3>
+<h2>Negasi / Ingkaran (¬p atau ~p)</h2>
+<div class="rumus-box">
+¬p adalah kebalikan nilai kebenaran p<br>
+Jika p Benar → ¬p Salah<br>
+Jika p Salah → ¬p Benar
+</div>
 <div class="contoh-box">
-Dari p → q:<br>
-<strong>Konvers:</strong> q → p<br>
-<strong>Invers:</strong> ¬p → ¬q<br>
-<strong>Kontraposisi:</strong> ¬q → ¬p &nbsp; ← ekuivalen dengan p → q!
+p: "Hari ini cerah" (B) → ¬p: "Hari ini tidak cerah" (S)<br>
+p: "3 adalah bilangan genap" (S) → ¬p: "3 bukan bilangan genap" (B)
 </div>
 
-<h2>Biimplikasi (p ↔ q)</h2>
-<div class="rumus-box">p ↔ q bernilai B jika p dan q memiliki nilai kebenaran SAMA</div>
-<div class="contoh-box">B↔B=B &nbsp;|&nbsp; B↔S=S &nbsp;|&nbsp; S↔B=S &nbsp;|&nbsp; S↔S=B</div>
+<h2>Konjungsi (p ∧ q) — "dan"</h2>
+<div class="rumus-box">p ∧ q bernilai BENAR hanya jika p dan q keduanya Benar</div>
+<div class="contoh-box">
+B ∧ B = B &nbsp;|&nbsp; B ∧ S = S &nbsp;|&nbsp; S ∧ B = S &nbsp;|&nbsp; S ∧ S = S<br><br>
+<strong>Contoh:</strong> p: "5 > 3" (B), q: "7 < 10" (B)<br>
+p ∧ q: "5 > 3 dan 7 < 10" → <strong>Benar</strong>
+</div>
+
+<h2>Disjungsi (p ∨ q) — "atau"</h2>
+<div class="rumus-box">p ∨ q bernilai SALAH hanya jika p dan q keduanya Salah</div>
+<div class="contoh-box">
+B ∨ B = B &nbsp;|&nbsp; B ∨ S = B &nbsp;|&nbsp; S ∨ B = B &nbsp;|&nbsp; S ∨ S = S<br><br>
+<strong>Contoh:</strong> p: "2 × 5 = 11" (S), q: "Segitiga punya 3 sisi" (B)<br>
+p ∨ q: "2×5=11 atau segitiga punya 3 sisi" → <strong>Benar</strong>
+</div>
+
+<h2>Implikasi (p → q) — "jika … maka …"</h2>
+<div class="rumus-box">p → q bernilai SALAH hanya jika p Benar dan q Salah</div>
+<div class="contoh-box">
+B→B = B &nbsp;|&nbsp; <strong>B→S = S</strong> &nbsp;|&nbsp; S→B = B &nbsp;|&nbsp; S→S = B<br><br>
+<strong>Contoh:</strong> "Jika hujan, maka jalanan basah"<br>
+Hanya salah jika: hujan (B) tapi jalanan tidak basah (S)
+</div>
+
+<h3>Pernyataan-Pernyataan Terkait Implikasi</h3>
+<div class="rumus-box">
+Dari implikasi p → q :<br>
+Konvers       : q → p<br>
+Invers        : ¬p → ¬q<br>
+Kontraposisi  : ¬q → ¬p  &nbsp; ← ekuivalen dengan p → q !
+</div>
+<div class="contoh-box">
+<strong>Contoh:</strong> p → q: "Jika hujan (p) maka tanah basah (q)"<br>
+Konvers: "Jika tanah basah maka hujan"<br>
+Invers: "Jika tidak hujan maka tanah tidak basah"<br>
+Kontraposisi: "Jika tanah tidak basah maka tidak hujan" ← sama kuat dengan implikasi asal
+</div>
+
+<h2>Biimplikasi (p ↔ q) — "… jika dan hanya jika …"</h2>
+<div class="rumus-box">
+p ↔ q bernilai BENAR jika p dan q memiliki nilai kebenaran yang SAMA<br>
+p ↔ q ≡ (p → q) ∧ (q → p)
+</div>
+<div class="contoh-box">
+B↔B = B &nbsp;|&nbsp; B↔S = S &nbsp;|&nbsp; S↔B = S &nbsp;|&nbsp; S↔S = B<br><br>
+<strong>Contoh:</strong> "x = 4 jika dan hanya jika x² = 16"<br>
+Untuk x = 4: p Benar, q Benar → p ↔ q <strong>Benar</strong><br>
+Untuk x = −4: p Salah, q Benar → p ↔ q <strong>Salah</strong>
+</div>
+
+<h2>Tabel Kebenaran Lengkap</h2>
+<div class="contoh-box">
+p &nbsp; q &nbsp;| ¬p | p∧q | p∨q | p→q | p↔q<br>
+B &nbsp; B &nbsp;|  S  |  B  |  B  |  B  |  B<br>
+B &nbsp; S &nbsp;|  S  |  S  |  B  |  S  |  S<br>
+S &nbsp; B &nbsp;|  B  |  S  |  B  |  B  |  S<br>
+S &nbsp; S &nbsp;|  B  |  S  |  S  |  B  |  B
+</div>
 
 <h2>Penarikan Kesimpulan</h2>
 <div class="rumus-box">
-Modus Ponens: &nbsp; p→q, &nbsp; p &nbsp; ∴ q<br>
-Modus Tollens: &nbsp; p→q, &nbsp; ¬q &nbsp; ∴ ¬p<br>
-Silogisme: &nbsp; p→q, &nbsp; q→r &nbsp; ∴ p→r
+Modus Ponens (MP):<br>
+  Premis 1: p → q<br>
+  Premis 2: p (benar)<br>
+  Kesimpulan: ∴ q<br><br>
+Modus Tollens (MT):<br>
+  Premis 1: p → q<br>
+  Premis 2: ¬q (benar)<br>
+  Kesimpulan: ∴ ¬p<br><br>
+Silogisme Hipotesis (SH):<br>
+  Premis 1: p → q<br>
+  Premis 2: q → r<br>
+  Kesimpulan: ∴ p → r
 </div>
 <div class="contoh-box">
-<strong>Modus Ponens:</strong> Jika hujan maka basah. Sekarang hujan. ∴ Sekarang basah.<br>
-<strong>Modus Tollens:</strong> Jika hujan maka basah. Tidak basah. ∴ Tidak hujan.
+<strong>Modus Ponens:</strong><br>
+P1: Jika Ali rajin belajar, maka Ali lulus ujian.<br>
+P2: Ali rajin belajar.<br>
+∴ Ali lulus ujian. ✓<br><br>
+<strong>Modus Tollens:</strong><br>
+P1: Jika Ali rajin belajar, maka Ali lulus ujian.<br>
+P2: Ali tidak lulus ujian.<br>
+∴ Ali tidak rajin belajar. ✓<br><br>
+<strong>Silogisme:</strong><br>
+P1: Jika hujan, maka tanah basah.<br>
+P2: Jika tanah basah, maka tanaman tumbuh subur.<br>
+∴ Jika hujan, maka tanaman tumbuh subur. ✓
 </div>
 
 <div class="kesimpulan-box">
 <h3>📌 Kesimpulan</h3>
 <ul>
-  <li>Konjungsi (∧): benar hanya jika keduanya benar</li>
-  <li>Disjungsi (∨): salah hanya jika keduanya salah</li>
-  <li>Implikasi (→): salah hanya jika depan B, belakang S</li>
-  <li>Kontraposisi ekuivalen dengan implikasi aslinya</li>
-  <li>Tiga metode penarikan kesimpulan: MP, MT, Silogisme</li>
+  <li>Pernyataan: kalimat yang bisa dinilai B atau S (bukan tanya/perintah/terbuka)</li>
+  <li>Konjungsi (∧): B hanya jika keduanya B</li>
+  <li>Disjungsi (∨): S hanya jika keduanya S</li>
+  <li>Implikasi (→): S hanya jika depan B dan belakang S</li>
+  <li>Kontraposisi (¬q→¬p) selalu ekuivalen dengan implikasi asalnya (p→q)</li>
+  <li>Biimplikasi (↔): B hanya jika kedua pernyataan bernilai sama</li>
+  <li>MP: dari p→q dan p, simpulkan q</li>
+  <li>MT: dari p→q dan ¬q, simpulkan ¬p</li>
+  <li>Silogisme: dari p→q dan q→r, simpulkan p→r</li>
 </ul>
 </div>`
     },
