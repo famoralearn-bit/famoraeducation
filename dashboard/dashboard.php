@@ -204,13 +204,13 @@ update_last_seen($_SESSION['user_id']);
                     <h6 class="footer-heading">Hubungi Kami</h6>
                     <ul class="footer-list">
                         <li><i class="bi bi-envelope-fill me-2"></i><a href="mailto:famoralearn@gmail.com">famoralearn@gmail.com</a></li>
-                        <li><i class="bi bi-geo-alt-fill me-2"></i>Kabupaten Bekasi, Jawa Barat</li>
+                        <li><i class="bi bi-geo-alt-fill me-2"></i>SMKN 1 Cikarang Selatan,Kabupaten Bekasi, Jawa Barat</li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h6 class="footer-heading">Ikuti Kami</h6>
                     <div class="d-flex gap-2 flex-wrap">
-                        <a href="https://instagram.com/famoraeducation" target="_blank" class="footer-social">
+                        <a href="https://www.instagram.com/famoralearn_/?utm_source=ig_web_button_share_sheet" target="_blank" class="footer-social">
                             <i class="bi bi-instagram"></i> Instagram
                         </a>
                         <a href="<?php echo $discord_link; ?>" target="_blank" class="footer-social discord-social">
@@ -225,7 +225,7 @@ update_last_seen($_SESSION['user_id']);
             <hr class="footer-divider mt-3 mb-2">
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-1">
                 <p class="footer-copy mb-0">© 2026 Famora Education. Semua hak dilindungi.</p>
-                <p class="footer-copy mb-0">Made with ❤️ untuk pelajar Indonesia</p>
+                <p class="footer-copy mb-0">Made FamoraEducation TJKT A</p>
             </div>
         </div>
     </footer>
