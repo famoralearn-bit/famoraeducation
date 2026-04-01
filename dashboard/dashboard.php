@@ -213,8 +213,8 @@ update_last_seen($_SESSION['user_id']);
                         <a href="https://www.instagram.com/famoralearn_/?utm_source=ig_web_button_share_sheet" target="_blank" class="footer-social">
                             <i class="bi bi-instagram"></i> Instagram
                         </a>
-                        <a href="<?php echo $discord_link; ?>" target="_blank" class="footer-social discord-social">
-                            <i class="bi bi-discord"></i> Discord
+                        <a href="https://www.tiktok.com/@famoraeducation" target="_blank" class="footer-social tiktok-social">
+                            <i class="bi bi-tiktok"></i> TikTok
                         </a>
                     </div>
                     <div class="mt-2">
