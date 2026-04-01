@@ -147,7 +147,7 @@ update_last_seen($_SESSION['user_id']);
             </div>
             <div id="latihan-XI" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b264e0e7af599f6eef4053" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi &amp; Invers</h4><p>Latihan soal fungsi komposisi</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b264e0e7af599f6eef4053" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi</h4><p>Latihan soal fungsi komposisi</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b26fccffacacde881aca9c" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎲</span><h4>Peluang</h4><p>Latihan soal peluang</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b08b96ffacacde8808b7f0" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Statistika</h4><p>Latihan soal statistika</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://forms.gle/relasifungsi-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🗺️</span><h4>Relasi &amp; Fungsi</h4><p>Latihan soal relasi dan fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
