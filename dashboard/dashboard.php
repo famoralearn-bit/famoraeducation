@@ -111,7 +111,7 @@ update_last_seen($_SESSION['user_id']);
             <!-- KELAS XI -->
             <div id="materi-XI" class="tab-panel materi-panel">
                 <div class="row g-3">
-                    <div class="col-md-3 col-sm-6"><div class="materi-card" onclick="bukaMateri('fungsi-xi')"><span class="materi-icon">🔄</span><h4>Fungsi Komposisi & Invers</h4><p>Komposisi fungsi, fungsi invers, dan sifat-sifatnya</p><span class="badge badge-popular">Populer</span></div></div>
+                    <div class="col-md-3 col-sm-6"><div class="materi-card" onclick="bukaMateri('fungsi-xi')"><span class="materi-icon">🔄</span><h4>Fungsi Komposisi</h4><p>Komposisi fungsi dan sifat-sifatnya</p><span class="badge badge-popular">Populer</span></div></div>
                     <div class="col-md-3 col-sm-6"><div class="materi-card" onclick="bukaMateri('peluang-xi')"><span class="materi-icon">🎲</span><h4>Peluang</h4><p>Ruang sampel, kejadian, peluang suatu kejadian, dan frekuensi relatif</p><span class="badge badge-materi">Materi</span></div></div>
                     <div class="col-md-3 col-sm-6"><div class="materi-card" onclick="bukaMateri('statistika-xi')"><span class="materi-icon">📉</span><h4>Statistika</h4><p>Ukuran pemusatan, penyebaran data, dan penyajian data statistik</p><span class="badge badge-materi">Materi</span></div></div>
                     <div class="col-md-3 col-sm-6"><div class="materi-card" onclick="bukaMateri('relasifungsi-xi')"><span class="materi-icon">🗺️</span><h4>Relasi & Fungsi</h4><p>Pengertian relasi, jenis-jenis fungsi, dan representasi fungsi</p><span class="badge badge-materi">Materi</span></div></div>
@@ -139,17 +139,17 @@ update_last_seen($_SESSION['user_id']);
             </div>
             <div id="latihan-X" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/eksponen-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">⚡</span><h4>Eksponen</h4><p>Latihan soal eksponen dan perpangkatan</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/logaritma-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/barisderet-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔗</span><h4>Baris &amp; Deret</h4><p>Latihan soal baris dan deret</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b015973bce17d35ef0ae3e" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">⚡</span><h4>Eksponen</h4><p>Latihan soal eksponen dan perpangkatan</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b0221ae151768d0424a152" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b033d43bce17d35ef268cd" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔗</span><h4>Baris &amp; Deret</h4><p>Latihan soal baris dan deret</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://forms.gle/trigonometri-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📐</span><h4>Trigonometri</h4><p>Latihan soal trigonometri</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
             <div id="latihan-XI" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/fungsi-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi &amp; Invers</h4><p>Latihan soal fungsi komposisi dan invers</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/peluang-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎲</span><h4>Peluang</h4><p>Latihan soal peluang</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/statistika-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Statistika</h4><p>Latihan soal statistika</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b264e0e7af599f6eef4053" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi &amp; Invers</h4><p>Latihan soal fungsi komposisi</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b26fccffacacde881aca9c" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎲</span><h4>Peluang</h4><p>Latihan soal peluang</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b08b96ffacacde8808b7f0" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Statistika</h4><p>Latihan soal statistika</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://forms.gle/relasifungsi-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🗺️</span><h4>Relasi &amp; Fungsi</h4><p>Latihan soal relasi dan fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
