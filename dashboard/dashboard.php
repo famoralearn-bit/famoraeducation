@@ -142,7 +142,7 @@ update_last_seen($_SESSION['user_id']);
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b015973bce17d35ef0ae3e" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">⚡</span><h4>Eksponen</h4><p>Latihan soal eksponen dan perpangkatan</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b0221ae151768d0424a152" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📈</span><h4>Logaritma</h4><p>Latihan soal logaritma</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b033d43bce17d35ef268cd" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔗</span><h4>Baris &amp; Deret</h4><p>Latihan soal baris dan deret</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/trigonometri-kelas10" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📐</span><h4>Trigonometri</h4><p>Latihan soal trigonometri</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b377e83bce17d35e11d836" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📐</span><h4>Trigonometri</h4><p>Latihan soal trigonometri</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
             <div id="latihan-XI" class="tab-panel latihan-panel">
@@ -150,15 +150,15 @@ update_last_seen($_SESSION['user_id']);
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b264e0e7af599f6eef4053" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔄</span><h4>Fungsi Komposisi</h4><p>Latihan soal fungsi komposisi</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b26fccffacacde881aca9c" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🎲</span><h4>Peluang</h4><p>Latihan soal peluang</p><span class="topic-badge">Kerjakan →</span></a></div>
                     <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b08b96ffacacde8808b7f0" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Statistika</h4><p>Latihan soal statistika</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/relasifungsi-kelas11" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🗺️</span><h4>Relasi &amp; Fungsi</h4><p>Latihan soal relasi dan fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69ce7f75c030dc218433bcc4" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🗺️</span><h4>Relasi &amp; Fungsi</h4><p>Latihan soal relasi dan fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
             <div id="latihan-XII" class="tab-panel latihan-panel">
                 <div class="row g-3">
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/limitturunan-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Limit &amp; Turunan</h4><p>Latihan soal limit dan turunan fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/kaidah-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔢</span><h4>Kaidah Pencacahan</h4><p>Latihan soal kaidah pencacahan</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/logika-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🧠</span><h4>Logika Matematika</h4><p>Latihan soal logika matematika</p><span class="topic-badge">Kerjakan →</span></a></div>
-                    <div class="col-md-3 col-sm-6"><a href="https://forms.gle/integral-kelas12" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">∫</span><h4>Integral</h4><p>Latihan soal integral</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b2ace7e7af599f6ef35a7e" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">📉</span><h4>Limit &amp; Turunan</h4><p>Latihan soal limit dan turunan fungsi</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b2bf8bffacacde881f61ca" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🔢</span><h4>Kaidah Pencacahan</h4><p>Latihan soal kaidah pencacahan</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69ce8440f7e103e1127f7079" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">🧠</span><h4>Logika Matematika</h4><p>Latihan soal logika matematika</p><span class="topic-badge">Kerjakan →</span></a></div>
+                    <div class="col-md-3 col-sm-6"><a href="https://quizzory.in/id/69b2b5523bce17d35e0b9eea" target="_blank" class="topic-card d-block text-decoration-none"><span class="topic-icon">∫</span><h4>Integral</h4><p>Latihan soal integral</p><span class="topic-badge">Kerjakan →</span></a></div>
                 </div>
             </div>
         </div>
@@ -213,7 +213,7 @@ update_last_seen($_SESSION['user_id']);
                         <a href="https://www.instagram.com/famoralearn_/?utm_source=ig_web_button_share_sheet" target="_blank" class="footer-social">
                             <i class="bi bi-instagram"></i> Instagram
                         </a>
-                        <a href="https://www.tiktok.com/@famoraeducation" target="_blank" class="footer-social tiktok-social">
+                        <a href="https://www.tiktok.com/@famoralearn_id?_r=1&_t=ZS-949mjGWHtlU" target="_blank" class="footer-social tiktok-social">
                             <i class="bi bi-tiktok"></i> TikTok
                         </a>
                     </div>
