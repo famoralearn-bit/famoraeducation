@@ -3,10 +3,10 @@
 //  MathLearn - Konfigurasi Database
 // =============================================
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');          // Default XAMPP kosong
-define('DB_NAME', 'math_website');
+define('DB_HOST', '210.79.190.197'); // IP DATABASE SERVER
+define('DB_USER', 'famoralearn');
+define('DB_PASS', 'Famoralearn123!');
+define('DB_NAME', 'famoralearndb');
 
 // Koneksi
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
