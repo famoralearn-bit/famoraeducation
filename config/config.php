@@ -3,7 +3,7 @@
 //  MathLearn - Konfigurasi Database
 // =============================================
 
-define('DB_HOST', '210.79.190.197'); // IP DATABASE SERVER
+define('DB_HOST', '127.0.0.1'); // IP DATABASE SERVER
 define('DB_USER', 'famoralearn');
 define('DB_PASS', 'Famoralearn123!');
 define('DB_NAME', 'famoralearndb');
