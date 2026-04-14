@@ -352,12 +352,16 @@ $user_input = strtolower($lastUserMessage);
 
 if (
     strpos($user_input, 'siapa yang buat') !== false ||
+    strpos($user_input, 'sapa yg buat') !== false ||
+    strpos($user_input, 'siapa pendiri') !== false ||
+    strpos($user_input, 'kamu dibuat siapa') !== false ||
+    strpos($user_input, 'siapa nama yang buat') !== false ||
     strpos($user_input, 'siapa pembuat') !== false ||
     strpos($user_input, 'who made you') !== false
 ) {
     echo json_encode([
-        "reply" => "FamoraAI dibuat oleh FamoraEducation, dibuat oleh sekelompok pelajar SMK jurusan TJKT.
-        yang didirikan pada tahun 2026 oleh CEO bernama Aldino Galuh Tristanto."
+        "reply" => "FamorAI dikembangkan oleh FamoraEducation, sebuah tim yang terdiri dari pelajar SMK jurusan TJKT.
+         Platform ini mulai dibangun pada tahun 2026 dan dipimpin oleh CEO, Aldino Galuh Tristanto."
     ]);
     exit();
 }
