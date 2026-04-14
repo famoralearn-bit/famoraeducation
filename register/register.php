@@ -41,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $query = "INSERT INTO users (nama, email, password, kelas, kecamatan)
                       VALUES ('$nama','$email','$hash','$kelas','$kecamatan')";
             if ($conn->query($query)) {
-                $success = 'Registrasi berhasil! Silakan login.';
+                header("Location: ../login/index.php?registered=1");
+                exit();
             } else {
                 $error = 'Terjadi kesalahan: ' . $conn->error;
             }

@@ -3,10 +3,12 @@
 //  MathLearn - Konfigurasi Database
 // =============================================
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');          // Default XAMPP kosong
+define('DB_HOST', 'localhost'); 
+define('DB_USER', 'root'); 
+define('DB_PASS', ''); // Default XAMPP kosong 
 define('DB_NAME', 'math_website');
+define('GEMINI_API_KEY', 'AIzaSyDJMMOJ9Rzmzi6razXIDIEJA9-n7tQrQa4');
+define('GEMINI_MODEL', getenv('GEMINI_MODEL') ?: 'gemini-2.5-flash-lite');
 
 // Koneksi
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -38,6 +40,14 @@ function get_discord_link() {
     $result = $conn->query("SELECT link FROM discord_links WHERE jam_update = '$jam' LIMIT 1");
     if ($result && $result->num_rows > 0) return $result->fetch_assoc()['link'];
     return 'https://discord.gg/default';
+}
+
+function get_gemini_api_key() {
+    return defined('GEMINI_API_KEY') ? GEMINI_API_KEY : '';
+}
+
+function get_gemini_model() {
+    return defined('GEMINI_MODEL') && GEMINI_MODEL ? GEMINI_MODEL : 'gemini-2.5-flash';
 }
 
 // Start session

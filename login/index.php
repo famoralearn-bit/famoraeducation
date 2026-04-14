@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         <span id="theme-text">Dark</span>
     </button>
 
-    <div class="min-vh-100 d-flex align-items-center justify-content-center py-5">
+    <div class="login-page-wrap">
         <div class="login-container">
 
             <!-- Logo & Brand -->
@@ -65,6 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                 <div class="alert alert-danger d-flex align-items-center gap-2 py-2 mb-4" role="alert">
                     <i class="bi bi-exclamation-circle-fill"></i>
                     <span><?php echo $error; ?></span>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($_GET['registered']) && $_GET['registered'] == '1'): ?>
+                <div class="alert alert-success d-flex align-items-center gap-2 py-2 mb-4" role="alert">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>Registrasi berhasil! Silakan login dengan akun barumu.</span>
                 </div>
             <?php endif; ?>
 

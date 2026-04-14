@@ -3,15 +3,30 @@
    SAMA PERSIS dengan login.css + diperbesar
    ============================================= */
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background: linear-gradient(135deg, var(--bg) 0%, var(--primary) 100%);
     position: relative;
-    overflow-x: hidden;
+    min-height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     width: 600px; height: 600px;
     background: radial-gradient(circle, var(--float-color) 0%, transparent 70%);
     top: -260px; right: -260px;
@@ -22,13 +37,21 @@ body::before {
 
 body::after {
     content: '';
-    position: absolute;
+    position: fixed;
     width: 500px; height: 500px;
     background: radial-gradient(circle, var(--float-color) 0%, transparent 70%);
     bottom: -200px; left: -200px;
     border-radius: 50%;
     animation: float 15s infinite ease-in-out reverse;
     pointer-events: none;
+}
+
+.min-vh-100 {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
 }
 
 /* Theme toggle */
@@ -59,6 +82,7 @@ body::after {
     padding: 60px 64px;
     width: 92%;
     max-width: 640px;
+    box-sizing: border-box;
     box-shadow: 0 24px 70px rgba(0,0,0,0.35);
     border: 1px solid var(--border);
     position: relative;
@@ -144,7 +168,19 @@ body::after {
 }
 
 /* Eye button */
+.input-group {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+}
+
 .input-group .custom-input { border-radius: 12px 0 0 12px !important; }
+.input-group > .custom-input,
+.input-group > .form-control,
+.input-group > .form-select {
+    min-width: 0;
+}
+
 .custom-eye-btn {
     background: var(--input-bg) !important;
     border: 2px solid var(--border) !important;
@@ -241,3 +277,70 @@ body::after {
 [data-theme="light"] .logo-sub       { color: #4a5568; }
 [data-theme="light"] .custom-divider { border-color: #cbd5e0; }
 [data-theme="light"] .theme-toggle-fixed { color: #1a202c; }
+
+/* =============================================
+   MOBILE
+   ============================================= */
+@media (max-width: 768px) {
+    .register-container {
+        width: calc(100% - 24px);
+        padding: 32px 20px;
+        border-radius: 22px;
+    }
+
+    .theme-toggle-fixed {
+        top: 12px;
+        right: 12px;
+        padding: 8px 14px;
+        font-size: 0.78em;
+    }
+
+    .brand-logo-img {
+        width: 84px;
+        height: 84px;
+    }
+
+    .logo-title {
+        font-size: 2.1em;
+        letter-spacing: -1px;
+        word-break: break-word;
+    }
+
+    .logo-sub {
+        font-size: 0.75em;
+        letter-spacing: 2px;
+    }
+
+    .row.g-3 > [class*="col-"] {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .back-link {
+        display: inline-block;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-container {
+        width: calc(100% - 16px);
+        padding: 24px 16px;
+        border-radius: 18px;
+    }
+
+    .custom-input,
+    .btn-custom-primary {
+        font-size: 1rem;
+        padding: 14px 16px;
+    }
+
+    .custom-eye-btn {
+        padding: 0 14px;
+    }
+
+    .back-link,
+    .footer-note {
+        font-size: 0.8em;
+    }
+}

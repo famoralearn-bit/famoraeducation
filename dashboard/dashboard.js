@@ -1098,6 +1098,144 @@ function bukaMateri(id) {
     modal.show();
 }
 
+/* =============================================
+   AI TUTOR — FamorAI
+   Uses local PHP backend + OpenAI Responses API
+   ============================================= */
+
+var aiConversation = [];
+var aiTyping = false;
+
+function scrollAIChat() {
+    var msgs = document.getElementById('ai-messages');
+    if (msgs) msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addMessage(role, text) {
+    var msgs = document.getElementById('ai-messages');
+    if (!msgs) return;
+    var div = document.createElement('div');
+    div.className = 'msg-bubble msg-' + (role === 'ai' ? 'ai' : 'user');
+    div.innerHTML = '<div class="msg-sender">' + (role === 'ai' ? '🤖 FamorAI' : '👤 Kamu') + '</div>' + escapeHtml(text);
+    msgs.appendChild(div);
+    scrollAIChat();
+}
+
+function addThinking() {
+    var msgs = document.getElementById('ai-messages');
+    if (!msgs) return;
+    var div = document.createElement('div');
+    div.className = 'msg-bubble msg-ai';
+    div.id = 'ai-thinking-bubble';
+    div.innerHTML = '<div class="msg-sender">🤖 FamorAI</div><div class="ai-thinking"><span></span><span></span><span></span></div>';
+    msgs.appendChild(div);
+    scrollAIChat();
+}
+
+function removeThinking() {
+    var t = document.getElementById('ai-thinking-bubble');
+    if (t) t.remove();
+}
+
+function escapeHtml(text) {
+    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function formatAIText(text) {
+    var html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    html = html.replace(/\$([^$]+)\$/g, '<code>$1</code>');
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    html = html.replace(/\bsqrt\(([^)]+)\)/gi, 'akar($1)');
+    html = html.replace(/\b([A-Za-z]+)_([A-Za-z0-9+\-]+)/g, '$1<sub>$2</sub>');
+    html = html.replace(/([A-Za-z0-9)\]])\^([A-Za-z0-9+\-]+)/g, '$1<sup>$2</sup>');
+    html = html.replace(/\n\n+/g, '</p><p>');
+    html = html.replace(/\n/g, '<br>');
+    html = '<p>' + html + '</p>';
+    html = html.replace(/<br>(\d+\.\s)/g, '<br><strong>$1</strong>');
+    html = html.replace(/<br>([-*]\s)/g, '<br><strong>$1</strong>');
+    return html;
+}
+
+function enhanceLastAIMessage(text) {
+    var aiMessages = document.querySelectorAll('.msg-bubble.msg-ai');
+    var lastBubble = aiMessages[aiMessages.length - 1];
+    if (!lastBubble) return;
+    lastBubble.innerHTML = '<div class="msg-sender">FamorAI</div>' + formatAIText(text);
+}
+
+async function sendAIMessage() {
+    if (aiTyping) return;
+    var input = document.getElementById('ai-input');
+    var msg = input.value.trim();
+    if (!msg) return;
+
+    input.value = '';
+    addMessage('user', msg);
+    aiConversation.push({ role: 'user', content: msg });
+
+    aiTyping = true;
+    var btn = document.getElementById('ai-send-btn');
+    if (btn) btn.disabled = true;
+    addThinking();
+
+    try {
+        var response = await fetch('ai-chat.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                messages: aiConversation
+            })
+        });
+
+        var data = await response.json();
+        removeThinking();
+
+        var replyText = '';
+        if (response.ok && data.reply) {
+            replyText = data.reply;
+        } else if (data.error) {
+            replyText = 'Maaf, terjadi kesalahan. Coba lagi ya! 😅';
+        } else {
+            replyText = 'Hmm, aku tidak bisa menjawab saat ini. Coba tanya ulang! 🙏';
+        }
+
+        if (!response.ok && data.error) {
+            replyText = 'Maaf, ' + data.error;
+        }
+
+        aiConversation.push({ role: 'assistant', content: replyText });
+        addMessage('ai', replyText);
+        enhanceLastAIMessage(replyText);
+
+    } catch (err) {
+        removeThinking();
+        addMessage('ai', 'Koneksi bermasalah nih 😅 Pastikan kamu terhubung ke internet, lalu coba lagi!');
+    }
+
+    aiTyping = false;
+    if (btn) btn.disabled = false;
+    if (input) input.focus();
+}
+
+function askAI(prompt) {
+    var input = document.getElementById('ai-input');
+    if (input) { input.value = prompt; sendAIMessage(); }
+}
+
+// Enter key to send
+document.addEventListener('DOMContentLoaded', function() {
+    var input = document.getElementById('ai-input');
+    if (input) {
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAIMessage(); }
+        });
+    }
+});
+
+
 /* ---- Init ---- */
 document.addEventListener('DOMContentLoaded', function() {
     var userClass = document.body.dataset.userClass || 'X';
