@@ -184,7 +184,7 @@ function famorai_local_topic_reply($question) {
 function famorai_local_topic_reply_v2($question) {
     $normalized = famorai_normalize_cache_text($question);
 
-    $greetings = ['hai', 'halo', 'hi', 'helo', 'hello', 'pagi', 'siang', 'sore', 'malam'];
+    $greetings = ['hai', 'halo', 'hi', 'haii', 'haiii', 'helo', 'hello', 'pagi', 'siang', 'sore', 'malam'];
     foreach ($greetings as $greeting) {
         if ($normalized === $greeting || strpos($normalized, $greeting . ' ') === 0) {
             return "Halo! Saya FamorAI. Kamu bisa tanya materi matematika apa saja di sini, misalnya eksponen, logaritma, peluang, integral, atau kirim soal yang ingin dibahas.";
