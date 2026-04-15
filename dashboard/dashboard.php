@@ -44,7 +44,21 @@ update_last_seen($_SESSION['user_id']);
                         <span id="theme-icon">🌙</span> <span id="theme-text">Dark</span>
                     </button>
                 </li>
-                <li class="nav-item"><a class="nav-link nav-logout" href="../logout/logout.php"><i class="bi bi-box-arrow-right me-1"></i>Logout</a></li>
+                <!-- User info + Logout (pojok kanan) -->
+                <li class="nav-item d-none d-lg-flex align-items-center ms-1">
+                    <div class="nav-user-pill">
+                        <div class="nav-user-avatar"><?php echo mb_strtoupper(mb_substr($nama, 0, 1)); ?></div>
+                        <div class="nav-user-info">
+                            <span class="nav-user-name"><?php echo htmlspecialchars($nama); ?></span>
+                            <span class="nav-user-kelas"><?php echo htmlspecialchars($kelas); ?></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-logout" href="../logout/logout.php">
+                        <i class="bi bi-box-arrow-right me-1"></i>Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

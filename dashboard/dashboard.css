@@ -669,3 +669,24 @@ body[data-theme="light"] {
 [data-theme="light"] .footer-social:hover { color:#d4720f; border-color:#d4720f; }
 [data-theme="light"] .navbar-collapse { background:#fff; border-color:#e2e8f0; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
 [data-theme="light"] .discord-time-box { background:rgba(88,101,242,0.08); border-color:rgba(88,101,242,0.2); }
+
+/* ─── NAV USER PILL ─── */
+.nav-user-pill {
+    display: flex; align-items: center; gap: 9px;
+    background: rgba(246,177,122,0.08);
+    border: 1px solid rgba(246,177,122,0.2);
+    border-radius: 50px; padding: 5px 14px 5px 5px;
+    margin-right: 4px;
+}
+.nav-user-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--light), #e08a50);
+    color: #1a1d2e; font-family: 'Space Mono', monospace;
+    font-size: 0.8em; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.nav-user-info { display: flex; flex-direction: column; line-height: 1.2; }
+.nav-user-name { font-family: 'Space Mono', monospace; font-size: 0.72em; font-weight: 700; color: var(--text); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-user-kelas { font-size: 0.65em; color: var(--light); }
+[data-theme="light"] .nav-user-pill { background: rgba(237,137,54,0.08); border-color: rgba(237,137,54,0.25); }
