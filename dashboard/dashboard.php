@@ -152,7 +152,7 @@ update_last_seen($_SESSION['user_id']);
         <div class="col-lg-7 anim-2">
             <div class="ai-tutor-card h-100">
                 <div class="ai-badge"><span class="ai-dot"></span>AI POWERED</div>
-                <div class="ai-tutor-title">🤖 Math FamoraAI</div>
+                <div class="ai-tutor-title">🤖 Math FamorAI</div>
                 <div class="ai-tutor-desc">Tanya apa saja tentang matematika — dari rumus dasar sampai soal tersulit!</div>
                 <div class="ai-chat-box">
                     <div class="ai-messages" id="ai-messages">
