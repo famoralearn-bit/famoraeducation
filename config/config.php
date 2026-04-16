@@ -7,7 +7,7 @@ define('DB_HOST', '127.0.0.1'); // IP DATABASE SERVER
 define('DB_USER', 'famoralearn');
 define('DB_PASS', 'Famoralearn123!');
 define('DB_NAME', 'famoralearndb');
-define('GEMINI_API_KEY', 'AIzaSyDJMMOJ9Rzmzi6razXIDIEJA9-n7tQrQa4');
+define('GEMINI_API_KEY', 'AQ.Ab8RN6IswzjRIasYsLi-zDDzHcRwo728KxQtn-6RRdSW6R7GLA');
 define('GEMINI_MODEL', getenv('GEMINI_MODEL') ?: 'gemini-2.5-flash-lite');
 
 // Koneksi
