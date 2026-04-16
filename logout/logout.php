@@ -1,5 +1,5 @@
 <?php
 require_once '../config/config.php';
 session_destroy();
-header("Location: ../login/index.php");
+header("Location: ../index.php");
 exit();

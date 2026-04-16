@@ -17,6 +17,9 @@ update_last_seen($_SESSION['user_id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - FamoraLearn</title>
+
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpeg">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
@@ -152,7 +155,7 @@ update_last_seen($_SESSION['user_id']);
         <div class="col-lg-7 anim-2">
             <div class="ai-tutor-card h-100">
                 <div class="ai-badge"><span class="ai-dot"></span>AI POWERED</div>
-                <div class="ai-tutor-title">🤖 Math FamorAI</div>
+                <div class="ai-tutor-title">🤖 Math FamoraAI</div>
                 <div class="ai-tutor-desc">Tanya apa saja tentang matematika — dari rumus dasar sampai soal tersulit!</div>
                 <div class="ai-chat-box">
                     <div class="ai-messages" id="ai-messages">

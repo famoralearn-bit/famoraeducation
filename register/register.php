@@ -24,10 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password         = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
+    // Validasi format Gmail
+    $is_valid_gmail = preg_match('/^[a-zA-Z0-9._%+\-]+@gmail\.com$/', $email);
+
     if (empty($nama)) {
         $error = 'Nama lengkap tidak boleh kosong!';
     } elseif (empty($email)) {
         $error = 'Email tidak boleh kosong!';
+    } elseif (!$is_valid_gmail) {
+        $error = 'Gunakan alamat Gmail yang valid (contoh: nama@gmail.com)';
     } elseif ($password !== $confirm_password) {
         $error = 'Password tidak cocok!';
     } elseif (strlen($password) < 6) {
@@ -56,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar - FamoraLearn</title>
+
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpeg">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
@@ -110,7 +118,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="email" id="email" name="email"
                            class="form-control custom-input"
                            value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
-                           placeholder="contoh@gmail.com" required autocomplete="off">
+                           placeholder="contoh@gmail.com" required autocomplete="off"
+                           pattern="^[a-zA-Z0-9._%+\-]+@gmail\.com$"
+                           title="Hanya Gmail yang diterima (contoh@gmail.com)">
+                    <div class="form-text" id="email-hint" style="font-size:0.82em; color:var(--text-muted, #888);">
+                        <i class="bi bi-info-circle me-1"></i>Masukkan Gmail dengan benar
+                    </div>
+                    <div class="invalid-feedback" id="email-feedback"></div>
                 </div>
 
                 <div class="row g-3 mb-3">
