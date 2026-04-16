@@ -11,8 +11,8 @@ $dotenv->load();
 
 // Ambil data dari .env untuk mendefinisikan konstanta
 define('DB_HOST', $_ENV['DB_HOST'] ?? '127.0.0.1'); //ip database
-define('DB_USER', $_ENV['DB_USER'] ?? 'famoralearn'); 
-define('DB_PASS', $_ENV['DB_PASS'] ?? 'Famoralearn123!'); 
+define('DB_USER', $_ENV['DB_USER'] ?? 'root'); 
+define('DB_PASS', $_ENV['DB_PASS'] ?? ''); 
 define('DB_NAME', $_ENV['DB_NAME'] ?? 'famoralearndb');
 define('GEMINI_API_KEY', ($_ENV['GEMINI_API_KEY'] ?? ''));
 define('GEMINI_MODEL', $_ENV['GEMINI_MODEL'] ?? 'gemini-2.5-flash-lite');
