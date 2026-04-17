@@ -34,16 +34,16 @@ if (isset($_SESSION['user_id'])) {
             --glass:      rgba(45,50,80,0.45);
         }
         [data-theme="light"] {
-            --primary:    #f5f7fa;
-            --secondary:  #ffffff;
+            --primary:    #ffffff;
+            --secondary:  #f8fafc;
             --accent:     #5a67d8;
-            --light:      #ed8936;
-            --bg:         #edf2f7;
-            --text:       #2d3748;
-            --text-muted: #718096;
-            --border:     #cbd5e0;
+            --light:      #d97706;
+            --bg:         #ffffff;
+            --text:       #1a202c;
+            --text-muted: #64748b;
+            --border:     #e2e8f0;
             --card-bg:    #ffffff;
-            --glass:      rgba(255,255,255,0.85);
+            --glass:      rgba(255, 255, 255, 0.92);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -62,11 +62,14 @@ if (isset($_SESSION['user_id'])) {
                 radial-gradient(ellipse 70% 60% at 50% 90%, rgba(86,108,255,0.10), transparent),
                 linear-gradient(180deg, #141726 0%, #1a1d2e 60%, #12152a 100%);
         }
-        [data-theme="light"] body::before {
+        body[data-theme="light"] {
+            background: #ffffff !important;
+        }
+        body[data-theme="light"]::before {
             background:
-                radial-gradient(ellipse 60% 50% at 10% 5%,  rgba(237,137,54,0.10), transparent),
-                radial-gradient(ellipse 50% 40% at 90% 15%, rgba(90,103,216,0.10), transparent),
-                linear-gradient(180deg, #e8edf5 0%, #edf2f7 60%, #e2e8f0 100%);
+                radial-gradient(ellipse 65% 55% at 10% 5%,  rgba(217,119,6,0.04), transparent),
+                radial-gradient(ellipse 55% 45% at 90% 15%, rgba(90,103,216,0.03), transparent),
+                linear-gradient(180deg, #ffffff 0%, #f8fafc 60%, #f1f5f9 100%);
         }
         /* ─── NAVBAR ─── */
         .site-nav {
@@ -216,6 +219,9 @@ if (isset($_SESSION['user_id'])) {
             border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
             padding: 18px 0; overflow: hidden;
         }
+        [data-theme="light"] .formula-strip {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        }
         .formula-ticker { display: flex; gap: 40px; white-space: nowrap; animation: ticker 28s linear infinite; }
         .formula-ticker span { font-family: 'Space Mono', monospace; font-size: 0.88em; color: var(--accent); padding: 0 8px; }
         .formula-ticker span.sep { color: rgba(246,177,122,0.4); }
@@ -257,6 +263,40 @@ if (isset($_SESSION['user_id'])) {
         }
         .footer-brand { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--light); font-size: 1.1em; margin-bottom: 8px; }
         .footer-note { color: var(--text-muted); font-size: 0.9em; }
+        /* ─── LIGHT MODE OVERRIDES ─── */
+        body[data-theme="light"] .hero-badge {
+            background: rgba(217,119,6,0.08);
+            border-color: rgba(217,119,6,0.25);
+        }
+        body[data-theme="light"] .stats-strip {
+            background: #f8fafc;
+        }
+        body[data-theme="light"] .feature-card {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        body[data-theme="light"] .feature-card:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+        }
+        body[data-theme="light"] .cta-box {
+            background: #ffffff;
+            border-color: rgba(217,119,6,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        body[data-theme="light"] .site-nav {
+            background: rgba(255,255,255,0.95);
+            border-bottom-color: #e2e8f0;
+        }
+        body[data-theme="light"] .btn-cta-secondary {
+            background: #ffffff;
+            border-color: #cbd5e0;
+            color: #1a202c !important;
+        }
+        body[data-theme="light"] .site-footer {
+            background: #f8fafc;
+            border-top-color: #e2e8f0;
+        }
         /* ─── ANIMATIONS ─── */
         @keyframes fadeUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
