@@ -482,7 +482,7 @@ if (isset($_SESSION['user_id'])) {
 <footer class="site-footer">
     <div class="footer-brand">FamoraLearn</div>
     <p class="footer-note">© 2026 Famora Education · Platform Belajar Matematika untuk Pelajar Indonesia</p>
-    <p class="footer-note">Made by FamoraEducation TJKT A</p>
+    <p class="footer-note">Made by FamoraEducation XII TJKT A</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
