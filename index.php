@@ -341,7 +341,8 @@ if (isset($_SESSION['user_id'])) {
             Kuasai <span>Matematika</span><br>Langkah demi Langkah
         </h1>
         <p class="hero-desc">
-            FamoraLearn adalah platform belajar matematika interaktif dengan Tutor FamorAI, materi lengkap, latihan soal yang menarik & komunitas pelajar aktif. Dari kelas X sampai kelas XII — semua ada di sini.
+            FamoraLearn adalah platform belajar matematika interaktif dengan Tutor FamorAI, materi lengkap, latihan soal yang menarik & komunitas pelajar aktif. 
+            Dari kelas X sampai kelas XII — semua ada di sini.
         </p>
         <div class="hero-cta">
             <a href="register/register.php" class="btn-cta-primary">
